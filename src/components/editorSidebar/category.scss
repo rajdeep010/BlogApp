@@ -5,15 +5,13 @@
     flex-direction: column;
 
     border: 2px solid #11d7ff;
-    background-color: #d8f8ff;
+    background-color: #d8f8ffc2;
     padding: 1rem;
     border-radius: 0.5rem;
 
     *{
         margin-top: 0.5rem;
     }
-
-    // border: 2px solid blue;
 
     .category_heading {
         display: flex;
@@ -38,6 +36,7 @@
     }
 
     .category_box {
+        
         form {
             display: flex;
             justify-content: center;
@@ -55,19 +54,6 @@
                 margin-bottom: 1rem;
                 font-size: 1.2rem;
                 cursor: pointer;
-            }
-
-            input {
-                padding: 0.5rem;
-                border-radius: 0.3rem;
-                border: 2px solid #13d7fe;
-                font-weight: 500;
-                background-color: #98eeffe7;
-
-                &:hover {
-                    border: 2px solid #11d7ff;
-                    background-color: #f2f2f2;
-                }
             }
         }
     }

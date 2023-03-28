@@ -23,7 +23,7 @@ const Creator = () => {
                 </div>
 
                 <div className="follow_button">
-                    <button>Follow</button>
+                    <button className='btn'>Follow</button>
                 </div>
 
             </div>

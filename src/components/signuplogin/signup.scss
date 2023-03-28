@@ -2,22 +2,65 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
 
 * {
-    font-family: "Poppins",
-        sans-serif;
+    font-family: "Poppins", sans-serif;
+
+    .btn {
+        border: 2px solid #11d7ff;
+
+        padding: 0.5rem 1rem;
+        text-transform: uppercase;
+
+        color: #fff;
+        background-color: #11d7ff;
+        transition: 0.2s ease-in-out;
+
+        &:hover {
+            color: #11d7ff;
+            background-color: #ffff;
+        }
+    }
 }
 
 .wrapper {
-    height: 80vh;
+
+    background: #e2fffe;
+    /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #0ed0f781, #b2fefa75);
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #0ed0f781, #b2fefa75);
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+    background-size: 400% 400%;
+    height: 100vh;
 
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
 
-    border: 2px solid red;
+    animation: gradient 5s linear infinite;
+
+    @keyframes gradient {
+        0% {
+            background-position: 0% 50%;
+        }
+
+        50% {
+            background-position: 100%;
+        }
+
+        100% {
+            background-position: 0% 50%;
+        }
+    }
+
+
+    .signup-login-buttons {
+        display: flex;
+        gap: 3rem;
+    }
 
     .signup-login {
-
 
         .box {
             display: flex;
@@ -26,23 +69,63 @@
             flex-direction: column;
 
             form {
-                padding: 1.5rem;
+                padding: 2rem;
                 border: 2px solid #11d7ff;
+                margin: 1.5rem 0;
+
+                border-radius: 1rem;
 
                 display: flex;
                 justify-content: center;
                 align-items: center;
                 flex-direction: column;
 
-                .heading{
+                box-shadow: #11d7ff 0px 4px 9px;
+
+                .heading {
                     font-size: 2rem;
-                    color: #11d7ff;
                     font-weight: 600;
+
+                    span {
+                        color: #11d7ff;
+                        border-bottom: 2px solid #11d7ff;
+
+                    }
+
                 }
 
-                .input-field
-                {
-                    
+                .input-field {
+                    margin: 0.6rem 0;
+                    width: 100%;
+                    padding: 1rem;
+
+                    background-color: #f0f0f0;
+                    border-radius: 1rem;
+
+                    display: flex;
+
+                    .icon {
+                        // border: 2px solid blue;
+
+                        font-size: 2rem;
+                        margin-right: 20px;
+
+                        color: #11d7ff;
+                    }
+
+                    input {
+                        width: 20rem;
+
+                        background-color: #f0f0f0;
+                        padding: 0.5rem;
+                        border: none;
+                        outline: none;
+
+                        &::placeholder {
+                            color: black;
+                            font-size: 1.1rem;
+                        }
+                    }
                 }
             }
         }

@@ -24,28 +24,5 @@
                 font-size: 0.8rem;
             }
         }
-
-        .follow_button {
-            button {
-                font-family: 'Work sans', sans-serif;
-                color: #0f0f0f;
-                cursor: pointer;
-
-                padding: 0.5rem;
-                border-radius: 0.7rem;
-                font-size: 1.05rem;
-
-                transition: 0.2s all ease-in-out;
-                
-                background-color: rgb(135, 242, 254);
-                border: 1.4px solid rgb(0, 166, 217);
-
-                &:hover {
-                    border: 1px solid #c9c9c9a7;
-                    background-color: #e8e8e8;
-                }
-            }
-
-        }
     }
 }
