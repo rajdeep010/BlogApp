@@ -1,0 +1,74 @@
+.category_submit_box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    border: 2px solid #11d7ff;
+    background-color: #d8f8ff;
+    padding: 1rem;
+    border-radius: 0.5rem;
+
+    *{
+        margin-top: 0.5rem;
+    }
+
+    // border: 2px solid blue;
+
+    .category_heading {
+        display: flex;
+        justify-content: center;
+
+        h1 {
+            font-family: 1.4rem;
+            color: #06c1ff;
+        }
+    }
+
+    .category_about {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+
+        p {
+            display: flex;
+            text-align: justify;
+        }
+    }
+
+    .category_box {
+        form {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+
+            select {
+                width: 20vw;
+                word-wrap: normal;
+                border: 2px solid #11d7ff;
+                padding: 0.5rem;
+                border-radius: 0.5rem;
+                font-family: 'Work Sans', sans-serif;
+                outline: none;
+                margin-bottom: 1rem;
+                font-size: 1.2rem;
+                cursor: pointer;
+            }
+
+            input {
+                padding: 0.5rem;
+                border-radius: 0.3rem;
+                border: 2px solid #13d7fe;
+                font-weight: 500;
+                background-color: #98eeffe7;
+
+                &:hover {
+                    border: 2px solid #11d7ff;
+                    background-color: #f2f2f2;
+                }
+            }
+        }
+    }
+}

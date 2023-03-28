@@ -1,0 +1,140 @@
+.container {
+    padding: 1.3rem 1rem 0.3rem 1rem;
+
+    display: flex;
+    
+    font-family: 'Work Sans', sans-serif;
+    color: rgba(23, 18, 18, 0.908);
+
+    background-color: #74e8ff85;
+
+    border: 1.4px solid #11d7ff;
+    border-bottom: 3px solid #11d7ff;
+
+
+    border-radius: 0.8rem;
+
+    margin-bottom: 1rem;
+
+    width: 65vw;
+
+    transition: 0.15s all ease-in-out;
+
+    &:hover{
+        cursor: pointer;
+    }
+
+    .content {
+
+        padding: 0.5rem;
+
+        // image date & name
+        .img_name_date {
+
+            display: flex;
+            gap: 0.65rem;
+            line-height: 35px;
+
+            .img {
+                img {
+                    border-radius: 50%;
+                    // border: 2px solid rgb(230, 20, 20);
+                }
+
+                .name p,
+                .date p {
+                    font-size: 1.3rem;
+                }
+            }
+        }
+
+        // content overview
+        .content-overview 
+        {
+            .content-heading 
+            {
+                font-family: 'Montserrat', sans-serif;
+                font-weight: 900;
+
+                h2 
+                {
+                    font-size: 2rem;
+                    margin: 0.5rem 0;
+                }
+            }
+        }
+
+        // readtime icons
+        .readtime_icons 
+        {
+            .content_about 
+            {
+                display: flex;
+                justify-content: space-between;
+                margin: 0.5rem 0;
+
+                .topic-container 
+                {
+                    display: flex;
+
+                    .topic-icon 
+                    {
+                        display: inline;
+                        padding: 0.4rem;
+                        border-radius: 1rem;
+                        border: 2px solid #fff;
+                        background-color: #dadada8c;
+                        margin: 0.8rem 0.2rem;
+                    }
+
+                    .readtime 
+                    {
+                        border: none;
+                        font-size: 0.9rem;
+                        background: none;
+                    }
+                }
+
+                .topic_moreabout 
+                {
+                    display: flex;
+                    justify-content: space-between;
+
+                    .icons 
+                    {
+
+                        display: flex;
+                        gap: 0.7rem;
+
+                        .icon {
+                            font-size: 1.5rem;
+                            cursor: pointer;
+                            transition: all 0.2s ease-in-out;
+
+                            &:hover {
+                                color: rgba(181, 183, 179, 0.797);
+                            }
+                        }
+                    }
+                }
+
+            }
+        }
+    }
+
+    .image{
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        
+        img{
+            height: 15rem;
+            width: 15rem;
+
+            border: 2.5px solid rgb(251, 253, 254);
+
+        }
+    }
+}

@@ -1,0 +1,39 @@
+.latest_blogs {
+
+    .blogs_container 
+    {
+        .blog 
+        {
+            padding: 0.3rem 0;
+            border-bottom: 0.8px solid #8b8b8b9c;
+            margin: 1.5rem 0;
+
+            &:hover
+            {
+                cursor: pointer;
+            }
+
+            .img_name {
+                display: flex;
+
+                .writer_img {
+                    img {
+                        height: 1.2rem;
+                        width: 1.2rem;
+                    }
+                }
+
+                .writer_name {
+                    font-size: 0.95rem;
+                    font-weight: 300;
+                    margin-left: 0.4rem;
+                }
+            }
+
+            .blog_title p {
+                font-size: 1.35rem;
+                font-weight: 500;
+            }
+        }
+    }
+}

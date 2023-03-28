@@ -1,0 +1,24 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.app_container{
+  width: 100vw;
+  display: flex;
+  padding: 2rem;
+}
+
+.cards_container{
+  padding-right: 1rem;
+}
+
+.app_container .card{
+  width: 70%;
+}
+
+.app_container .sidebar{
+  width: 30%;
+}
+

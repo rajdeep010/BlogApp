@@ -1,0 +1,56 @@
+.codio_share
+{
+    margin: 1rem 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    border: 2px solid #11d7ff;
+    background-color: #d8f8ff;
+    padding: 2rem;
+    border-radius: 0.5rem;
+
+    .codio
+    {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 0.8rem;
+
+        div h1{
+            font-size: 3rem;
+        }
+    }
+
+    .share
+    {
+        .share_about{
+            font-size: 1.1rem;
+            padding: 1rem 0.2rem;
+            text-align: justify;
+        }
+
+        .social_icon
+        {
+            display: flex;
+            justify-content: space-evenly;
+
+            .icon
+            {
+                padding: 0.1rem;
+                font-size: 2rem;
+                color: #11d7ff;
+
+                cursor: pointer;
+
+                &:hover
+                {
+                    color: #fff;
+                    background-color: #11d7ff;
+                }
+
+            }
+        }
+    }
+}

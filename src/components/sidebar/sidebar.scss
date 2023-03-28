@@ -1,0 +1,22 @@
+.sidebar_container {
+    display: flex;
+    flex-direction: column;
+    padding: 0 1rem;
+    height: fit-content;
+
+
+
+    font-family: 'Work Sans', sans-serif;
+
+    // Global Styling
+    .heading p {
+        color: rgb(46, 40, 40);
+        font-size: 1.4rem;
+        font-weight: 500;
+        padding: 0.3rem;
+        width: fit-content;
+        background-color: #74e8ff85;
+        border: 2px solid #11d7ff;
+        border-radius: 0.5rem;
+    }
+}

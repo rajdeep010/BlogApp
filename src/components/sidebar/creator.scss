@@ -1,0 +1,51 @@
+// Creators area
+.creators {
+    margin: 2rem 0;
+
+    .creator_info {
+        display: flex;
+        padding: 0.8rem 0;
+
+        div{
+            margin: 0 0.3rem;
+        }
+
+        .creator_details 
+        {
+            display: flex;
+            flex-direction: column;
+
+            .creator_name p {
+                font-size: 1.2rem;
+                margin-bottom: 0.15rem;
+            }
+
+            .creator_about {
+                font-size: 0.8rem;
+            }
+        }
+
+        .follow_button {
+            button {
+                font-family: 'Work sans', sans-serif;
+                color: #0f0f0f;
+                cursor: pointer;
+
+                padding: 0.5rem;
+                border-radius: 0.7rem;
+                font-size: 1.05rem;
+
+                transition: 0.2s all ease-in-out;
+                
+                background-color: rgb(135, 242, 254);
+                border: 1.4px solid rgb(0, 166, 217);
+
+                &:hover {
+                    border: 1px solid #c9c9c9a7;
+                    background-color: #e8e8e8;
+                }
+            }
+
+        }
+    }
+}

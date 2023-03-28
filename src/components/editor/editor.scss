@@ -1,0 +1,128 @@
+.editor {
+    padding: 1rem 0.5rem 0.5rem 2rem;
+    height: 77vh;
+
+    width: 75%;
+
+    .ql-editor{
+        padding: 1rem;
+    }
+
+    .ql-toolbar.ql-snow 
+    {
+        padding: 1rem;
+        border-radius: 0.8rem;
+        margin-bottom: 1.5rem;
+        background-color: #e1f9ff;
+        border: 1.4px solid #11d7ff;
+
+
+        .ql-picker-label {
+            border: 2px solid #11d7ff;
+            border-radius: 0.5rem;
+        }
+
+        button {
+            height: 2rem;
+            width: 2rem;
+            margin-right: 1.2rem;
+        }
+    }
+
+    .ql-tooltip {
+        background-color: #cff6ffd8;
+        border: 2px solid #11d7ff;
+        border-radius: 0.5rem;
+        color: #444;
+        font-family: 'Work sans', sans-serif;
+        padding: 0.8rem 1rem;
+        font-size: 1.1rem;
+    }
+
+    .ql-snow .ql-tooltip[data-mode=link]::before {
+        content: "Link :";
+    }
+
+    .ql-snow .ql-tooltip.ql-editing a.ql-action::after {
+        content: 'Save';
+        border: 1.4px solid #0095ff;
+        padding: 0.3rem;
+        color: white;
+        background-color: #11d7ff;
+
+        &:hover {
+            color: #11d7ff;
+            background-color: #fff;
+        }
+    }
+
+    .ql-snow .ql-stroke{
+        stroke: #10bbff;
+    }
+
+    .ql-snow .ql-fill{
+        fill: #10bbff;
+    }
+    
+    .ql-snow .ql-tooltip input[type=text] {
+        height: 2rem;
+        width: 13rem;
+        padding: 0.5rem;
+        border-radius: 0.5rem;
+        font-size: 1.1rem;
+    }
+
+    .ql-container.ql-snow {
+        border: none;
+    }
+
+    .ql-editor {
+        background-color: #e1fbff6d;
+        border: 1.4px solid #11d7ff;
+        border-radius: 0.8rem;
+        outline: none;
+    }
+
+    .ql-editor p,
+    .ql-editor ol,
+    .ql-editor ul,
+    .ql-editor pre,
+    .ql-editor blockquote,
+    .ql-editor h1,
+    .ql-editor h2,
+    .ql-editor h3,
+    .ql-editor h4,
+    .ql-editor h5,
+    .ql-editor h6 {
+        font-family: 'Work sans', sans-serif;
+    }
+
+    .ql-editor h1 {
+        font-size: 2rem;
+    }
+
+    .ql-editor h2 {
+        font-size: 1.7rem;
+    }
+
+    .ql-editor h3 {
+        font-size: 1.4rem;
+    }
+
+    .ql-editor blockquote {
+        font-size: 1.3rem;
+        font-style: italic;
+        font-weight: 400;
+        border-left: 0.5rem solid #57e3ffcf;
+        padding: 0.5rem;
+        margin: 0.8rem 0;
+        background-color: #8fe9f94e;
+    }
+
+    .ql-editor p,
+    .ql-editor ol,
+    .ql-editor ul,
+    .ql-editor pre {
+        font-size: 1.2rem;
+    }
+}
