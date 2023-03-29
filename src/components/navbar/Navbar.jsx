@@ -11,9 +11,9 @@ const Navbar = () => {
 
                 <div class="container-fluid">
 
-                    <a class="navbar-brand" href="/">
-                        <FiCoffee /> CODIO
-                    </a>
+                    <NavLink to='/' className={'navbar-brand'}>
+                        <a><FiCoffee /> CODIO</a>
+                    </NavLink>
 
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
@@ -30,7 +30,7 @@ const Navbar = () => {
                             </li>
 
                             <li class="nav-item">
-                                <NavLink to='/blogs' className={'nav-link'}>
+                                <NavLink to='/blog' className={'nav-link'}>
                                     <a>BLOGS</a>
                                 </NavLink>
                             </li>

@@ -1,0 +1,14 @@
+.post-container{
+
+    .post-page-element{
+        display: flex;
+
+        .post-sidebar{
+            display: flex;
+            flex-direction: column;
+
+            padding: 0 1rem;
+        }
+    }
+
+}

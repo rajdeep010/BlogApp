@@ -1,6 +1,8 @@
 
 import Latestblog from './Latestblog'
 
+import './latestblog.scss'
+
 const Latest = () => {
     return (
         <>

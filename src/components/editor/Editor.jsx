@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 
 import ReactQuill from 'react-quill';
+
 import 'react-quill/dist/quill.snow.css';
 
 import './editor.scss'
@@ -12,7 +13,7 @@ const Editor = () => {
         const modules = {
             toolbar: [
                 [{ 'header': [1, 2,3, false] }],
-                ['bold', 'italic', 'underline', 'blockquote'],
+                ['bold', 'italic', 'underline', 'blockquote', 'code-block'],
                 [{ 'list': 'ordered' }, { 'list': 'bullet' }, { 'indent': '-1' }, { 'indent': '+1' }],
                 ['link', 'image']
             ],
@@ -20,9 +21,9 @@ const Editor = () => {
 
         const formats = [
             'header',
-            'bold', 'italic', 'underline', 'blockquote',
+            'bold', 'italic', 'underline', 'blockquote', 'code',
             'list', 'bullet', 'indent',
-            'link', 'image'
+            'link', 'image', 'code-block'
         ]
 
         const [value, setValue] = useState('');

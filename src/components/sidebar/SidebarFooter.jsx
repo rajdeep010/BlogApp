@@ -12,7 +12,7 @@ const SidebarFooter = () => {
             </div>
 
             <div className="about">
-                Click the <MdBookmarkAdd/> on any post to easily add it to your reading list or a custom list that you can share.
+                Click the <MdBookmarkAdd className='icon'/> on any post to easily add it to your reading list or a custom list that you can share.
             </div>
 
             <div className="links">

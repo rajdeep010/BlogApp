@@ -1,5 +1,17 @@
 .latest_blogs {
 
+    // Global Styling
+    .heading p {
+        color: rgb(46, 40, 40);
+        font-size: 1.4rem;
+        font-weight: 500;
+        padding: 0.3rem;
+        width: fit-content;
+        background-color: #74e8ff85;
+        border: 2px solid #11d7ff;
+        border-radius: 0.5rem;
+    }
+
     .blogs_container 
     {
         .blog 
