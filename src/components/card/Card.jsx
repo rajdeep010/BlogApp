@@ -1,5 +1,4 @@
 import { MdBookmarkAdd, MdShare } from 'react-icons/md'
-import { FaShareAlt } from 'react-icons/fa'
 
 import moment from 'moment'
 
@@ -7,7 +6,7 @@ import './card.scss'
 
 const Card = () => {
     return (
-        <div className="container">
+        <form className="container">
 
             <div className="content">
 
@@ -80,7 +79,7 @@ const Card = () => {
                 <img src="../../../public/images/sample.webp" alt="" />
             </div>
 
-        </div>
+        </form>
     )
 }
 

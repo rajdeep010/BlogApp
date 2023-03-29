@@ -10,8 +10,7 @@ const Signup = () => {
             <div className="signin_container box">
 
                 <form action="/signin" className="sign-in-form" method="post">
-
-                    <h2 className='heading'>SIGN <span>IN</span></h2>
+                    <h2 className='heading'>SIGN <span>UP</span></h2>
 
                     <div class="input-field">
                         <FaPen className='icon' />
@@ -33,8 +32,7 @@ const Signup = () => {
                         <input type="password" placeholder="Confirm Password" name="conpassword" autoComplete='off' />
                     </div>
 
-                    <button type="submit" className="btn">Sign In <span class="fas fa-angle-double-right"></span></button>
-
+                    <button type="submit" className="btn">Sign Up <span class="fas fa-angle-double-right"></span></button>
                 </form>
 
             </div>
