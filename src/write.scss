@@ -1,4 +1,5 @@
+@import './mixins';
+
 .writing_section{
-    display: flex;
-    justify-content: space-around;
+    @include flexjustspacearound;
 }

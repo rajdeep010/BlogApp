@@ -1,11 +1,9 @@
-.codio_share
-{
-    margin: 1rem 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+@import '../../mixins';
 
+.codio_share {
+    @include flexprop;
+
+    margin: 1rem 0;
     max-width: 30vw;
 
     border: 2px solid #11d7ff;
@@ -13,41 +11,35 @@
     padding: 2rem;
     border-radius: 0.5rem;
 
-    .codio
-    {
-        display: flex;
-        justify-content: center;
-        align-items: center;
+    .codio {
+        @include flexcentre;
+
         gap: 0.8rem;
 
-        div h1{
+        div h1 {
             font-size: 3rem;
         }
     }
 
-    .share
-    {
-        .share_about{
+    .share {
+        .share_about {
             font-size: 1.1rem;
             padding: 1rem 0.2rem;
             text-align: justify;
         }
 
-        .social_icon
-        {
-            display: flex;
-            justify-content: space-evenly;
+        .social_icon {
+            
+            @include flexjustspaceevenly;
 
-            .icon
-            {
+            .icon {
                 padding: 0.1rem;
                 font-size: 2rem;
                 color: #11d7ff;
 
                 cursor: pointer;
 
-                &:hover
-                {
+                &:hover {
                     color: #fff;
                     background-color: #11d7ff;
                 }

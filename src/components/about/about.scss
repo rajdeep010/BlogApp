@@ -1,26 +1,22 @@
-.about-me {
-    border: 2px solid #11d7ff;
+@import '../../mixins';
 
+.about-me {
+
+    @include flexprop;
+
+
+    border: 2px solid #11d7ff;
     background-color: #e2fffe;
 
+
     padding: 2rem;
-
     height: fit-content;
-
     margin: 1rem 1rem 2.5rem 0;
-
     border-radius: 0.5rem;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
 
     .myimg
     {
-        display: flex;
-        justify-content: center;
-        align-items: center;
+        @include flexcentre;
 
         img
         {
@@ -35,10 +31,8 @@
 
     .name-post {
 
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
+        @include flexprop;
+
 
         h2 {
             font-size: 1.5rem;

@@ -1,0 +1,37 @@
+@mixin flexprop {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+@mixin flexcentre {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@mixin flexjust {
+    display: flex;
+    justify-content: center;
+}
+
+@mixin flexjustspacebetween {
+    display: flex;
+    justify-content: space-between;
+}
+
+@mixin flexjustspaceevenly {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+@mixin flexjustspacearound {
+    display: flex;
+    justify-content: space-around;
+}
+
+@mixin flexcolumn {
+    display: flex;
+    flex-direction: column;
+}

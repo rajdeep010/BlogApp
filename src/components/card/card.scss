@@ -1,4 +1,7 @@
+@import '../../mixins';
+
 .container {
+    width: 65vw;
     padding: 1.3rem 1rem 0.3rem 1rem;
 
     display: flex;
@@ -10,14 +13,9 @@
 
     border: 1.4px solid #11d7ff;
     border-bottom: 3px solid #11d7ff;
-
-
     border-radius: 0.8rem;
 
     margin-bottom: 1rem;
-
-    width: 65vw;
-
     transition: 0.15s all ease-in-out;
 
     &:hover{
@@ -30,7 +28,7 @@
 
         // image date & name
         .img_name_date {
-
+            
             display: flex;
             gap: 0.65rem;
             line-height: 35px;
@@ -38,7 +36,6 @@
             .img {
                 img {
                     border-radius: 50%;
-                    // border: 2px solid rgb(230, 20, 20);
                 }
 
                 .name p,
@@ -53,7 +50,6 @@
         {
             .content-heading 
             {
-                font-family: 'Montserrat', sans-serif;
                 font-weight: 900;
 
                 h2 
@@ -69,8 +65,8 @@
         {
             .content_about 
             {
-                display: flex;
-                justify-content: space-between;
+                @include flexjustspacebetween;
+
                 margin: 0.5rem 0;
 
                 .topic-container 
@@ -97,12 +93,10 @@
 
                 .topic_moreabout 
                 {
-                    display: flex;
-                    justify-content: space-between;
+                    @include flexjustspacebetween;
 
                     .icons 
                     {
-
                         display: flex;
                         gap: 0.7rem;
 
@@ -123,12 +117,8 @@
     }
 
     .image{
+        @include flexcentre;
 
-        display: flex;
-        justify-content: center;
-        align-items: center;
-
-        
         img{
             height: 15rem;
             width: 15rem;

@@ -1,5 +1,7 @@
 /* Import Google font - Poppins */
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
+@import '../../mixins';
+
 
 * {
     font-family: "Poppins", sans-serif;
@@ -23,6 +25,8 @@
 
 .wrapper {
 
+    @include flexprop;
+
     background: #e2fffe;
     /* fallback for old browsers */
     background: -webkit-linear-gradient(to right, #2ed6f893, #b2fefa75);
@@ -32,11 +36,6 @@
 
     background-size: 400% 400%;
     height: 100vh;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
 
     animation: gradient 5s linear infinite;
 
@@ -54,7 +53,6 @@
         }
     }
 
-
     .signup-login-buttons {
         display: flex;
         gap: 3rem;
@@ -63,22 +61,16 @@
     .signup-login {
 
         .box {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
+            @include flexprop;
 
             form {
+                @include flexprop;
+
                 padding: 2rem;
                 border: 2px solid #11d7ff;
                 margin: 1.5rem 0;
 
                 border-radius: 1rem;
-
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                flex-direction: column;
 
                 box-shadow: #11d7ff 0px 4px 9px;
 
@@ -89,9 +81,7 @@
                     span {
                         color: #11d7ff;
                         border-bottom: 2px solid #11d7ff;
-
                     }
-
                 }
 
                 .input-field {
@@ -105,8 +95,7 @@
                     display: flex;
 
                     .icon {
-                        // border: 2px solid blue;
-
+                        
                         font-size: 2rem;
                         margin-right: 20px;
 

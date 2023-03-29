@@ -1,10 +1,10 @@
+@import '../../mixins';
+
 .sidebar_container {
-    display: flex;
-    flex-direction: column;
+    @include flexcolumn;
+
     padding: 0 1rem;
     height: fit-content;
-
-
 
     font-family: 'Work Sans', sans-serif;
 

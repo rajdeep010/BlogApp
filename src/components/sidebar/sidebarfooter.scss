@@ -1,3 +1,5 @@
+@import '../../mixins';
+
 .sidebar_about_container{
     .about{
         margin: 1.2rem 0;
@@ -9,8 +11,7 @@
 
     .links 
     {
-        display: flex;
-        justify-content: space-evenly;
+        @include flexjustspaceevenly;
         
         a{
             text-decoration: none;

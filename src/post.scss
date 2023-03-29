@@ -1,11 +1,12 @@
+@import './mixins';
+
 .post-container{
 
     .post-page-element{
         display: flex;
 
         .post-sidebar{
-            display: flex;
-            flex-direction: column;
+            @include flexcolumn;
 
             padding: 0 1rem;
         }

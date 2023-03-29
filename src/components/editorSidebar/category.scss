@@ -1,8 +1,7 @@
+@import '../../mixins';
+
 .category_submit_box {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+    @include flexprop;
 
     border: 2px solid #11d7ff;
     background-color: #d8f8ffc2;
@@ -24,10 +23,8 @@
     }
 
     .category_about {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
+
+        @include flexprop;
 
         p {
             display: flex;
@@ -38,10 +35,7 @@
     .category_box {
         
         form {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
+            @include flexprop;
 
             select {
                 width: 20vw;
