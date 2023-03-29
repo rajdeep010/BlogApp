@@ -1,14 +1,15 @@
 @import '../../mixins';
+@import '../../var';
+
 
 .blog-box {
     @include flexcolumn;
 
-    background-color: #c1fefb4e;
+    background-color: $bg-medium-blue;
+    border: $border;
+    border-radius: $border-rad;
 
     padding: 2rem;
-    border: 2px solid #11d7ff;
-    border-radius: 0.5rem;
-
     width: 70vw;
 
     box-shadow: #11d7ff 0px 0px 12px;

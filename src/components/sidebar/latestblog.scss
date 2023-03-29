@@ -1,16 +1,7 @@
-.latest_blogs {
+@import '../../var';
+@import '../../mixins';
 
-    // Global Styling
-    .heading p {
-        color: rgb(46, 40, 40);
-        font-size: 1.4rem;
-        font-weight: 500;
-        padding: 0.3rem;
-        width: fit-content;
-        background-color: #74e8ff85;
-        border: 2px solid #11d7ff;
-        border-radius: 0.5rem;
-    }
+.latest_blogs {
 
     .blogs_container 
     {
@@ -20,8 +11,7 @@
             border-bottom: 0.8px solid #8b8b8b9c;
             margin: 1.5rem 0;
 
-            &:hover
-            {
+            &:hover{
                 cursor: pointer;
             }
 

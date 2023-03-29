@@ -1,19 +1,21 @@
 @import '../../mixins';
+@import '../../var';
+
 
 .container {
+    border: $border;
+    background-color: $bg-card-blue;
+    border-bottom: 3px solid $blue;
+    border-radius: $border-rad;
+
+
     width: 65vw;
     padding: 1.3rem 1rem 0.3rem 1rem;
 
     display: flex;
     
-    font-family: 'Work Sans', sans-serif;
     color: rgba(23, 18, 18, 0.908);
 
-    background-color: #74e8ff85;
-
-    border: 1.4px solid #11d7ff;
-    border-bottom: 3px solid #11d7ff;
-    border-radius: 0.8rem;
 
     margin-bottom: 1rem;
     transition: 0.15s all ease-in-out;
@@ -28,7 +30,7 @@
 
         // image date & name
         .img_name_date {
-            
+
             display: flex;
             gap: 0.65rem;
             line-height: 35px;
@@ -75,11 +77,13 @@
 
                     .topic-icon 
                     {
+                        background-color: $med-blue;
+                        border-radius: $border-rad;
+                        border: $img-border;
+
                         display: inline;
-                        padding: 0.4rem;
-                        border-radius: 1rem;
-                        border: 2px solid #fff;
-                        background-color: #dadada8c;
+                        padding: 0.3rem;
+
                         margin: 0.8rem 0.2rem;
                     }
 
@@ -101,12 +105,13 @@
                         gap: 0.7rem;
 
                         .icon {
-                            font-size: 1.5rem;
+                            font-size: 1.6rem;
                             cursor: pointer;
                             transition: all 0.2s ease-in-out;
 
+
                             &:hover {
-                                color: rgba(181, 183, 179, 0.797);
+                                color: $blue;
                             }
                         }
                     }
@@ -123,8 +128,7 @@
             height: 15rem;
             width: 15rem;
 
-            border: 2.5px solid rgb(251, 253, 254);
-
+            border: $img-border;
         }
     }
 }

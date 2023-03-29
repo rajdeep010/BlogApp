@@ -1,3 +1,5 @@
+@import '../../var';
+
 .editor {
     padding: 1rem 0.5rem 0.5rem 2rem;
     height: 77vh;
@@ -5,27 +7,31 @@
     width: 75%;
 
     .ql-editor {
+        box-shadow: $deep-blue 0px 6px 14px;
+
         padding: 2rem;
-        box-shadow: #0095ff 0px 6px 14px;
 
         &::-webkit-scrollbar {
             width: 0.5rem;
         }
 
         &::-webkit-scrollbar-track {
-            background-color: #11d7ff;
+
+            background-color: $blue;
             border-radius: 1rem;
         }
 
         &::-webkit-scrollbar-thumb {
-            background: #fff;
+            border-radius: $border-rad;
+            background: $white;
+
             border: 2.5px solid transparent;
-            border-radius: 0.5rem;
             background-clip: content-box;
         }
 
         pre.ql-syntax {
-            background-color: #247d78f8;
+            background-color: $editor-black;
+
             padding: 2rem;
             border-radius: 0.5rem;
             font-size: 0.9rem;
@@ -33,16 +39,16 @@
     }
 
     .ql-toolbar.ql-snow {
+        border: $light-border;
+        background-color: $light-blue;
+
         padding: 1rem;
         border-radius: 0.8rem;
         margin-bottom: 1.5rem;
-        background-color: #e1f9ff;
-        border: 1.4px solid #11d7ff;
-
 
         .ql-picker-label {
-            border: 2px solid #11d7ff;
-            border-radius: 0.5rem;
+            border: $border;
+            border-radius: $border-rad;
         }
 
         button {
@@ -53,11 +59,11 @@
     }
 
     .ql-tooltip {
-        background-color: #cff6ffd8;
-        border: 2px solid #11d7ff;
+        background-color: $light-blue;
+        border: $border;
+        color: $black;
+
         border-radius: 0.5rem;
-        color: #444;
-        font-family: 'Work sans', sans-serif;
         padding: 0.8rem 1rem;
         font-size: 1.1rem;
     }
@@ -67,31 +73,38 @@
     }
 
     .ql-snow .ql-tooltip.ql-editing a.ql-action::after {
+        border: $light-border;
+        border-radius: $border-rad;
+        color: $white;
+        background-color: $blue;
+
         content: 'Save';
-        border: 1.4px solid #0095ff;
+
         padding: 0.3rem;
-        color: white;
-        background-color: #11d7ff;
+        
 
         &:hover {
-            color: #11d7ff;
-            background-color: #fff;
+            color: $blue;
+            background-color: $white;
         }
     }
 
     .ql-snow .ql-stroke {
-        stroke: #10bbff;
+        stroke: $stroke-blue;
     }
 
     .ql-snow .ql-fill {
-        fill: #10bbff;
+        fill: $stroke-blue;
     }
 
     .ql-snow .ql-tooltip input[type=text] {
+        outline: $border;
+        border-radius: $border-rad;
+
         height: 2rem;
         width: 13rem;
+
         padding: 0.5rem;
-        border-radius: 0.5rem;
         font-size: 1.1rem;
     }
 
@@ -100,9 +113,10 @@
     }
 
     .ql-editor {
-        background-color: #e1fbff6d;
-        border: 1.4px solid #11d7ff;
-        border-radius: 0.8rem;
+        background-color: $fade-blue;
+        border: $border;
+        border-radius: $border-rad;
+        
         outline: none;
     }
 
@@ -117,7 +131,8 @@
     .ql-editor h4,
     .ql-editor h5,
     .ql-editor h6 {
-        font-family: 'Work sans', sans-serif;
+        font-family: 'Poppins', sans-serif;
+        // font-family: 'Work sans', sans-serif;
     }
 
     .ql-editor h1 {
@@ -133,13 +148,14 @@
     }
 
     .ql-editor blockquote {
+        background-color: $quote-blue;
+
         font-size: 1.3rem;
         font-style: italic;
         font-weight: 400;
         border-left: 0.5rem solid #57e3ffcf;
         padding: 0.5rem;
         margin: 0.8rem 0;
-        background-color: #8fe9f94e;
     }
 
     .ql-editor p,

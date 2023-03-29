@@ -1,24 +1,26 @@
 /* Import Google font - Poppins */
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
+
 @import '../../mixins';
+@import '../../var';
 
 
 * {
     font-family: "Poppins", sans-serif;
 
     .btn {
-        border: 2px solid #11d7ff;
+        border: $border;
+        color: $white;
+        background-color: $blue;
 
         padding: 0.5rem 1rem;
         text-transform: uppercase;
 
-        color: #fff;
-        background-color: #11d7ff;
         transition: 0.2s ease-in-out;
 
         &:hover {
-            color: #11d7ff;
-            background-color: #ffff;
+            color: $blue;
+            background-color: $white;
         }
     }
 }
@@ -65,34 +67,37 @@
 
             form {
                 @include flexprop;
+                border: $border;
+                box-shadow: $blue 0px 4px 9px;
 
                 padding: 2rem;
-                border: 2px solid #11d7ff;
+                
                 margin: 1.5rem 0;
 
                 border-radius: 1rem;
 
-                box-shadow: #11d7ff 0px 4px 9px;
 
                 .heading {
                     font-size: 2rem;
                     font-weight: 600;
 
                     span {
-                        color: #11d7ff;
-                        border-bottom: 2px solid #11d7ff;
+                        color: $blue;
+                        border-bottom: $border;
                     }
                 }
 
                 .input-field {
-                    margin: 0.6rem 0;
-                    width: 100%;
-                    padding: 1rem;
-
-                    background-color: #ffffff;
-                    border-radius: 1rem;
+                    background-color: $white;
 
                     display: flex;
+
+                    width: 100%;
+
+                    padding: 1rem;
+                    margin: 0.6rem 0;
+
+                    border-radius: 1rem;
 
                     .icon {
                         
@@ -103,10 +108,11 @@
                     }
 
                     input {
-                        width: 20rem;
+                        background-color: $white;
 
-                        background-color: #ffffff;
+                        width: 20rem;
                         padding: 0.5rem;
+                        
                         border: none;
                         outline: none;
 

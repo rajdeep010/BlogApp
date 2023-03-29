@@ -5,8 +5,8 @@ const Category = () => {
         <>
             <div className="category_submit_box">
 
-                <div className="category_heading">
-                    <h1>Category</h1>
+                <div className="heading">
+                    <p>CATEGORY</p>
                 </div>
 
                 <div className="category_about">

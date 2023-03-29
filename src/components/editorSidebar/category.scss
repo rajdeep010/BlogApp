@@ -1,25 +1,22 @@
 @import '../../mixins';
+@import '../../var';
+
 
 .category_submit_box {
     @include flexprop;
 
-    border: 2px solid #11d7ff;
-    background-color: #d8f8ffc2;
-    padding: 1rem;
-    border-radius: 0.5rem;
+    border: $border;
+    background-color: $fade-blue;
+    border-radius: $border-rad;
 
-    *{
+    padding: 1rem;
+
+    * {
         margin-top: 0.5rem;
     }
 
-    .category_heading {
-        display: flex;
-        justify-content: center;
-
-        h1 {
-            font-family: 1.4rem;
-            color: #06c1ff;
-        }
+    .heading p {
+        @include heading;
     }
 
     .category_about {
@@ -33,17 +30,17 @@
     }
 
     .category_box {
-        
+
         form {
             @include flexprop;
 
             select {
+                border-radius: $border-rad;
+                border: $border;
+
                 width: 20vw;
                 word-wrap: normal;
-                border: 2px solid #11d7ff;
                 padding: 0.5rem;
-                border-radius: 0.5rem;
-                font-family: 'Work Sans', sans-serif;
                 outline: none;
                 margin-bottom: 1rem;
                 font-size: 1.2rem;

@@ -35,3 +35,21 @@
     display: flex;
     flex-direction: column;
 }
+
+
+// padding scss
+@mixin paddingtop{
+    padding-top: 2rem;
+}
+
+@mixin heading{
+    background-color: $blue;
+    color: $white;
+    border: $border;
+    border-radius: $border-rad;
+
+    font-size: 1.4rem;
+    font-weight: 500;
+    padding: 0.3rem 0.5rem;
+    width: fit-content;
+}
