@@ -1,12 +1,13 @@
 import { MdBookmarkAdd, MdShare } from 'react-icons/md'
 
 import moment from 'moment'
+import { NavLink } from 'react-router-dom'
 
 import './card.scss'
 
 const Card = () => {
     return (
-        <form className="container">
+        <NavLink className="container" to='/blog'>
 
             <div className="content">
 
@@ -79,7 +80,7 @@ const Card = () => {
                 <img src="../../../public/images/sample.webp" alt="" />
             </div>
 
-        </form>
+        </NavLink>
     )
 }
 
