@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 import ReactQuill from 'react-quill';
 
@@ -28,6 +28,7 @@ const Editor = () => {
 
         const [value, setValue] = useState('');
 
+        
         return <ReactQuill
             theme="snow"
             value={value}
@@ -40,7 +41,9 @@ const Editor = () => {
 
     return (
         <>
-            <MyComponent />
+            <MyComponent 
+                content = {value}
+            />
         </>
     )
 }

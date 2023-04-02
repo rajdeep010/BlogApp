@@ -1,6 +1,7 @@
 import './blog.scss'
 
 const Blog = () => {
+
     return (
         <>
             <section className="blog-box">

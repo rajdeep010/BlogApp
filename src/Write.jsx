@@ -6,6 +6,7 @@ import EditSidebar from './components/editorSidebar/EditSidebar'
 import './write.scss'
 
 const Write = () => {
+
   return (
     <>
       <Navbar />
