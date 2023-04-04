@@ -1,6 +1,15 @@
+import { useContext } from 'react'
 import './category.scss'
+import { BlogContext } from '../../context/BlogContext'
 
 const Category = () => {
+    const blogCOntext = useContext(BlogContext);
+
+    const submit = (event) => {
+        event.preventDefault()
+        console.log(blogCOntext.value);
+    }
+
     return (
         <>
             <div className="category_submit_box">
@@ -16,7 +25,7 @@ const Category = () => {
 
                 <div className="category_box">
 
-                    <form action="/category">
+                    <form>
 
                         <select name="category" id="category">
                             <option value="development" selected>Web Development</option>
@@ -28,7 +37,7 @@ const Category = () => {
                             <option value="misc">Misc</option>
                         </select>
 
-                        <input type="submit" className='btn' value='Submit' />
+                        <input type="submit" className='btn' value='Submit' onClick={submit} />
 
                     </form>
 

@@ -3,12 +3,15 @@ import './editSidebar.scss'
 import Category from "./Category"
 import CodioShare from "./CodioShare";
 
-const EditSidebar = () => {
+const EditSidebar = (props) => {
+
+    // console.log(props.val)
+
     return (
         <>
             <div className="content_box">
 
-                <Category/>
+                <Category />
                 <CodioShare/>
                 
             </div>
