@@ -5,10 +5,11 @@ const BlogContext = createContext({
     updateVal: () => {}
 })
 
+
 const BlogProvider = (props) => {
 
     const [value, setValue] = useState("");
-    
+
     const updateVal = (val)=>{
         setValue(val);
     }

@@ -27,7 +27,7 @@ const Editor = () => {
     const blogContext = useContext(BlogContext);
 
     const [value, setValue] = useState('');
-    
+
     useEffect(() => {
         blogContext.updateVal(value);
     }, [value])

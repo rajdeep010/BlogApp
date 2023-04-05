@@ -3,12 +3,14 @@ import './category.scss'
 import { BlogContext } from '../../context/BlogContext'
 
 const Category = () => {
-    const blogCOntext = useContext(BlogContext);
+
+    const blogContext = useContext(BlogContext);
 
     const submit = (event) => {
         event.preventDefault()
-        console.log(blogCOntext.value);
+        console.log(blogContext.value);
     }
+
 
     return (
         <>
