@@ -3,12 +3,17 @@
 
 .latest_blogs {
 
+
     .heading p {
         @include heading;
     }
 
     .blogs_container {
+
         .blog {
+            text-decoration: none;
+            color: $black;
+
             padding: 0.3rem 0;
             border-bottom: 0.8px solid #8b8b8b9c;
             margin: 1.5rem 0;

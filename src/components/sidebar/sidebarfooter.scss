@@ -1,4 +1,6 @@
 @import '../../mixins';
+@import '../../var';
+
 
 .sidebar_about_container{
     .about{
@@ -13,9 +15,16 @@
     {
         @include flexjustspaceevenly;
         
-        a{
+        .footer_link{
+            color: #212121;
             text-decoration: none;
-            color: #444;
+            transition: 0.2s ease-in-out;
+
+            &:hover
+            {
+                color: $blue;
+                text-decoration: underline;
+            }
         }
     }
 }

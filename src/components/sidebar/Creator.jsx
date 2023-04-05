@@ -1,3 +1,5 @@
+import Button from '../button/Button'
+
 import './creator.scss'
 
 const Creator = () => {
@@ -23,7 +25,7 @@ const Creator = () => {
                 </div>
 
                 <div className="follow_button">
-                    <button className='btn'>Follow</button>
+                    <Button value={'FOLLOW'} />
                 </div>
 
             </div>

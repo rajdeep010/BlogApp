@@ -1,16 +1,26 @@
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
 import './category.scss'
 import { BlogContext } from '../../context/BlogContext'
+import { TitleContext } from '../../context/TitleContext'
 
 const Category = () => {
 
+    // setting the type of blog
+    const [type, setType] = useState('webdev')
+
+    const update = (e) => {
+        setType(e.target.value)
+    }
+
     const blogContext = useContext(BlogContext);
+    const titleContext = useContext(TitleContext)
 
     const submit = (event) => {
         event.preventDefault()
+        console.log(type)
         console.log(blogContext.value);
+        console.log("Title : " + titleContext.title)
     }
-
 
     return (
         <>
@@ -29,15 +39,19 @@ const Category = () => {
 
                     <form>
 
-                        <select name="category" id="category">
-                            <option value="development" selected>Web Development</option>
-                            <option value="development">Android Development</option>
-                            <option value="development">ML</option>
-                            <option value="development">AI</option>
+                        <select name="category" id="category" value={type} onChange={update}>
+
+                            <option value="webdev" selected>Web Development</option>
+                            <option value="anddev">Android Development</option>
+                            <option value="ml" >ML</option>
+                            <option value="ai">AI</option>
                             <option value="cp">CP</option>
                             <option value="dsa">DSA</option>
                             <option value="misc">Misc</option>
+
                         </select>
+
+                        {/* <p>You selected {type} </p> */}
 
                         <input type="submit" className='btn' value='Submit' onClick={submit} />
 

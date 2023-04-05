@@ -1,5 +1,5 @@
 import { MdBookmarkAdd } from 'react-icons/md'
-// import { a } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 
 import './sidebarfooter.scss'
 
@@ -16,10 +16,10 @@ const SidebarFooter = () => {
             </div>
 
             <div className="links">
-                <a href='/help' className='footer_link'>Help</a>
-                <a href='/writes' className='footer_link'>Writers</a>
-                <a href='/blogs' className='footer_link'>Blog</a>
-                <a href='/about' className='footer_link'>About</a>
+                <NavLink to='/help' className='footer_link'>Help</NavLink>
+                <NavLink to='/writes' className='footer_link'>Writers</NavLink>
+                <NavLink to='/blog' className='footer_link'>Blog</NavLink>
+                <NavLink to='/about' className='footer_link'>About</NavLink>
             </div>
         </div>
     </>

@@ -31,7 +31,7 @@ const Signup = () => {
                         <FaKey className='icon' />
                         <input type="password" placeholder="Confirm Password" name="conpassword" autoComplete='off' />
                     </div>
-
+                    <br />
                     <button type="submit" className="btn">Sign Up <span class="fas fa-angle-double-right"></span></button>
                 </form>
 

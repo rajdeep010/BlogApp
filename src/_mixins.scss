@@ -1,3 +1,5 @@
+@import './var';
+
 @mixin flexprop {
     display: flex;
     justify-content: center;
@@ -38,11 +40,11 @@
 
 
 // padding scss
-@mixin paddingtop{
+@mixin paddingtop {
     padding-top: 2rem;
 }
 
-@mixin heading{
+@mixin heading {
     background-color: $blue;
     color: $white;
     border: $border;
@@ -52,4 +54,21 @@
     font-weight: 500;
     padding: 0.3rem 0.5rem;
     width: fit-content;
+}
+
+@mixin btn {
+    border: $border;
+    
+    color: $white;
+    background-color: $blue;
+
+    padding: 0.5rem 1rem;
+    text-transform: uppercase;
+
+    transition: 0.2s ease-in-out;
+
+    &:hover {
+        color: $blue;
+        background-color: $white;
+    }
 }

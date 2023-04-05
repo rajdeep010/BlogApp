@@ -1,0 +1,16 @@
+@import '../../mixins';
+@import '../../var';
+
+.btn {
+    @include btn;
+}
+
+.follow {
+    background-color: $blue;
+    color: $white;
+}
+
+.unfollow {
+    background-color: $white;
+    color: $blue;
+}

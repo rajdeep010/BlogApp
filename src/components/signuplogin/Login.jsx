@@ -1,6 +1,7 @@
 import './signup.scss'
 import { FaUser, FaLock } from 'react-icons/fa'
 
+import { NavLink } from 'react-router-dom'
 
 const Login = () => {
     return (
@@ -20,6 +21,12 @@ const Login = () => {
                         <FaLock className='icon' />
                         <input type="password" placeholder="Password" name="password" autoComplete='off' />
                     </div>
+
+                    <br />
+
+                    <h6>Couldn't remember the password ?<NavLink to='/'> Click Here?</NavLink></h6>
+
+                    <br />
 
                     <button type="submit" className="btn">Log In <span class="fas fa-angle-double-right"></span></button>
 

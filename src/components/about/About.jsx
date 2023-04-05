@@ -3,6 +3,8 @@ import { MdMail } from 'react-icons/md'
 
 import './about.scss'
 
+import Button from '../button/Button'
+
 const About = () => {
   return (
     <>
@@ -19,7 +21,9 @@ const About = () => {
             </div>
 
             <div className="buttons">
-                <button className='btn'>FOLLOW</button>
+
+                <Button value={'FOLLOW'} />
+
                 <NavLink to='/mailto:rajdeepmallick999@gmail.com' className='btn'>
                         <MdMail className='icon'/>
                 </NavLink>
