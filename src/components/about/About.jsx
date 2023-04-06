@@ -24,7 +24,7 @@ const About = () => {
 
                 <Button value={'FOLLOW'} />
 
-                <NavLink to='/mailto:rajdeepmallick999@gmail.com' className='btn'>
+                <NavLink to='/mailto:rajdeepmallick999@gmail.com' className='button'>
                         <MdMail className='icon'/>
                 </NavLink>
             </div>

@@ -12,7 +12,7 @@ const Button = (props) => {
 
     return (
         <>
-            <button className={val === "FOLLOW" ? "btn follow" : "btn unfollow"} onClick={update}>
+            <button className={val === "FOLLOW" ? "button follow" : "button unfollow"} onClick={update}>
                 {val}
             </button>
         </>
