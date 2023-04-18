@@ -9,7 +9,7 @@ const Registration = () => {
 
   const [login, setLogin] = useState(true)
 
-  const log = ()=>{
+  const log = () => {
     setLogin(true);
   }
 
@@ -19,19 +19,19 @@ const Registration = () => {
 
   return (
     <>
-      <section className="wrapper">
+        <section className="wrapper">
 
-        <div className="signup-login-buttons">
-          <button className='btn' onClick={log}>LOGIN</button>
-          <button className='btn' onClick={sign}>SIGNUP</button>
-        </div>
+          <div className="signup-login-buttons">
+            <button className='btn' onClick={log}>LOGIN</button>
+            <button className='btn' onClick={sign}>SIGNUP</button>
+          </div>
 
-        <div className="signup-login">
-          {login && <Login />}
-          {!login && <Signup className='signup'/>}
-        </div>
+          <div className="signup-login">
+            {login && <Login />}
+            {!login && <Signup className='signup' />}
+          </div>
 
-      </section>
+        </section>
     </>
   )
 }

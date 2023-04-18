@@ -2,15 +2,14 @@ import { createContext, useState } from "react"
 
 const BlogContext = createContext({
     value: "",
-    updateVal: () => {}
+    updateVal: () => { }
 })
-
 
 const BlogProvider = (props) => {
 
     const [value, setValue] = useState("");
 
-    const updateVal = (val)=>{
+    const updateVal = (val) => {
         setValue(val);
     }
 

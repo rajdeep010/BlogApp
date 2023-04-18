@@ -29,6 +29,7 @@ const Editor = () => {
     const [value, setValue] = useState('');
 
     useEffect(() => {
+        // console.log(value)
         blogContext.updateVal(value);
     }, [value])
 
