@@ -8,13 +8,15 @@ import { TitleContext } from '../../context/TitleContext'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
 
+import { database } from '../../firebase';
+import { onValue, ref, set, remove, update } from 'firebase/database';
 
 import Loader from '../loader/Loader';
-
 
 const Category = () => {
 
     const navigate = useNavigate()
+
     const goToHome = () => {
         navigate('/')
     }
@@ -56,37 +58,34 @@ const Category = () => {
     const blogContext = useContext(BlogContext);
     const titleContext = useContext(TitleContext)
 
-    const submit = (event) => {
+    const submit = async (event) => {
         event.preventDefault()
 
         const val = blogContext.value
+        const title = titleContext.title
+        const userId = 105
 
-        const res = fetch(
-            'https://sample-blog-1d6c6-default-rtdb.firebaseio.com/sampleblog.json',
-            {
-                method: "POST",
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ blogType: type, content: val }),
-            }
-        )
+        const res = set(ref(database, 'users/'+ userId), {
+            'blogType': type,
+            'blogTitle': title,
+            'content': val
+        })
 
         if (res) {
             notifySubmit()
-
-            const timeout = setTimeout(goToHome, 5000)
-
-            timeout()
-
-            console.log(type)
-            console.log(blogContext.value);
-            console.log("Title : " + titleContext.title)
-        }
-        else {
+        } else {
             notifyError()
         }
 
+        const details = ref(database, 'users/'+userId)
+        onValue(details, (snapshot) => {
+            const data = snapshot.val()
+            console.log(data)
+
+            for(const items in data){
+                console.log(items + " " + data[items])
+            }
+        })
     }
 
     return (
@@ -119,7 +118,7 @@ const Category = () => {
                         </select>
 
                         <input type="submit" className='btn' value='Submit' onClick={submit} />
-                        <ToastContainer/>
+                        <ToastContainer />
                     </form>
 
                 </div>

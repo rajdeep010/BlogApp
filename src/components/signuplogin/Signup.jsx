@@ -1,9 +1,15 @@
-
+import { useContext } from 'react'
 import './signup.scss'
-
+import GoogleButton from 'react-google-button'
+import { AuthContext } from '../../context/AuthContext'
 import { FaUser, FaLock, FaPen, FaKey } from 'react-icons/fa'
 
+
+
+
 const Signup = () => {
+
+    const authCtx = useContext(AuthContext)
 
     return (
         <>
@@ -31,8 +37,13 @@ const Signup = () => {
                         <FaKey className='icon' />
                         <input type="password" placeholder="Confirm Password" name="conpassword" autoComplete='off' />
                     </div>
+
                     <br />
                     <button type="submit" className="btn">Sign Up <span class="fas fa-angle-double-right"></span></button>
+
+                    <br />
+
+                    <GoogleButton style={{backgroundColor: "#11d7ff", fontFamily: "Poppins, sans-serif"}}/>
                 </form>
 
             </div>
