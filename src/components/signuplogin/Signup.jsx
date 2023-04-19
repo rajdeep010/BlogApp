@@ -1,15 +1,78 @@
-import { useContext } from 'react'
+import { useState, useContext } from 'react'
 import './signup.scss'
 import GoogleButton from 'react-google-button'
 import { AuthContext } from '../../context/AuthContext'
 import { FaUser, FaLock, FaPen, FaKey } from 'react-icons/fa'
 
+import { auth } from '../../firebase'
+import { registerUser } from '../../utils/login-utils';
+import { useNavigate } from 'react-router-dom'
 
+import { ToastContainer, toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css';
+import { createUserWithEmailAndPassword } from 'firebase/auth'
 
 
 const Signup = () => {
 
+    const navigate = useNavigate()
+
+    const goToHome = () => {
+        navigate('/')
+    }
+
+    const notifier = (msg, type) => {
+
+        if(type == 'success'){
+            toast.success(`${msg}`, {
+                position: "top-right",
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            })
+        }
+        
+    }
+
+    // state change handled
+    const [user, setUser] = useState({
+        name: '',
+        email: '',
+        about: '',
+        password: ''
+    })
+
+    let key, value;
+    const getUserData = (e) => {
+        key = e.target.name
+        value = e.target.value
+
+        setUser({ ...user, [key]: value })
+    }
+
+    // Auth Context
     const authCtx = useContext(AuthContext)
+
+
+    const handleSignup = (e) => {
+        e.preventDefault()
+
+        const name = user.name, about = user.about, email = user.email, password = user.password
+
+        createUserWithEmailAndPassword(auth, email, password)
+        .then(async(userCredentials) => {
+            // console.log(email)
+            const userId = email && email.split('@')[0].replace(/[.+-]/g,'_')
+            // console.log(userId)
+            await registerUser(userId, name, email, about, [])
+            notifier('Account Created Successfully', 'success')
+            setTimeout(goToHome, 3000)
+        })
+    }
 
     return (
         <>
@@ -20,30 +83,32 @@ const Signup = () => {
 
                     <div class="input-field">
                         <FaPen className='icon' />
-                        <input type="text" placeholder="Full Name" name="name" autoComplete='off' />
+                        <input type="text" placeholder="Full Name" name="name" value={user.name} onChange={getUserData} autoComplete='off' />
                     </div>
 
                     <div class="input-field">
                         <FaUser className='icon' />
-                        <input type="email" placeholder="Email" name="email" autoComplete='off' />
-                    </div>
-
-                    <div class="input-field">
-                        <FaLock className='icon' />
-                        <input type="password" placeholder="Password" name="password" autoComplete='off' />
+                        <input type="email" placeholder="Email" name="email" value={user.email} onChange={getUserData} autoComplete='off' />
                     </div>
 
                     <div class="input-field">
                         <FaKey className='icon' />
-                        <input type="password" placeholder="Confirm Password" name="conpassword" autoComplete='off' />
+                        <input type="text" placeholder="About (eg. Guardian on LeetCode)" name="about" value={user.about} onChange={getUserData} autoComplete='off' />
+                    </div>
+
+                    <div class="input-field">
+                        <FaLock className='icon' />
+                        <input type="password" placeholder="Password" name="password" value={user.password} onChange={getUserData} autoComplete='off' />
                     </div>
 
                     <br />
-                    <button type="submit" className="btn">Sign Up <span class="fas fa-angle-double-right"></span></button>
+                    <button type="submit" className="btn" onClick={handleSignup}>Sign Up </button>
 
                     <br />
 
-                    <GoogleButton style={{backgroundColor: "#11d7ff", fontFamily: "Poppins, sans-serif"}}/>
+                    <GoogleButton style={{ backgroundColor: "#11d7ff", fontFamily: "Poppins, sans-serif" }} />
+
+                    <ToastContainer />
                 </form>
 
             </div>

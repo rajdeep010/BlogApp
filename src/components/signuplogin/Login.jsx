@@ -30,7 +30,7 @@ const Login = () => {
 
                     <br />
 
-                    <button type="submit" className="btn">Log In <span class="fas fa-angle-double-right"></span></button>
+                    <button type="submit" className="btn">Log In</button>
 
                 </form>
 

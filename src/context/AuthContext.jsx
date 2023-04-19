@@ -38,13 +38,13 @@ const AuthProvider = (props) => {
 
 
     // authentications
-    const signUp = (email, password) => {
-        return createUserWithEmailAndPassword(auth, email, password)
-    }
+    // const signUp = (email, password) => {
+    //     return createUserWithEmailAndPassword(auth, email, password)
+    // }
 
-    const logIn = (email, password) => {
-        return signInWithEmailAndPassword(auth, email, password)
-    }
+    // const logIn = (email, password) => {
+    //     return signInWithEmailAndPassword(auth, email, password)
+    // }
 
     onAuthStateChanged(auth, async(user) => {
         if(user)

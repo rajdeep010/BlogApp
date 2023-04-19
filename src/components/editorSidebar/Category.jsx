@@ -11,8 +11,6 @@ import 'react-toastify/dist/ReactToastify.css';
 import { database } from '../../firebase';
 import { onValue, ref, set, remove, update } from 'firebase/database';
 
-import Loader from '../loader/Loader';
-
 const Category = () => {
 
     const navigate = useNavigate()

@@ -92,14 +92,13 @@
                         background-color: $white;
 
                         width: 20rem;
-                        padding: 0.5rem;
                         
                         border: none;
                         outline: none;
 
                         &::placeholder {
-                            color: black;
-                            font-size: 1.1rem;
+                            color: rgb(124, 124, 124);
+                            font-size: 0.94rem;
                         }
                     }
                 }
