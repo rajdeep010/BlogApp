@@ -17,13 +17,17 @@ const Signup = () => {
 
     const navigate = useNavigate()
 
+    // Auth Context
+    const authCtx = useContext(AuthContext)
+
+
     const goToHome = () => {
         navigate('/')
     }
 
     const notifier = (msg, type) => {
 
-        if(type == 'success'){
+        if (type == 'success') {
             toast.success(`${msg}`, {
                 position: "top-right",
                 autoClose: 2000,
@@ -35,7 +39,7 @@ const Signup = () => {
                 theme: "light",
             })
         }
-        
+
     }
 
     // state change handled
@@ -54,24 +58,22 @@ const Signup = () => {
         setUser({ ...user, [key]: value })
     }
 
-    // Auth Context
-    const authCtx = useContext(AuthContext)
-
-
     const handleSignup = (e) => {
         e.preventDefault()
 
         const name = user.name, about = user.about, email = user.email, password = user.password
 
         createUserWithEmailAndPassword(auth, email, password)
-        .then(async(userCredentials) => {
-            // console.log(email)
-            const userId = email && email.split('@')[0].replace(/[.+-]/g,'_')
-            // console.log(userId)
-            await registerUser(userId, name, email, about, [])
-            notifier('Account Created Successfully', 'success')
-            setTimeout(goToHome, 3000)
-        })
+            .then(async (userCredentials) => {
+                // console.log(email)
+                const userId = email && email.split('@')[0].replace(/[.]/g, '_')
+                // console.log(userId)
+                await registerUser(userId, name, email, about, [], true)
+                notifier('Account Created Successfully', 'success')
+                setTimeout(goToHome, 3000)
+
+                authCtx.updateUid(userId)
+            })
     }
 
     return (

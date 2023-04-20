@@ -1,72 +1,48 @@
-import { createContext, useState } from 'react'
-import { database } from '../firebase'
+import { createContext, useEffect, useState } from 'react'
 import { auth } from '../firebase'
-import {
-    createUserWithEmailAndPassword,
-    signInWithEmailAndPassword,
-    onAuthStateChanged,
-    signOut,
-    GoogleAuthProvider,
-    signInWithPopup,
-  } from "firebase/auth";
-  
+import { onAuthStateChanged } from "firebase/auth";
+
 const AuthContext = createContext({
     userId: '',
-    isAuthorised: '',
-    userData: '',
     followers: '',
-    
+    isLoggedIn: '',
+
     // functions
-    updateUserData: () => {},
-    updateAuthStatus: () => {}
+    updateUid: () => { }
 })
 
 const AuthProvider = (props) => {
     const [userId, setUserId] = useState('')
-    const [isAuthorised, setIsAuthorised] = useState(false)
-    const [userData, setUserData] = useState('')
     const [followers, setFollowers] = useState(null)
+    const [isLoggedIn, setIsLoggedIn] = useState(false)
 
-    // implement functions
-    const updateAuthStatus = (isAuthorised) => {
-        setIsAuthorised(isAuthorised)
+    // function
+    const updateUid = (uid) => {
+        setUserId(uid)
+        console.log('user id updated : ' + uid)
     }
-
-    const updateUserData = (userData) => {
-        setUserData(userData)
-    }
-
 
     // authentications
-    // const signUp = (email, password) => {
-    //     return createUserWithEmailAndPassword(auth, email, password)
-    // }
 
-    // const logIn = (email, password) => {
-    //     return signInWithEmailAndPassword(auth, email, password)
-    // }
-
-    onAuthStateChanged(auth, async(user) => {
-        if(user)
-        {
-            console.log(user)
-        }
-
-        else{
-            setUserId(null)
-            setIsAuthorised(false)
-        }
-    })
+    useEffect(() => {
+        onAuthStateChanged(auth, async (user) => {
+            if (user) {
+                console.log(user.email)
+                const userId = user.email && user.email.split('@')[0].replace(/[.]/g, '_')
+                setUserId(userId)
+            } else {
+                setUserId(null)
+            }
+        })
+    }, [auth])
 
     const authContext = {
         userId: userId,
-        userData: userData,
-        isAuthorised: isAuthorised,
         followers: followers,
+        isLoggedIn: isLoggedIn,
 
         // functions
-        updateAuthStatus: updateAuthStatus,
-        updateUserData: updateUserData
+        updateUid: updateUid
     }
 
 

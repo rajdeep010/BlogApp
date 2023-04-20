@@ -4,6 +4,10 @@ import { useNavigate } from 'react-router-dom';
 import './category.scss'
 import { BlogContext } from '../../context/BlogContext'
 import { TitleContext } from '../../context/TitleContext'
+import { AuthContext } from '../../context/AuthContext';
+
+import { hashRandom } from "react-hash-string";
+
 
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
@@ -15,35 +19,43 @@ const Category = () => {
 
     const navigate = useNavigate()
 
+    const blogContext = useContext(BlogContext)
+    const titleContext = useContext(TitleContext)
+    const authCtx = useContext(AuthContext)
+
     const goToHome = () => {
         navigate('/')
     }
 
-    const notifySubmit = () => {
+    const notify = (msg, type) => {
 
-        toast.success('Submitted Successfully 😊', {
-            position: "top-right",
-            autoClose: 2000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "light",
-        })
-    }
+        if(type == 'success')
+        {
+            toast.success(msg, {
+                position: "top-right",
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            })
+        }
 
-    const notifyError = () => {
-        toast.error('Something Went Wrong !!! 😟', {
-            position: "top-right",
-            autoClose: 2000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "light",
-        });
+        else if(type == 'error')
+        {
+            toast.error(msg, {
+                position: "top-right",
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            })
+        }
     }
 
     // setting the type of blog
@@ -53,37 +65,36 @@ const Category = () => {
         setType(e.target.value)
     }
 
-    const blogContext = useContext(BlogContext);
-    const titleContext = useContext(TitleContext)
-
     const submit = async (event) => {
         event.preventDefault()
 
-        const val = blogContext.value
-        const title = titleContext.title
-        const userId = 105
 
-        const res = set(ref(database, 'users/'+ userId), {
-            'blogType': type,
-            'blogTitle': title,
-            'content': val
-        })
+        // String to HTML converter
+        // const parser = new DOMParser();
+        // const html = parser.parseFromString(val, 'text/html');
+        // const body = html.body
+        // console.log(body)
+
+        const title = titleContext.title
+        const val = blogContext.value
+        const userId = authCtx.userId
+
+        console.log(userId + " hello world")
+
+        const blog = blogContext.makeBlog(title, val, userId, type)
+
+        console.log(blog)
+
+        const id = hashRandom()
+        console.log(id)
+
+        const res = set(ref(database, 'blogs/'+ id), blog)
 
         if (res) {
-            notifySubmit()
+            notify('Successfully Submitted', 'success')
         } else {
-            notifyError()
+            notify('Something Went Wrong !!!', 'error')
         }
-
-        const details = ref(database, 'users/'+userId)
-        onValue(details, (snapshot) => {
-            const data = snapshot.val()
-            console.log(data)
-
-            for(const items in data){
-                console.log(items + " " + data[items])
-            }
-        })
     }
 
     return (

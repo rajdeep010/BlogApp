@@ -1,7 +1,10 @@
 import { createContext, useState } from "react"
 
+
 const BlogContext = createContext({
     value: "",
+    type: '',
+    makeBlog: () => { },
     updateVal: () => { }
 })
 
@@ -13,9 +16,20 @@ const BlogProvider = (props) => {
         setValue(val);
     }
 
+    const makeBlog = (title, val, userId, type) => {
+
+        return ({
+            'author': userId,
+            'blogTitle': title,
+            'blogContent': val,
+            'type': type
+        })
+    }
+
     const state = {
         value: value,
-        updateVal: updateVal
+        updateVal: updateVal,
+        makeBlog: makeBlog
     }
 
     return (
