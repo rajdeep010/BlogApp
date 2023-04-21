@@ -1,11 +1,21 @@
 import './signup.scss'
 import { FaUser, FaLock } from 'react-icons/fa'
 
-
-
 import { NavLink } from 'react-router-dom'
 
+import { AuthContext } from '../../context/AuthContext'
+import { useContext } from 'react'
+
+import GoogleButton from 'react-google-button'
+
 const Login = () => {
+
+    const authCtx = useContext(AuthContext)
+
+    const signInUsingGoogle = () => {
+        authCtx.signInUsingGoogle()
+    }
+    
     return (
         <>
             <div className="login_container box">
@@ -32,6 +42,9 @@ const Login = () => {
 
                     <button type="submit" className="btn">Log In</button>
 
+                    <br />
+
+                    <GoogleButton onClick={signInUsingGoogle} style={{ backgroundColor: "#11d7ff", fontFamily: "Poppins, sans-serif" }} />
                 </form>
 
             </div>

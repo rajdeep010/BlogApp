@@ -1,6 +1,5 @@
 import { useState, useContext } from 'react'
 import './signup.scss'
-import GoogleButton from 'react-google-button'
 import { AuthContext } from '../../context/AuthContext'
 import { FaUser, FaLock, FaPen, FaKey } from 'react-icons/fa'
 
@@ -16,14 +15,11 @@ import { createUserWithEmailAndPassword } from 'firebase/auth'
 const Signup = () => {
 
     const navigate = useNavigate()
-
-    // Auth Context
-    const authCtx = useContext(AuthContext)
-
-
     const goToHome = () => {
         navigate('/')
     }
+    // Auth Context
+    const authCtx = useContext(AuthContext)    
 
     const notifier = (msg, type) => {
 
@@ -39,7 +35,6 @@ const Signup = () => {
                 theme: "light",
             })
         }
-
     }
 
     // state change handled
@@ -75,7 +70,7 @@ const Signup = () => {
                 authCtx.updateUid(userId)
             })
     }
-
+    
     return (
         <>
             <div className="signin_container box">
@@ -106,11 +101,6 @@ const Signup = () => {
                     <br />
                     <button type="submit" className="btn" onClick={handleSignup}>Sign Up </button>
 
-                    <br />
-
-                    <GoogleButton style={{ backgroundColor: "#11d7ff", fontFamily: "Poppins, sans-serif" }} />
-
-                    <ToastContainer />
                 </form>
 
             </div>

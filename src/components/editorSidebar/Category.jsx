@@ -1,5 +1,4 @@
 import { useContext, useState } from 'react'
-import { useNavigate } from 'react-router-dom';
 
 import './category.scss'
 import { BlogContext } from '../../context/BlogContext'
@@ -17,15 +16,9 @@ import { onValue, ref, set, remove, update } from 'firebase/database';
 
 const Category = () => {
 
-    const navigate = useNavigate()
-
     const blogContext = useContext(BlogContext)
     const titleContext = useContext(TitleContext)
     const authCtx = useContext(AuthContext)
-
-    const goToHome = () => {
-        navigate('/')
-    }
 
     const notify = (msg, type) => {
 
@@ -68,7 +61,6 @@ const Category = () => {
     const submit = async (event) => {
         event.preventDefault()
 
-
         // String to HTML converter
         // const parser = new DOMParser();
         // const html = parser.parseFromString(val, 'text/html');
@@ -79,14 +71,14 @@ const Category = () => {
         const val = blogContext.value
         const userId = authCtx.userId
 
-        console.log(userId + " hello world")
+        // console.log(userId + " hello world")
 
         const blog = blogContext.makeBlog(title, val, userId, type)
 
-        console.log(blog)
+        // console.log(blog)
 
         const id = hashRandom()
-        console.log(id)
+        // console.log(id)
 
         const res = set(ref(database, 'blogs/'+ id), blog)
 

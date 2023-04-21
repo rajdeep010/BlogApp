@@ -5,7 +5,10 @@ import { NavLink } from 'react-router-dom'
 
 import './card.scss'
 
-const Card = () => {
+const Card = (props) => {
+
+    const blog = props.value
+
     return (
         <NavLink className="container" to='/blog'>
 
@@ -18,7 +21,7 @@ const Card = () => {
                     </div>
 
                     <div className="name">
-                        <p>Jose Carlos</p>
+                        <p> {blog.author} </p>
                     </div>
 
                     <div className="date">
@@ -30,7 +33,7 @@ const Card = () => {
                 <div className="content-overview">
 
                     <div className="content-heading">
-                        <h2>Create React Components Like a Senior Developer</h2>
+                        <h2>{blog.blogTitle}</h2>
                     </div>
 
                     <div className="content-short">
@@ -47,11 +50,7 @@ const Card = () => {
                         <div className="topic-container">
 
                             <div className="topic-icon">
-                                React
-                            </div>
-
-                            <div className="topic-icon">
-                                NodeJS
+                                {blog.type}
                             </div>
 
                             <div className="topic-icon readtime">

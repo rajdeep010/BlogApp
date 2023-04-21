@@ -8,23 +8,26 @@ import { BrowserRouter, Routes, Route } from "react-router-dom"
 import BlogProvider from './context/BlogContext'
 import TitleProvider from './context/TitleContext'
 import AuthProvider from './context/AuthContext'
+import WriterProvider from './context/WriterContext'
 
 const App = () => {
   return (
     <>
       <AuthProvider>
-        <TitleProvider>
-          <BlogProvider>
-            <BrowserRouter>
-              <Routes>
-                <Route path='/' element={<Index />}></Route>
-                <Route path='/write' element={<Write />}></Route>
-                <Route path='/blog' element={<Post />}></Route>
-                <Route path='/login' element={<Registration />}></Route>
-              </Routes>
-            </BrowserRouter>
-          </BlogProvider>
-        </TitleProvider>
+        <WriterProvider>
+          <TitleProvider>
+            <BlogProvider>
+              <BrowserRouter>
+                <Routes>
+                  <Route path='/' element={<Index />}></Route>
+                  <Route path='/write' element={<Write />}></Route>
+                  <Route path='/blog' element={<Post />}></Route>
+                  <Route path='/login' element={<Registration />}></Route>
+                </Routes>
+              </BrowserRouter>
+            </BlogProvider>
+          </TitleProvider>
+        </WriterProvider>
       </AuthProvider>
     </>
   )

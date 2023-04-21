@@ -2,7 +2,13 @@ import Button from '../button/Button'
 
 import './creator.scss'
 
-const Creator = () => {
+const Creator = (props) => {
+
+    const detail = props.value
+
+    const name = detail.name
+    const about = detail.about
+
     return (
         <>
 
@@ -15,11 +21,12 @@ const Creator = () => {
                 <div className="creator_details">
 
                     <div className="creator_name">
-                        <p>Cory Doctorow</p>
+                        <p>{name}</p>
                     </div>
 
                     <div className="creator_about">
-                        Guardian at LeetCode, Master at Codeforces, 6* at Codechef
+                        {/* Guardian at LeetCode, Master at Codeforces, 6* at Codechef */}
+                        {about}
                     </div>
 
                 </div>

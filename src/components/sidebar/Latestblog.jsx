@@ -6,7 +6,7 @@ import './latestblog.scss'
 const Latestblog = () => {
     return (
         <>
-            <NavLink to='/blog' style={{'text-decoration' : 'none'}} >
+            <NavLink to='/blog' style={{'textDecoration' : 'none'}} >
 
                 <div className="blog">
 

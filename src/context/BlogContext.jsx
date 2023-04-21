@@ -1,11 +1,15 @@
 import { createContext, useState } from "react"
 
+import { database } from "../firebase";
+import { onValue, ref, set, update, remove } from "firebase/database";
 
 const BlogContext = createContext({
-    value: "",
+    value: '',
     type: '',
+
     makeBlog: () => { },
-    updateVal: () => { }
+    updateVal: () => { },
+    giveBlogs: () => { }
 })
 
 const BlogProvider = (props) => {
@@ -14,6 +18,19 @@ const BlogProvider = (props) => {
 
     const updateVal = (val) => {
         setValue(val);
+    }
+
+    const giveBlogs = () => {
+        let arr = []
+        onValue(ref(database, 'blogs/'), (snapshot) => {
+            if (snapshot) 
+            {
+                const all = snapshot.val()
+                const blogs = Object.values(all)
+                arr = blogs
+            }
+        })
+        return arr
     }
 
     const makeBlog = (title, val, userId, type) => {
@@ -29,7 +46,8 @@ const BlogProvider = (props) => {
     const state = {
         value: value,
         updateVal: updateVal,
-        makeBlog: makeBlog
+        makeBlog: makeBlog,
+        giveBlogs: giveBlogs
     }
 
     return (
