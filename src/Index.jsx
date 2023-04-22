@@ -1,22 +1,24 @@
 import Card from "./components/card/Card"
 import Sidebar from "./components/sidebar/Sidebar"
-
 import Navbar from "./components/navbar/Navbar"
-
 import './index.css'
-
-import { useContext, useEffect, useState } from "react"
-
-import { BlogContext } from "./context/BlogContext"
+import { useEffect, useState } from "react"
+import { onValue, ref } from "firebase/database"
+import { database } from "./firebase"
 
 const App = () => {
-
-  const blogCtx = useContext(BlogContext)
 
   const [arr, setArr] = useState([])
 
   useEffect(() => {
-    const blogs = blogCtx.giveBlogs()
+    let blogs = []
+    onValue(ref(database, 'blogs/'), (snapshot) => {
+      if (snapshot) {
+        const all = snapshot.val()
+        blogs = Object.values(all)
+      }
+    })
+    // console.log(blogs)
     setArr(blogs)
   }, [])
 

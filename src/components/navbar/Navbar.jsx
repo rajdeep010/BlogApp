@@ -29,6 +29,11 @@ const Navbar = () => {
                         <span className="navbar-toggler-icon"></span>
                     </button>
 
+                    <form className="d-flex">
+                        <input className="form-control me-2" type="search" placeholder="Search..." aria-label="Search" />
+                        <button className="button" type="submit">SEARCH</button>
+                    </form>
+
                     <div className="collapse navbar-collapse" id="navbarSupportedContent">
 
                         <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
@@ -51,10 +56,10 @@ const Navbar = () => {
 
                         </ul>
 
-                        <form className="d-flex">
+                        {/* <form className="d-flex">
                             <input className="form-control me-2" type="search" placeholder="Search..." aria-label="Search" />
                             <button className="button" type="submit">SEARCH</button>
-                        </form>
+                        </form> */}
 
                     </div>
                 </div>

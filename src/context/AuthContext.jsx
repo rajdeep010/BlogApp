@@ -44,7 +44,6 @@ const AuthProvider = (props) => {
     useEffect(() => {
         onAuthStateChanged(auth, async (user) => {
             if (user) {
-                // console.log(user.email)
                 const userId = user.email && user.email.split('@')[0].replace(/[.]/g, '_')
                 setUserId(userId)
 

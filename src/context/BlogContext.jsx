@@ -1,7 +1,7 @@
-import { createContext, useState } from "react"
+import { createContext, useEffect, useState } from "react"
 
 import { database } from "../firebase";
-import { onValue, ref, set, update, remove } from "firebase/database";
+import { onValue, ref, set, update, remove, query, orderByChild } from "firebase/database";
 
 const BlogContext = createContext({
     value: '',
@@ -9,7 +9,7 @@ const BlogContext = createContext({
 
     makeBlog: () => { },
     updateVal: () => { },
-    giveBlogs: () => { }
+    giveLatestBlogs: () => {}
 })
 
 const BlogProvider = (props) => {
@@ -20,18 +20,11 @@ const BlogProvider = (props) => {
         setValue(val);
     }
 
-    const giveBlogs = () => {
-        let arr = []
-        onValue(ref(database, 'blogs/'), (snapshot) => {
-            if (snapshot) 
-            {
-                const all = snapshot.val()
-                const blogs = Object.values(all)
-                arr = blogs
-            }
-        })
-        return arr
+    const giveLatestBlogs = () => {
+        const latest = query(ref(database, 'blogs/'), orderByChild('key'))
+        console.log(latest)
     }
+
 
     const makeBlog = (title, val, userId, type) => {
 
@@ -39,7 +32,11 @@ const BlogProvider = (props) => {
             'author': userId,
             'blogTitle': title,
             'blogContent': val,
-            'type': type
+            'type': type,
+            'metrics': {
+                'likes': 0,
+            },
+            'comments': []
         })
     }
 
@@ -47,7 +44,7 @@ const BlogProvider = (props) => {
         value: value,
         updateVal: updateVal,
         makeBlog: makeBlog,
-        giveBlogs: giveBlogs
+        giveLatestBlogs: giveLatestBlogs
     }
 
     return (

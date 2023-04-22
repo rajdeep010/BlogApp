@@ -11,7 +11,6 @@ const Creator = (props) => {
 
     return (
         <>
-
             <div className="creator_info">
 
                 <div className="creator_image">
@@ -19,16 +18,8 @@ const Creator = (props) => {
                 </div>
 
                 <div className="creator_details">
-
-                    <div className="creator_name">
-                        <p>{name}</p>
-                    </div>
-
-                    <div className="creator_about">
-                        {/* Guardian at LeetCode, Master at Codeforces, 6* at Codechef */}
-                        {about}
-                    </div>
-
+                    <div className="creator_name"><p>{name}</p></div>
+                    <div className="creator_about">{about}</div>
                 </div>
 
                 <div className="follow_button">

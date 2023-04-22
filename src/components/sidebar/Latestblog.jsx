@@ -3,7 +3,15 @@ import { NavLink } from 'react-router-dom'
 import './latestblog.scss'
 
 
-const Latestblog = () => {
+const Latestblog = (props) => {
+
+    const detail = props.value
+
+    // console.log(detail)
+
+    const author = detail.author
+    const blogTitle = detail.blogTitle
+
     return (
         <>
             <NavLink to='/blog' style={{'textDecoration' : 'none'}} >
@@ -17,13 +25,13 @@ const Latestblog = () => {
                         </div>
 
                         <div className="writer_name">
-                            <p>Anumoy Nandy, Guardian</p>
+                            <p>{author}</p>
                         </div>
 
                     </div>
 
                     <div className="blog_title">
-                        <p>Biweekly Contest LeetCode 98 Solutions</p>
+                        <p>{blogTitle}</p>
                     </div>
 
                 </div>

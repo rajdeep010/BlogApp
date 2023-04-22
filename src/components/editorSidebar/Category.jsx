@@ -7,12 +7,12 @@ import { AuthContext } from '../../context/AuthContext';
 
 import { hashRandom } from "react-hash-string";
 
-
+import moment from 'moment';
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
 
 import { database } from '../../firebase';
-import { onValue, ref, set, remove, update } from 'firebase/database';
+import { onValue, ref, set, remove, update, push } from 'firebase/database';
 
 const Category = () => {
 
@@ -71,7 +71,6 @@ const Category = () => {
         const val = blogContext.value
         const userId = authCtx.userId
 
-        // console.log(userId + " hello world")
 
         const blog = blogContext.makeBlog(title, val, userId, type)
 
@@ -80,7 +79,9 @@ const Category = () => {
         const id = hashRandom()
         // console.log(id)
 
-        const res = set(ref(database, 'blogs/'+ id), blog)
+        const time = moment().format().valueOf()
+        const res = set(ref(database, 'blogs/' + time + userId), blog)
+
 
         if (res) {
             notify('Successfully Submitted', 'success')
@@ -108,13 +109,13 @@ const Category = () => {
 
                         <select name="category" id="category" value={type} onChange={update}>
 
-                            <option value="webdev" selected>Web Development</option>
-                            <option value="anddev">Android Development</option>
-                            <option value="ml" >ML</option>
-                            <option value="ai">AI</option>
-                            <option value="cp">CP</option>
-                            <option value="dsa">DSA</option>
-                            <option value="misc">Misc</option>
+                            <option value="WEB-DEV" defaultValue>Web Development</option>
+                            <option value="ANRD-DEV">Android Development</option>
+                            <option value="ML" >ML</option>
+                            <option value="AI">AI</option>
+                            <option value="CP">CP</option>
+                            <option value="DSA">DSA</option>
+                            <option value="MISC">Misc</option>
 
                         </select>
 
