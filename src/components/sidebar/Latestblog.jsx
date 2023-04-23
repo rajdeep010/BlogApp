@@ -7,10 +7,9 @@ const Latestblog = (props) => {
 
     const detail = props.value
 
-    // console.log(detail)
-
-    const author = detail.author
+    const authorName = detail.authorName
     const blogTitle = detail.blogTitle
+    const readtime = detail.readtime
 
     return (
         <>
@@ -25,7 +24,7 @@ const Latestblog = (props) => {
                         </div>
 
                         <div className="writer_name">
-                            <p>{author}</p>
+                            <p>{authorName}, &nbsp;{readtime}</p>
                         </div>
 
                     </div>

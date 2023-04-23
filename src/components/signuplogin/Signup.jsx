@@ -49,7 +49,6 @@ const Signup = () => {
     const getUserData = (e) => {
         key = e.target.name
         value = e.target.value
-
         setUser({ ...user, [key]: value })
     }
 
@@ -66,7 +65,6 @@ const Signup = () => {
                 await registerUser(userId, name, email, about, [], true)
                 notifier('Account Created Successfully', 'success')
                 setTimeout(goToHome, 3000)
-
                 authCtx.updateUid(userId)
             })
     }

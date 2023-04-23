@@ -20,7 +20,8 @@
     "react-quill": "^2.0.0",
     "react-router-dom": "^6.9.0",
     "react-toastify": "^9.1.2",
-    "sass": "^1.59.3"
+    "sass": "^1.59.3",
+    "uniqid": "^5.4.0"
   },
   "devDependencies": {
     "@types/react": "^18.0.27",

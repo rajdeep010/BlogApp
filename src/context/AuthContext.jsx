@@ -6,7 +6,6 @@ import { redirect } from '../utils/login-utils';
 
 const AuthContext = createContext({
     userId: '',
-    followers: '',
     isLoggedIn: '',
 
     // functions
@@ -17,7 +16,6 @@ const AuthContext = createContext({
 
 const AuthProvider = (props) => {
     const [userId, setUserId] = useState('')
-    const [followers, setFollowers] = useState(null)
     const [isLoggedIn, setIsLoggedIn] = useState(false)
 
 
@@ -35,7 +33,6 @@ const AuthProvider = (props) => {
     }
 
     const logout = () => {
-
         setIsLoggedIn(false)
         signOut(auth)
         redirect('')
@@ -71,7 +68,6 @@ const AuthProvider = (props) => {
 
     const authContext = {
         userId: userId,
-        followers: followers,
         isLoggedIn: isLoggedIn,
 
         // functions

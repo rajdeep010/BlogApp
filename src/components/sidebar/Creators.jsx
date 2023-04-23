@@ -1,6 +1,5 @@
 import Creator from "./Creator"
-import { useContext, useEffect, useState } from "react"
-import { WriterContext } from "../../context/WriterContext"
+import { useEffect, useState } from "react"
 import { database } from "../../firebase"
 import { onValue, ref } from "firebase/database"
 
@@ -8,29 +7,29 @@ const Creators = () => {
 
     const [arr, setArr] = useState([])
 
-    const writerCtx = useContext(WriterContext)
-
     useEffect(() => {
         let now = []
         onValue(ref(database, 'users/'), (snapshot) => {
-            if (snapshot) {
+            if (snapshot) 
+            {
                 const all = snapshot.val()
                 let writers = Object.values(all)
 
                 writers.map((writer) => {
                     const obj = writer.details
-                    if (obj.blogCount > 0) {
-                        now.push(
-                            {
-                                'name': obj.name,
-                                'about': obj.about
-                            }
-                        )
+                    
+                    if (obj.blogCount > 0) 
+                    {
+                        now.push
+                        ({
+                            'name': obj.name,
+                            'about': obj.about
+                        })
                     }
                 })
+                setArr(now)
             }
         })
-        setArr(now)
     }, [])
 
     return (

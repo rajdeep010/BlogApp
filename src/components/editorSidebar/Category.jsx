@@ -5,14 +5,13 @@ import { BlogContext } from '../../context/BlogContext'
 import { TitleContext } from '../../context/TitleContext'
 import { AuthContext } from '../../context/AuthContext';
 
-import { hashRandom } from "react-hash-string";
-
 import moment from 'moment';
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
 
 import { database } from '../../firebase';
-import { onValue, ref, set, remove, update, push } from 'firebase/database';
+import { onValue, ref, set } from 'firebase/database';
+import { FaSnapchat } from 'react-icons/fa';
 
 const Category = () => {
 
@@ -61,26 +60,22 @@ const Category = () => {
     const submit = async (event) => {
         event.preventDefault()
 
-        // String to HTML converter
-        // const parser = new DOMParser();
-        // const html = parser.parseFromString(val, 'text/html');
-        // const body = html.body
-        // console.log(body)
-
         const title = titleContext.title
         const val = blogContext.value
         const userId = authCtx.userId
 
+        const dbRef = ref(database, ('users/' + userId + '/details'))
 
-        const blog = blogContext.makeBlog(title, val, userId, type)
+        let name = ''
+        onValue(dbRef, (snapshot) => {
+            const res = snapshot.val()
+            name = res.name
+        })
+        
+        const blog = blogContext.makeBlog(title, val, userId, type, name)
+        const bid = blog.bid
 
-        // console.log(blog)
-
-        const id = hashRandom()
-        // console.log(id)
-
-        const time = moment().format().valueOf()
-        const res = set(ref(database, 'blogs/' + time + userId), blog)
+        const res = set(ref(database, 'blogs/' + bid), blog)
 
 
         if (res) {

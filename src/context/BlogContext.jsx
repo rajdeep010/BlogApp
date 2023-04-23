@@ -1,15 +1,12 @@
-import { createContext, useEffect, useState } from "react"
-
-import { database } from "../firebase";
-import { onValue, ref, set, update, remove, query, orderByChild } from "firebase/database";
+import { createContext, useState } from "react"
+import moment from "moment";
+import uniqid from 'uniqid'
 
 const BlogContext = createContext({
     value: '',
     type: '',
-
     makeBlog: () => { },
     updateVal: () => { },
-    giveLatestBlogs: () => {}
 })
 
 const BlogProvider = (props) => {
@@ -20,23 +17,43 @@ const BlogProvider = (props) => {
         setValue(val);
     }
 
-    const giveLatestBlogs = () => {
-        const latest = query(ref(database, 'blogs/'), orderByChild('key'))
-        console.log(latest)
-    }
+    const makeBlog = (title, val, userId, type, name) => {
 
+        let content = val.replace(/<[^>]+>/g, '')
 
-    const makeBlog = (title, val, userId, type) => {
+        let readtime = Math.round(content.length / 150)
+
+        if(readtime > 1)
+            readtime = readtime + ' mins read'
+
+        else
+            readtime = readtime + ' min read'
+
+        if(content.length > 400)
+            content = content.substr(0, 400)
+
+        if(content[content.length-1] == ' ')
+            content[content.length-1] = ''
+
+        content += '...'
+
+        const bid = uniqid()
 
         return ({
-            'author': userId,
+            'authorid': userId,
+            'bid': bid,
+            'authorName': name,
             'blogTitle': title,
-            'blogContent': val,
-            'type': type,
+            'blogContent': content,
+            'blogHTML': val,
+            'type': type.toUpperCase(),
             'metrics': {
                 'likes': 0,
+                'cmnts': 0
             },
-            'comments': []
+            'comments': [],
+            'date': moment().format('DD/MM/YYYY'),
+            'readtime': readtime
         })
     }
 
@@ -44,7 +61,6 @@ const BlogProvider = (props) => {
         value: value,
         updateVal: updateVal,
         makeBlog: makeBlog,
-        giveLatestBlogs: giveLatestBlogs
     }
 
     return (

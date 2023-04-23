@@ -13,21 +13,22 @@ const App = () => {
   useEffect(() => {
     let blogs = []
     onValue(ref(database, 'blogs/'), (snapshot) => {
-      if (snapshot) {
+      if (snapshot) 
+      {
         const all = snapshot.val()
         blogs = Object.values(all)
+        setArr(blogs.reverse())
       }
     })
-    // console.log(blogs)
-    setArr(blogs)
   }, [])
+
 
   return (
     <>
       <Navbar />
 
       <section className="app_container">
-        <div className="cards_container">{arr.map((blog) => (<Card className='card' value={blog} />))}</div>
+        <div className="cards_container">{arr.map((blog) => (<Card className='card' key={blog} value={blog} />))}</div>
 
         <Sidebar className='sidebar' />
       </section>

@@ -10,23 +10,23 @@ const Latest = () => {
     const [arr, setArr] = useState([])
 
     useEffect(() => {
-        onValue(ref(database, 'blogs/'), (snapshot) => {
+        let ans = []
+        onValue(ref(database, 'blogs/'), (snapshot) => 
+        {
             let now = []
-            if (snapshot) 
-            {
+            if (snapshot) {
                 const all = snapshot.val()
                 const blogs = Object.values(all)
                 now = blogs
             }
 
             let n = now.length
-            let tempArr = now.slice(n-5, n)
-            tempArr.reverse()
-            setArr(tempArr)
+            now = now.slice(n - 5, n)
+            now.reverse()
+            ans = now
+            setArr(ans)
         })
-
-        // console.log(arr)
-    },[])
+    }, [])
 
     return (
         <>
