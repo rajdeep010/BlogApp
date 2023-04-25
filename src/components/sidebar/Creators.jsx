@@ -26,7 +26,7 @@ const Creators = () => {
                         ({
                             'name': obj.name,
                             'about': obj.about,
-                            'authorId': key
+                            'authorId': key,
                         })
                     }
                 }
@@ -43,7 +43,7 @@ const Creators = () => {
                 <div className="heading"><p>WRITERS</p></div>
 
                 {arr.map((each) => (
-                    <Creator value={each} />
+                    <Creator value={each} key={each} />
                 ))}
 
             </section>
