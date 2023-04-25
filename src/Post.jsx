@@ -30,7 +30,7 @@ const Post = () => {
                     <Blog value={bid}/>
 
                     <div className="post-sidebar">
-                        <About />
+                        <About value={bid}/>
                         <Latest />
                         <CodioShare/>
                     </div>

@@ -5,6 +5,8 @@ import Creators from './Creators'
 import SidebarFooter from './SidebarFooter'
 
 const Sidebar = () => {
+
+    
     return (
         <>
             <div className="sidebar_container">

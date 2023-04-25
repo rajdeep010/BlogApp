@@ -1,11 +1,8 @@
-
 import './navbar.scss'
 import { FiEdit, FiCoffee } from "react-icons/fi";
-
 import { NavLink } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthContext';
 import { useContext } from 'react';
-import { auth } from '../../firebase';
 
 const Navbar = () => {
 
@@ -30,7 +27,7 @@ const Navbar = () => {
                     </button>
 
                     <form className="d-flex">
-                        <input className="form-control me-2" type="search" placeholder="Search..." aria-label="Search" />
+                        <input className="form-control me-2" type="search" placeholder="Search by title..." aria-label="Search" />
                         <button className="button" type="submit">SEARCH</button>
                     </form>
 

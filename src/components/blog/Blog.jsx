@@ -35,7 +35,6 @@ const Blog = (props) => {
             if (snapshot) {
                 // fetch the current blog
                 const blog = snapshot.val()
-                // console.log(blog)
 
                 // set the details of the blog
                 // title, like, comment count, contents
@@ -45,8 +44,8 @@ const Blog = (props) => {
                 setCommentCount(blog.metrics.cmnts)
 
                 // and update all the comments on the blog
-
-                console.log(blog.comments)
+                const temp = Object.values(blog.comments)
+                setBlogComment(temp)
             }
         })
     }, [])
@@ -56,7 +55,6 @@ const Blog = (props) => {
             if (snapshot) {
                 // fetch the current blog
                 const blog = snapshot.val()
-                // console.log(blog)
 
                 // set the details of the blog
                 // title, like, comment count, contents
@@ -66,26 +64,11 @@ const Blog = (props) => {
                 setCommentCount(blog.metrics.cmnts)
 
                 // and update all the comments on the blog
+                const temp = Object.values(blog.comments)
+                setBlogComment(temp)
             }
         })
     }, [likecount, commentcount, bid])
-
-    const updateAllComments = (id) => {
-        onValue(ref(database, ('users/'+id+'/details/')), (snapshot) => {
-            if(snapshot){
-                // console.log(snapshot.val())
-                const user = snapshot.val()
-
-                const res = {
-                    'name': user.name,
-                    'about': user.about,
-                    'comment': comment
-                }
-
-                setCommentor(res)
-            }
-        })
-    }
 
 
     const addComment = () => {
@@ -140,11 +123,10 @@ const Blog = (props) => {
                             {/* Comment more comments */}
                             <div className="comments">
 
-                                <Comment value={commentor}/>
+                                {blogComment.map((each) => (
+                                    <Comment value={each} />
+                                ))}
 
-                                {/* <Comment/>
-
-                                <Comment/> */}
                             </div>
                         </div>
                     </section>

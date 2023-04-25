@@ -8,29 +8,33 @@ const Creators = () => {
     const [arr, setArr] = useState([])
 
     useEffect(() => {
+
         let now = []
+        
         onValue(ref(database, 'users/'), (snapshot) => {
             if (snapshot) 
             {
                 const all = snapshot.val()
-                let writers = Object.values(all)
 
-                writers.map((writer) => {
-                    const obj = writer.details
+                for (const key of Object.keys(all)) 
+                {
+                    const obj = all[key].details
                     
                     if (obj.blogCount > 0) 
                     {
                         now.push
                         ({
                             'name': obj.name,
-                            'about': obj.about
+                            'about': obj.about,
+                            'authorId': key
                         })
                     }
-                })
+                }
                 setArr(now)
             }
         })
     }, [])
+
 
     return (
         <>

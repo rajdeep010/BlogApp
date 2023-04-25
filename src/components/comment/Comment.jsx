@@ -1,12 +1,37 @@
 import { FiMoreVertical } from "react-icons/fi";
 import moment from "moment";
+import { useEffect, useState } from "react";
+import { onValue, ref } from "firebase/database";
+import { database } from "../../firebase";
 
 const Comment = (props) => {
 
-    const user = props.value
-    // console.log(user)
+    const [commentor, setCommentor] = useState({
+        'name': '',
+        'about': ''
+    })
 
-    // console.log(moment().format('DD/MM/YYYY HH:mm:ss'))
+    const user = props.value
+    const comment = user.comment
+    const authorId = user.author
+
+    useEffect(() => {
+        onValue(ref(database, ('users/' + authorId + '/details/')), (snapshot) => {
+            const details = snapshot.val()
+            const name = details.name
+            const about = details.about
+            setCommentor({name, about})
+        })
+    }, [])
+
+    useEffect(() => {
+        onValue(ref(database, ('users/' + authorId + '/details/')), (snapshot) => {
+            const details = snapshot.val()
+            const name = details.name
+            const about = details.about
+            setCommentor({name, about})
+        })
+    }, [authorId])
 
     return (
         <>
@@ -21,10 +46,10 @@ const Comment = (props) => {
 
                         <div className="details">
                             <div className="details_name">
-                                <p> {user.name} </p>
+                                <p> {commentor.name} </p>
                             </div>
                             <div className="details_about">
-                                <p> {user.about} </p>
+                                <p> {commentor.about} </p>
                             </div>
                         </div>
 
@@ -39,7 +64,7 @@ const Comment = (props) => {
                     </div>
 
                     <div className="comment">
-                        Your apporach is very good for this problem..
+                        {comment}
                     </div>
                 </div>
             </div>
