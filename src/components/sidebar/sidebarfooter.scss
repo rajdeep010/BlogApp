@@ -11,6 +11,10 @@
         }
     }
 
+    .heading p{
+        @include heading;
+    }
+
     .links 
     {
         @include flexjustspaceevenly;

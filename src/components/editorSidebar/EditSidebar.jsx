@@ -3,9 +3,7 @@ import './editSidebar.scss'
 import Category from "./Category"
 import CodioShare from "./CodioShare";
 
-const EditSidebar = (props) => {
-
-    // console.log(props.val)
+const EditSidebar = () => {
 
     return (
         <>

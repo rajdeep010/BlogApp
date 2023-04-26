@@ -4,15 +4,14 @@ import './creator.scss'
 import { onValue, ref } from 'firebase/database'
 import { database } from '../../firebase'
 import { AuthContext } from '../../context/AuthContext'
-import { render } from 'react-dom'
+import { NavLink } from 'react-router-dom'
 
 const Creator = (props) => {
 
     const [following, setFollowing] = useState([])
-    const [str, setStr] = useState('')
+    // const [str, setStr] = useState('')
 
     const authCtx = useContext(AuthContext)
-    // console.log(authCtx)
     const myid = authCtx.userId
 
     const detail = props.value
@@ -21,32 +20,41 @@ const Creator = (props) => {
     const about = detail.about
     const id = detail.authorId
 
-    const searchStringInArray = (str, strArray) => {
-        // console.log(str)
+    const path = 'users/' + id
 
-        for (var j = 0; j < strArray.length; j++) {
-            if (strArray[j].match(str)){
-                return true;
-            }
-        }
+    // const setCorrectButtonContent = (str, strArray) => {
+    //     for (var j = 0; j < strArray.length; j++) {
+    //         if (strArray[j].match(str)){
+    //             setStr('FOLLOW')
+    //             return;
+    //         }
+    //     }
 
-        console.log('not found : '   + str + ' ' + name)
-        return false;
-    }
+    //     setStr('UNFOLLOW')
+    // }
+
 
     useEffect(() => {
         onValue(ref(database, ('users/' + myid)), (snapshot) => {
-
             if (snapshot) {
-                console.log(snapshot.val().following.split(','))
                 setFollowing(snapshot.val().following.split(','))
+                // setCorrectButtonContent(id, following)
             }
         })
     }, [])
 
+    // useEffect(() => {
+    //     onValue(ref(database, ('users/' + myid)), (snapshot) => {
+    //         if (snapshot) {
+    //             setFollowing(snapshot.val().following.split(','))
+    //             setCorrectButtonContent(id, following)
+    //         }
+    //     })
+    // }, [str])
+
     return (
         <>
-            <div className="creator_info">
+            <NavLink className="creator_info" to={path}>
 
                 <div className="creator_image">
                     <img src="../../../public/images/vite.svg" alt="creator" />
@@ -57,13 +65,13 @@ const Creator = (props) => {
                     <div className="creator_about">{about}</div>
                 </div>
 
-                <div className="follow_button">
+                {/* For not using any recommendation algo, not giving any following feature as of now */}
 
-                    <Button value={searchStringInArray(id, following) === false ? 'FOLLOW' : 'UNFOLLOW' } />
+                {/* <div className="follow_button">
+                    <Button value={str} />
+                </div> */}
 
-                </div>
-
-            </div>
+            </NavLink>
         </>
     )
 }

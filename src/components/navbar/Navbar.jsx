@@ -42,8 +42,8 @@ const Navbar = () => {
                             </li>
 
                             <li className="nav-item">
-                                <NavLink to='/blog' className={'nav-link'}>
-                                    BLOGS
+                                <NavLink to={'/users/'+authCtx.userId} className={'nav-link'}>
+                                    PROFILE
                                 </NavLink>
                             </li>
 

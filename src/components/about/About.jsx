@@ -13,66 +13,72 @@ const About = (props) => {
     const [user, setUser] = useState({
         'name': '',
         'about': '',
-        'followers': ''
+        'followers': '',
+        'email': ''
     })
 
     const [authorId, setAuthorId] = useState('')
 
     const bid = props.value
-    useEffect(()=> {
-        onValue(ref(database, ('blogs/'+bid)), (snapshot) => {
+
+    useEffect(() => {
+        onValue(ref(database, ('blogs/' + bid)), (snapshot) => {
             setAuthorId(snapshot.val().authorid)
         })
 
-        onValue(ref(database, ('users/'+authorId+'/details/')), snapshot => {
+        onValue(ref(database, ('users/' + authorId + '/details/')), snapshot => {
             const value = snapshot.val()
             const name = value.name
             const about = value.about
+            const email = value.email
             const followers = 15
-            setUser({name, about, followers})
+            setUser({ name, about, followers, email })
         })
-    },[])
+    }, [])
 
-    useEffect(()=> {
-        onValue(ref(database, ('blogs/'+bid)), (snapshot) => {
+    useEffect(() => {
+        onValue(ref(database, ('blogs/' + bid)), (snapshot) => {
             setAuthorId(snapshot.val().authorid)
         })
 
-        onValue(ref(database, ('users/'+authorId+'/details/')), snapshot => {
+        onValue(ref(database, ('users/' + authorId + '/details/')), snapshot => {
             const value = snapshot.val()
             const name = value.name
             const about = value.about
+            const email = value.email
             const followers = 15
-            setUser({name, about, followers})
+            setUser({ name, about, followers, email })
         })
-    },[authorId])
+    }, [authorId])
 
-  return (
-    <>
-        <section className="about-me">
 
-            <div className="myimg">
-                <img src="../../../public/me.jpg" alt="myimg" />
-            </div>
+    return (
+        <>
+            <section className="about-me">
 
-            <div className="name-post">
-                <h2>{user.name}</h2>
-                <p>{user.about}</p>
-                <p>{user.followers + ((user.followers > 1) ? (' followers') : (' follower'))}</p>
-            </div>
+                <div className="myimg">
+                    <img src="../../../public/me.jpg" alt="myimg" />
+                </div>
 
-            <div className="buttons">
+                <div className="name-post">
+                    <h2>{user.name}</h2>
+                    <p>{user.about}</p>
 
-                <Button value={'FOLLOW'} />
+                    {/* <p>{user.followers + ((user.followers > 1) ? (' followers') : (' follower'))}</p> */}
+                </div>
 
-                <NavLink to='/mailto:rajdeepmallick999@gmail.com' className='button'>
-                        <MdMail className='icon'/>
-                </NavLink>
-            </div>
+                <div className="buttons">
 
-        </section>
-    </>
-  )
+                    {/* <Button value={'FOLLOW'} /> */}
+
+                    <NavLink to={'/mailto:'+user.email} className='button'>
+                        <MdMail className='icon' />
+                    </NavLink>
+                </div>
+
+            </section>
+        </>
+    )
 }
 
 export default About

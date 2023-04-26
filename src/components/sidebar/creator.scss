@@ -1,4 +1,5 @@
 @import '../../mixins';
+@import '../../var';
 
 // Creators area
 .creators {
@@ -7,13 +8,19 @@
     .creator_info {
         display: flex;
         padding: 0.8rem 0;
+        text-decoration: none;
+        color: black;
 
-        div{
+        &:hover {
+            color: $blue;
+            background-color: $white;
+        }
+
+        div {
             margin: 0 0.3rem;
         }
 
-        .creator_details 
-        {
+        .creator_details {
             @include flexcolumn;
 
             .creator_name p {
@@ -23,6 +30,7 @@
 
             .creator_about {
                 font-size: 0.8rem;
+                opacity: 0.8;
             }
         }
     }

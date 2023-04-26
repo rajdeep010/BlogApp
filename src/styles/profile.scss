@@ -1,0 +1,13 @@
+@import '../mixins';
+@import '../var';
+
+.profile{
+    .about_sidebar
+    {
+        display: flex;
+
+        .profile_sidebar{
+            margin: 2rem 1rem 2rem 0;
+        }
+    }
+}
