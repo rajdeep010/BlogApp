@@ -7,9 +7,19 @@ import './card.scss'
 const Card = (props) => {
 
     const blog = props.value
+    let content = blog.blogContent
+
+    if (content.length > 400)
+        content = content.substr(0, 400)
+
+    if (content[content.length - 1] == ' ')
+        content[content.length - 1] = ''
+
+    content += '...'
+
     const bid = blog.bid
 
-    const path = '/blog/'+ bid
+    const path = '/blog/' + bid
 
     return (
         <NavLink className="container" to={path}>
@@ -22,7 +32,7 @@ const Card = (props) => {
 
                 <div className="content-overview">
                     <div className="content-heading"><h2>{blog.blogTitle}</h2></div>
-                    <div className="content-short">{blog.blogContent}</div>
+                    <div className="content-short">{content}</div>
                 </div>
 
                 <div className="readtime_icons">

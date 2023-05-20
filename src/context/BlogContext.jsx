@@ -17,6 +17,14 @@ const BlogProvider = (props) => {
         setValue(val);
     }
 
+    const deleteBlog = (uid) => {
+
+    }
+
+    const updateCount = (uid) => {
+        
+    }
+
     const makeBlog = (title, val, userId, type, name) => {
 
         let content = val.replace(/<[^>]+>/g, '')
@@ -28,14 +36,6 @@ const BlogProvider = (props) => {
 
         else
             readtime = readtime + ' min read'
-
-        if(content.length > 400)
-            content = content.substr(0, 400)
-
-        if(content[content.length-1] == ' ')
-            content[content.length-1] = ''
-
-        content += '...'
 
         const bid = uniqid()
 

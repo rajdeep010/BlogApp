@@ -25,9 +25,7 @@ const Blog = (props) => {
     const [content, setContent] = useState('')
     const [likecount, setLikeCount] = useState(0)
     const [commentcount, setCommentCount] = useState(0)
-
     const [comment, setComment] = useState('')
-
     const [blogComment, setBlogComment] = useState([])
 
     useEffect(() => {
@@ -72,7 +70,6 @@ const Blog = (props) => {
 
 
     const addComment = () => {
-        // console.log(moment().format('DD/MM/YYYY HH:mm:ss'))
 
         const obj = {
             'comment': comment,

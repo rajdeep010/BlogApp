@@ -4,6 +4,7 @@ import { GoogleAuthProvider, onAuthStateChanged, signInWithRedirect, signOut } f
 import { registerUsingGoogleAccount } from '../utils/login-utils';
 import { redirect } from '../utils/login-utils';
 
+
 const AuthContext = createContext({
     userId: '',
     isLoggedIn: '',
@@ -11,7 +12,8 @@ const AuthContext = createContext({
     // functions
     updateUid: () => { },
     signInUsingGoogle: () => { },
-    logout: () => { }
+    logout: () => { },
+    handleLogin: () => {}
 })
 
 const AuthProvider = (props) => {
@@ -26,7 +28,6 @@ const AuthProvider = (props) => {
     }
 
     // authentications
-
     const signInUsingGoogle = () => {
         const googleProvider = new GoogleAuthProvider()
         signInWithRedirect(auth, googleProvider)
@@ -38,6 +39,10 @@ const AuthProvider = (props) => {
         redirect('')
     }
 
+    const handleLogin = () => {
+
+    }
+
     useEffect(() => {
         onAuthStateChanged(auth, async (user) => {
             if (user) {
@@ -47,7 +52,8 @@ const AuthProvider = (props) => {
                 const provider = user.providerData[0].providerId
                 // console.log(provider)
 
-                if (provider === 'google.com') {
+                if (provider === 'google.com') 
+                {
                     // console.log(user)
                     const name = user.displayName
                     const email = user.email
@@ -73,7 +79,7 @@ const AuthProvider = (props) => {
         // functions
         updateUid: updateUid,
         signInUsingGoogle: signInUsingGoogle,
-        logout: logout
+        logout: logout,
     }
 
 

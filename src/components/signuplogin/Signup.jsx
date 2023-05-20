@@ -7,7 +7,7 @@ import { auth } from '../../firebase'
 import { registerUser } from '../../utils/login-utils';
 import { useNavigate } from 'react-router-dom'
 
-import { ToastContainer, toast } from 'react-toastify'
+import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
 import { createUserWithEmailAndPassword } from 'firebase/auth'
 
@@ -59,10 +59,13 @@ const Signup = () => {
 
         createUserWithEmailAndPassword(auth, email, password)
             .then(async (userCredentials) => {
+                
+                console.log(userCredentials)
                 // console.log(email)
                 const userId = email && email.split('@')[0].replace(/[.]/g, '_')
                 // console.log(userId)
                 await registerUser(userId, name, email, about, [], true)
+
                 notifier('Account Created Successfully', 'success')
                 setTimeout(goToHome, 3000)
                 authCtx.updateUid(userId)

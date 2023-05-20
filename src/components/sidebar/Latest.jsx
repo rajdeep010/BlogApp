@@ -14,6 +14,7 @@ const Latest = () => {
         onValue(ref(database, 'blogs/'), (snapshot) => 
         {
             let now = []
+
             if (snapshot) {
                 const all = snapshot.val()
                 const blogs = Object.values(all)
@@ -21,10 +22,13 @@ const Latest = () => {
             }
 
             let n = now.length
-            now = now.slice(n - 5, n)
+            if(now > 5)
+                now = now.slice(n - 5, n)
+
             now.reverse()
             ans = now
             setArr(ans)
+
         })
     }, [])
 

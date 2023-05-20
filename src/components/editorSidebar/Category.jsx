@@ -11,7 +11,6 @@ import 'react-toastify/dist/ReactToastify.css';
 
 import { database } from '../../firebase';
 import { onValue, ref, set } from 'firebase/database';
-import { FaSnapchat } from 'react-icons/fa';
 
 const Category = () => {
 
@@ -67,9 +66,11 @@ const Category = () => {
         const dbRef = ref(database, ('users/' + userId + '/details'))
 
         let name = ''
+        let count = 0
         onValue(dbRef, (snapshot) => {
             const res = snapshot.val()
             name = res.name
+            count = res.blogCount
         })
         
         const blog = blogContext.makeBlog(title, val, userId, type, name)
@@ -77,9 +78,13 @@ const Category = () => {
 
         const res = set(ref(database, 'blogs/' + bid), blog)
 
+        update(ref(database, 'users/' + userId + '/details'), {
+            'blogCount' : count + 1
+        })
 
         if (res) {
             notify('Successfully Submitted', 'success')
+
         } else {
             notify('Something Went Wrong !!!', 'error')
         }
