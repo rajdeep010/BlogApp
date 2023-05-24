@@ -10,6 +10,8 @@
     background-color: $fade-blue;
     border-radius: $border-rad;
 
+    max-width: 25vw;
+
     padding: 1rem;
 
     * {
@@ -21,6 +23,7 @@
     }
 
     .category_about {
+        
 
         @include flexprop;
 
@@ -45,6 +48,15 @@
                 outline: none;
                 margin-bottom: 1rem;
                 font-size: 1.2rem;
+                cursor: pointer;
+            }
+
+            .file_box {
+                
+                border: $border;
+                padding: 0.5rem;
+                border-radius: $border-rad;
+                background-color: $white;
                 cursor: pointer;
             }
         }

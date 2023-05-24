@@ -1,9 +1,9 @@
 import { useContext, useEffect, useState } from 'react';
 import ReactQuill from 'react-quill';
-
 import 'react-quill/dist/quill.snow.css';
 import './editor.scss'
 import { BlogContext } from '../../context/BlogContext';
+
 
 
 const Editor = () => {

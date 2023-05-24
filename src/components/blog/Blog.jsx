@@ -9,7 +9,7 @@ import Comment from '../comment/Comment';
 import { AuthContext } from '../../context/AuthContext';
 import { BlogContext } from '../../context/BlogContext';
 import { VscHeartFilled, VscHeart, VscComment } from "react-icons/vsc";
-// import 'react-quill/dist/quill.snow.css';
+import 'react-quill/dist/quill.snow.css';
 
 
 const Blog = (props) => {
@@ -255,9 +255,7 @@ const Blog = (props) => {
 
 
     const inner = (str) => {
-        var div = document.createElement('div')
-        div.innerHTML = str.trim()
-        return div
+        return <div className='post_content' dangerouslySetInnerHTML={{__html: str}}></div>
     }
 
     return (
@@ -265,13 +263,10 @@ const Blog = (props) => {
             <section className='full-blog'>
 
                 <section className="blog-box">
-                    <section className="header-img"><img src="../../../public/gucci.jpeg" alt="" /></section>
+                    {/* <section className="header-img"><img src="../../../public/gucci.jpeg" alt="" /></section> */}
                     <div className="blog_heading"><h1>{title}</h1></div>
                     <div className="blog_actual_content">
-
-                        {content}
-
-                        {/* {console.log(inner(content))} */}
+                        {inner(content)}
                     </div>
                 </section>
 
@@ -312,7 +307,7 @@ const Blog = (props) => {
                             <div className="comments">
 
                                 {blogComment.map((each) => (
-                                    <Comment value={each} blogID={bid} />
+                                    <Comment value={each} blogID={bid} key={each} />
                                 ))}
 
                             </div>

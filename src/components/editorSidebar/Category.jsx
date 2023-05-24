@@ -8,6 +8,8 @@ import 'react-toastify/dist/ReactToastify.css';
 import { database } from '../../firebase';
 import { onValue, ref, set, update } from 'firebase/database';
 
+
+
 const Category = () => {
 
     const blogContext = useContext(BlogContext)
@@ -16,8 +18,7 @@ const Category = () => {
 
     const notify = (msg, type) => {
 
-        if(type == 'success')
-        {
+        if (type == 'success') {
             toast.success(msg, {
                 position: "top-right",
                 autoClose: 2000,
@@ -30,8 +31,7 @@ const Category = () => {
             })
         }
 
-        else if(type == 'error')
-        {
+        else if (type == 'error') {
             toast.error(msg, {
                 position: "top-right",
                 autoClose: 2000,
@@ -67,14 +67,14 @@ const Category = () => {
         onValue(dbRef, (snapshot) => {
             const res = snapshot.val()
             obj = res
-            // console.log( 'The snapshot object is : ')
-            // console.log(obj)
             name = res.name
         })
-        
+
         const blog = blogContext.makeBlog(title, val, userId, type, name)
         const bid = blog.bid
         const res = set(ref(database, 'blogs/' + bid), blog)
+
+        console.log(blog)
 
         update(ref(database, 'users/' + userId + '/details'), {
             blogCount: obj.blogCount + 1
@@ -93,12 +93,11 @@ const Category = () => {
             <div className="category_submit_box">
 
                 <div className="heading">
-                    <p>CATEGORY</p>
+                    <p>CATEGORY & IMAGE</p>
                 </div>
 
                 <div className="category_about">
-                    <h4>Please select a category</h4>
-                    <p>Selecting a category will help fast-track searching process. Please select an appropriate category from the following.</p>
+                    <h6>Select a Category & Choose Poster Image</h6>
                 </div>
 
                 <div className="category_box">
@@ -116,6 +115,10 @@ const Category = () => {
                             <option value="MISC">Misc</option>
 
                         </select>
+
+                        <div className="file_box">
+                            <input type="file" accept="image/*" className='file_input' />
+                        </div>
 
                         <input type="submit" className='btn' value='Submit' onClick={submit} />
                         <ToastContainer />
