@@ -19,10 +19,8 @@ const Card = (props) => {
 
     const bid = blog.bid
 
-    const path = '/blog/' + bid
-
     return (
-        <NavLink className="container" to={path}>
+        <NavLink className="container" to={'/blog/' + bid}>
             <div className="content">
                 <div className="img_name_date">
                     <div className="img"><img src="../../../public/images/vite.svg" alt="myimg" /></div>

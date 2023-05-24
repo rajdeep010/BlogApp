@@ -22,11 +22,13 @@ const Post = () => {
         setBlogId(bid)
     }, [bid])
 
+
     return (
         <>
             <section className="post-container">
                 <Navbar />
                 <div className="post-page-element">
+
                     <Blog value={bid}/>
 
                     <div className="post-sidebar">

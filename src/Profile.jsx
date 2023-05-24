@@ -29,15 +29,15 @@ const Profile = () => {
 
         blogs.map((blog) => {
           // console.log(blog)
-          console.log(blog.authorid)
+          // console.log(blog.authorid)
 
           if (blog.authorid == uid) {
-            console.log('hello ' + uid)
+            // console.log('hello ' + uid)
             temp.push(blog)
           }
         })
 
-        console.log(temp)
+        // console.log(temp)
         setAuthorBlog(temp)
       }
     })

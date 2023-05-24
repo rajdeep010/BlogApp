@@ -13,6 +13,7 @@
         background-color: $bg-medium-blue;
         border: $border;
         border-radius: $border-rad;
+        max-width: 65vw;
     
         padding: 2rem;
     
@@ -28,6 +29,10 @@
             height: 35rem;
             width: 60rem;
             max-width: 70vw;
+        }
+
+        .blog_actual_content{
+            text-align: justify;
         }
     }
 }

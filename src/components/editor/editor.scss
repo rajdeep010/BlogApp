@@ -1,5 +1,6 @@
 @import '../../var';
 
+
 .editor {
     padding: 1rem 0.5rem 0.5rem 2rem;
     height: 77vh;
@@ -43,6 +44,12 @@
         padding: 1rem;
         border-radius: 0.8rem;
         margin-bottom: 1.5rem;
+
+        .ql-icon-picker .ql-picker-label{
+            border: none;
+            height: 2rem;
+            width: 2rem;
+        }
 
         .ql-picker-label {
             border: $border;

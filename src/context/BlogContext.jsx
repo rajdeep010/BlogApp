@@ -7,6 +7,7 @@ const BlogContext = createContext({
     type: '',
     makeBlog: () => { },
     updateVal: () => { },
+    makeComment: () => { }
 })
 
 const BlogProvider = (props) => {
@@ -57,10 +58,22 @@ const BlogProvider = (props) => {
         })
     }
 
+    const makeComment = (comment, author) => {
+        const commentID = uniqid('cmnt-')
+
+        return ({
+            'commentID': commentID,
+            'comment': comment,
+            'time':  moment().format('DD/MM/YYYY HH:mm:ss'),
+            'author': author
+        })
+    }
+
     const state = {
         value: value,
         updateVal: updateVal,
         makeBlog: makeBlog,
+        makeComment: makeComment
     }
 
     return (

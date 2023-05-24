@@ -13,7 +13,8 @@ const Editor = () => {
             [{ 'header': [1, 2, 3, false] }],
             ['bold', 'italic', 'underline', 'blockquote', 'code-block'],
             [{ 'list': 'ordered' }, { 'list': 'bullet' }, { 'indent': '-1' }, { 'indent': '+1' }],
-            ['link', 'image']
+            ['link', 'image'],
+            [{ 'align': [] }]
         ],
     }
 
@@ -21,7 +22,7 @@ const Editor = () => {
         'header',
         'bold', 'italic', 'underline', 'blockquote', 'code',
         'list', 'bullet', 'indent',
-        'link', 'image', 'code-block'
+        'link', 'image', 'code-block', 'align'
     ]
 
     const blogContext = useContext(BlogContext);

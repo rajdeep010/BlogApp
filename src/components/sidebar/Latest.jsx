@@ -9,6 +9,10 @@ const Latest = () => {
 
     const [arr, setArr] = useState([])
 
+    const shuffle = (arr) => {
+        return arr.sort(() => Math.random - 0.5)
+    }
+
     useEffect(() => {
         let ans = []
         onValue(ref(database, 'blogs/'), (snapshot) => 
@@ -22,13 +26,13 @@ const Latest = () => {
             }
 
             let n = now.length
-            if(now > 5)
+            
+            if(n > 5)
                 now = now.slice(n - 5, n)
 
             now.reverse()
             ans = now
             setArr(ans)
-
         })
     }, [])
 

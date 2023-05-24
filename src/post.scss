@@ -7,7 +7,7 @@
 
         .post-sidebar{
             @include flexcolumn;
-
+            width: 30vw;
             padding: 0 1rem;
         }
     }

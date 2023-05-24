@@ -1,16 +1,12 @@
 import { useContext, useState } from 'react'
-
 import './category.scss'
 import { BlogContext } from '../../context/BlogContext'
 import { TitleContext } from '../../context/TitleContext'
 import { AuthContext } from '../../context/AuthContext';
-
-import moment from 'moment';
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
-
 import { database } from '../../firebase';
-import { onValue, ref, set } from 'firebase/database';
+import { onValue, ref, set, update } from 'firebase/database';
 
 const Category = () => {
 
@@ -52,7 +48,7 @@ const Category = () => {
     // setting the type of blog
     const [type, setType] = useState('webdev')
 
-    const update = (e) => {
+    const updateType = (e) => {
         setType(e.target.value)
     }
 
@@ -66,20 +62,22 @@ const Category = () => {
         const dbRef = ref(database, ('users/' + userId + '/details'))
 
         let name = ''
-        let count = 0
+
+        let obj = {}
         onValue(dbRef, (snapshot) => {
             const res = snapshot.val()
+            obj = res
+            // console.log( 'The snapshot object is : ')
+            // console.log(obj)
             name = res.name
-            count = res.blogCount
         })
         
         const blog = blogContext.makeBlog(title, val, userId, type, name)
         const bid = blog.bid
-
         const res = set(ref(database, 'blogs/' + bid), blog)
 
         update(ref(database, 'users/' + userId + '/details'), {
-            'blogCount' : count + 1
+            blogCount: obj.blogCount + 1
         })
 
         if (res) {
@@ -107,7 +105,7 @@ const Category = () => {
 
                     <form>
 
-                        <select name="category" id="category" value={type} onChange={update}>
+                        <select name="category" id="category" value={type} onChange={updateType}>
 
                             <option value="WEB-DEV" defaultValue>Web Development</option>
                             <option value="ANRD-DEV">Android Development</option>

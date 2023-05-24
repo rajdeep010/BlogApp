@@ -6,13 +6,18 @@ const Latestblog = (props) => {
 
     const detail = props.value
 
+    // console.log(detail)
+
     const authorName = detail.authorName
     const blogTitle = detail.blogTitle
     const readtime = detail.readtime
+    const bid = detail.bid
+
+    // console.log(bid)
 
     return (
         <>
-            <NavLink to='/blog' style={{'textDecoration' : 'none'}} >
+            <NavLink to={'/blog/'+bid} style={{'textDecoration' : 'none'}} >
 
                 <div className="blog">
 

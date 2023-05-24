@@ -170,6 +170,24 @@
                                 cursor: pointer;
                             }
                         }
+
+                        .edit_option{
+                            @include flexcolumn;
+                            gap: 0.5rem;
+                            border: $border;
+                            padding: 0.5rem;
+                            border-radius: $border-rad;
+                            
+                            .option{
+                                color: black;
+                                font-size: 0.8rem;
+                                cursor: pointer;
+
+                                &:hover{
+                                    color: $blue;
+                                }
+                            }
+                        }
                     }
                 }
 

@@ -34,14 +34,14 @@ const Creator = (props) => {
     // }
 
 
-    useEffect(() => {
-        onValue(ref(database, ('users/' + myid)), (snapshot) => {
-            if (snapshot) {
-                setFollowing(snapshot.val().following.split(','))
-                // setCorrectButtonContent(id, following)
-            }
-        })
-    }, [])
+    // useEffect(() => {
+    //     onValue(ref(database, ('users/' + myid)), (snapshot) => {
+    //         if (snapshot) {
+    //             setFollowing(snapshot.val().following.split(','))
+    //             // setCorrectButtonContent(id, following)
+    //         }
+    //     })
+    // }, [])
 
     // useEffect(() => {
     //     onValue(ref(database, ('users/' + myid)), (snapshot) => {
