@@ -20,7 +20,7 @@ const About2 = (props) => {
                 const obj = {
                     'name': details.name,
                     'about': details.about,
-                    'blogCount': details.blogCount
+                    'blogCount': (details.blogCount == NaN) ? 0 : details.blogCount 
                 }
 
                 setUser(obj)

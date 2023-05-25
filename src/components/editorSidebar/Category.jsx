@@ -5,9 +5,9 @@ import { TitleContext } from '../../context/TitleContext'
 import { AuthContext } from '../../context/AuthContext';
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
-import { database } from '../../firebase';
+import { database, storage } from '../../firebase';
 import { onValue, ref, set, update } from 'firebase/database';
-
+import { ref as ref_storage, uploadBytesResumable, getDownloadURL } from 'firebase/storage'
 
 
 const Category = () => {
@@ -15,6 +15,9 @@ const Category = () => {
     const blogContext = useContext(BlogContext)
     const titleContext = useContext(TitleContext)
     const authCtx = useContext(AuthContext)
+
+    const [image, setImage] = useState(null)
+    const [url, setURL] = useState('')
 
     const notify = (msg, type) => {
 
@@ -52,6 +55,54 @@ const Category = () => {
         setType(e.target.value)
     }
 
+    const updatePoster = async (bid, url) => {
+
+        update(ref(database, 'blogs/' + bid), {
+            posterURL: url
+        })
+    }
+
+    const handleFileUpload = (bid) => {
+        if (image == null)
+            return
+
+        const storageRef = ref_storage(storage, 'posters/' + bid)
+        const uploadTask = uploadBytesResumable(storageRef, image)
+
+        uploadTask.on('state_changed',
+            (snapshot) => {
+                const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+                // console.log('Upload is ' + progress + '% done')
+
+                switch (snapshot.state) {
+                    case 'paused':
+                        // console.log('Upload is paused')
+                        break
+
+                    case 'running':
+                        // console.log('Upload is running')
+                        break
+                }
+            }, (error) => {
+                // Error in uploading function
+                switch (error.code) {
+                    case 'storage/unauthorized':
+                        break
+
+                    case 'storage/canceled':
+                        break
+                }
+            },
+            () => {
+                // Completion function
+                getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
+                    // console.log('File available at', downloadURL);
+                    setURL(downloadURL)
+                    await updatePoster(bid, downloadURL)
+                })
+            })
+    }
+
     const submit = async (event) => {
         event.preventDefault()
 
@@ -72,9 +123,8 @@ const Category = () => {
 
         const blog = blogContext.makeBlog(title, val, userId, type, name)
         const bid = blog.bid
-        const res = set(ref(database, 'blogs/' + bid), blog)
 
-        console.log(blog)
+        const res = set(ref(database, 'blogs/' + bid), blog)
 
         update(ref(database, 'users/' + userId + '/details'), {
             blogCount: obj.blogCount + 1
@@ -86,6 +136,12 @@ const Category = () => {
         } else {
             notify('Something Went Wrong !!!', 'error')
         }
+
+        // After blog submission make sure to upload the poster of the blog
+
+
+        // Blog Poster Submission (if any)
+        handleFileUpload(bid)
     }
 
     return (
@@ -98,6 +154,8 @@ const Category = () => {
 
                 <div className="category_about">
                     <h6>Select a Category & Choose Poster Image</h6>
+
+                    <small> <b>NOTE :</b> Please try to give a rectangular poster image</small>
                 </div>
 
                 <div className="category_box">
@@ -116,8 +174,10 @@ const Category = () => {
 
                         </select>
 
+
+
                         <div className="file_box">
-                            <input type="file" accept="image/*" className='file_input' />
+                            <input type="file" accept="image/*" className='file_input' onChange={(e) => setImage(e.target.files[0])} />
                         </div>
 
                         <input type="submit" className='btn' value='Submit' onClick={submit} />

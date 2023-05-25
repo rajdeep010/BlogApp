@@ -27,6 +27,8 @@ const Blog = (props) => {
     const [comment, setComment] = useState('')
     const [blogComment, setBlogComment] = useState([])
     const [isLiked, setIsLiked] = useState(false)
+    const [poster, setPoster] = useState('')
+    const [isPoster, setIsPoster] = useState(false)
 
 
     useEffect(() => {
@@ -41,6 +43,9 @@ const Blog = (props) => {
                 setContent(blog.blogHTML)
                 setLikeCount(blog.metrics.likes)
                 setCommentCount(blog.metrics.cmnts)
+                setPoster(blog.posterURL)
+
+                setIsPoster((blog.posterURL === undefined || blog.posterURL === '') ? false : true)            
 
                 // and update all the comments on the blog
                 if (blog.comments === null || blog.comments === undefined) {
@@ -92,6 +97,9 @@ const Blog = (props) => {
                 setContent(blog.blogHTML)
                 setLikeCount(blog.metrics.likes)
                 setCommentCount(blog.metrics.cmnts)
+                setPoster(blog.posterURL)
+
+                setIsPoster((blog.posterURL === undefined ||  blog.posterURL === '') ? false : true)  
 
                 // and update all the comments on the blog
                 if (blog.comments === null || blog.comments === undefined) {
@@ -123,10 +131,8 @@ const Blog = (props) => {
                         break
                     }
                 }
-
                 setIsLiked((found === true) ? false : true)
             }
-
         })
 
     }, [likecount, commentcount, bid])
@@ -255,7 +261,7 @@ const Blog = (props) => {
 
 
     const inner = (str) => {
-        return <div className='post_content' dangerouslySetInnerHTML={{__html: str}}></div>
+        return <div className='post_content' dangerouslySetInnerHTML={{ __html: str }}></div>
     }
 
     return (
@@ -263,7 +269,11 @@ const Blog = (props) => {
             <section className='full-blog'>
 
                 <section className="blog-box">
-                    {/* <section className="header-img"><img src="../../../public/gucci.jpeg" alt="" /></section> */}
+
+                    <section className="header-img">
+                        {isPoster && <img src={poster} alt="" />}
+                    </section>
+
                     <div className="blog_heading"><h1>{title}</h1></div>
                     <div className="blog_actual_content">
                         {inner(content)}

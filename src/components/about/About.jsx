@@ -13,7 +13,7 @@ const About = (props) => {
     const [user, setUser] = useState({
         'name': '',
         'about': '',
-        'followers': '',
+        'blogs': '',
         'email': ''
     })
 
@@ -28,11 +28,12 @@ const About = (props) => {
 
         onValue(ref(database, ('users/' + authorId + '/details/')), snapshot => {
             const value = snapshot.val()
+
             const name = value.name
             const about = value.about
             const email = value.email
-            const followers = 15
-            setUser({ name, about, followers, email })
+            const blogs = value.blogCount
+            setUser({ name, about, blogs, email })
         })
     }, [])
 
@@ -46,8 +47,8 @@ const About = (props) => {
             const name = value.name
             const about = value.about
             const email = value.email
-            const followers = 15
-            setUser({ name, about, followers, email })
+            const blogs = value.blogCount
+            setUser({ name, about, blogs, email })
         })
     }, [authorId])
 
@@ -61,10 +62,8 @@ const About = (props) => {
                 </div>
 
                 <div className="name-post">
-                    <h2>{user.name}</h2>
+                    <h2>{user.name},  <small>{user.blogs} {(user.blogs > 1) ? ' blogs' : ' blog'}</small></h2>
                     <p>{user.about}</p>
-
-                    {/* <p>{user.followers + ((user.followers > 1) ? (' followers') : (' follower'))}</p> */}
                 </div>
 
                 <div className="buttons">

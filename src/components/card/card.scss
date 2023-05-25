@@ -53,6 +53,8 @@
         // content overview
         .content-overview 
         {
+            padding-right: 2rem;
+            
             .content-heading 
             {
                 font-weight: 900;
@@ -63,11 +65,16 @@
                     margin: 0.5rem 0;
                 }
             }
+
+            .content-short{
+                text-align: justify;
+            }
         }
 
         // readtime icons
         .readtime_icons 
         {
+
             .content_about 
             {
                 @include flexjustspacebetween;

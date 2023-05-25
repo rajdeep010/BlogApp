@@ -26,11 +26,13 @@ const BlogProvider = (props) => {
         
     }
 
-    const makeBlog = (title, val, userId, type, name) => {
+    const makeBlog = (title, val, userId, type, name, image) => {
 
         let content = val.replace(/<[^>]+>/g, '')
 
         let readtime = Math.round(content.length / 150)
+
+        // console.log(image)
 
         if(readtime > 1)
             readtime = readtime + ' mins read'

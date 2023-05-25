@@ -1,5 +1,4 @@
 import { MdBookmarkAdd, MdShare } from 'react-icons/md'
-
 import { NavLink } from 'react-router-dom'
 
 import './card.scss'
@@ -7,6 +6,10 @@ import './card.scss'
 const Card = (props) => {
 
     const blog = props.value
+
+    const poster = blog.posterURL
+    const isPoster = (poster === undefined || poster === '') ? false : true
+    
     let content = blog.blogContent
 
     if (content.length > 400)
@@ -47,7 +50,9 @@ const Card = (props) => {
                     </div>
                 </div>
             </div>
-            <div className="image"><img src="../../../public/images/sample.webp" alt="" /></div>
+            <div className="image">
+                {isPoster && <img src={poster} alt="poster" />}
+            </div>
         </NavLink>
     )
 }
