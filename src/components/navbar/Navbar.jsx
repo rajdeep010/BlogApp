@@ -2,14 +2,22 @@ import './navbar.scss'
 import { FiEdit, FiCoffee } from "react-icons/fi";
 import { NavLink } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthContext';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 
 const Navbar = () => {
 
     const authCtx = useContext(AuthContext)
 
+    const [title, setTitle] = useState('')
+
     const handleLogOut = () => {
         authCtx.logout()
+    }
+
+    const handleSearch = (e) => {
+        e.preventDefault()
+
+        console.log(title)
     }
 
     return (
@@ -26,10 +34,10 @@ const Navbar = () => {
                         <span className="navbar-toggler-icon"></span>
                     </button>
 
-                    <form className="d-flex">
-                        <input className="form-control me-2" type="search" placeholder="Search by title..." aria-label="Search" />
-                        <button className="button" type="submit">SEARCH</button>
-                    </form>
+                    {/* <form className="d-flex">
+                        <input className="form-control me-2" type="search" placeholder="Search by title..." aria-label="Search" value={title} onChange={ (e) => setTitle(e.target.value) }/>
+                        <button className="button" type="submit" onClick={handleSearch} >SEARCH</button>
+                    </form> */}
 
                     <div className="collapse navbar-collapse" id="navbarSupportedContent">
 
@@ -42,7 +50,7 @@ const Navbar = () => {
                             </li>
 
                             <li className="nav-item">
-                                <NavLink to={'/users/'+authCtx.userId} className={'nav-link'}>
+                                <NavLink to={'/users/' + authCtx.userId} className={'nav-link'}>
                                     PROFILE
                                 </NavLink>
                             </li>
@@ -52,11 +60,6 @@ const Navbar = () => {
                             {!authCtx.isLoggedIn && <li className="nav-item" onClick={handleLogOut}><NavLink to='/login' className={'nav-link'}>LOGOUT</NavLink></li>}
 
                         </ul>
-
-                        {/* <form className="d-flex">
-                            <input className="form-control me-2" type="search" placeholder="Search..." aria-label="Search" />
-                            <button className="button" type="submit">SEARCH</button>
-                        </form> */}
 
                     </div>
                 </div>

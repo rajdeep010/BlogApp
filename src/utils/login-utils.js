@@ -46,7 +46,8 @@ const registerUser = async (userId, name, email, about, isLoggedIn) => {
         about: about,
         followers: [],
         isLoggedIn: isLoggedIn,
-        blogCount: 0
+        blogCount: 0,
+        bookmarked: 0
     })
     .then( () => {
         console.log('User added successfully')
@@ -63,7 +64,8 @@ const registerUsingGoogleAccount = async (userId, name, email) => {
         about: '',
         followers: [],
         isLoggedIn: true,
-        blogCount: 0
+        blogCount: 0,
+        bookmarked: 0
     })
     .then((res) => {
         console.log('User added using Google Sign in')

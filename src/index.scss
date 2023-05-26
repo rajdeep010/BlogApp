@@ -1,0 +1,61 @@
+@import './var';
+@import './mixins';
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.app_container {
+  display: flex;
+  padding: 2rem;
+}
+
+
+.search_and_cards_container {
+  width: 70vw;
+}
+
+.search_and_cards_container 
+{
+
+  .cards_container {
+    padding-right: 1rem;
+  }
+
+  .search_bar {
+    margin: 0.5rem 0 2rem 0;
+
+    input {
+      padding: 0.5rem 0.8rem;
+      margin-right: 2rem;
+      border: $border;
+      outline: none;
+      border-radius: $border-rad;
+    }
+
+    .searchIcon {
+      font-size: 2.3rem;
+      padding: 0.3rem;
+      border-radius: 50%;
+      border: $border;
+      color: $blue;
+      cursor: pointer;
+      transition: 0.2s ease-in-out;
+
+      &:hover {
+        background-color: $bg-card-blue;
+        color: $black;
+      }
+    }
+  }
+}
+
+.app_container .card {
+  width: 70%;
+}
+
+.app_container .sidebar {
+  width: 30vw;
+}

@@ -14,12 +14,14 @@
             text-decoration: none;
             color: $black;
 
-            padding: 0.3rem 0;
+            padding: 0.5rem;
             border-bottom: 0.8px solid #8b8b8b9c;
             margin: 1.5rem 0;
+            border-radius: $border-rad;
 
             &:hover {
                 cursor: pointer;
+                background-color: $bg-light-blue;
             }
 
             .img_name {

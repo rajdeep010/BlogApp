@@ -1,15 +1,25 @@
-import { MdBookmarkAdd, MdShare } from 'react-icons/md'
+import { MdBookmarkAdd, MdShare, MdBookmarkAdded } from 'react-icons/md'
 import { NavLink } from 'react-router-dom'
-
+import { AuthContext } from '../../context/AuthContext'
 import './card.scss'
+import { useContext, useEffect, useState } from 'react'
+import { onValue, ref, remove, set, update } from 'firebase/database'
+import { database } from '../../firebase'
+
+
+
 
 const Card = (props) => {
 
     const blog = props.value
 
+
+    const authCtx = useContext(AuthContext)
+    const userID = authCtx.userId
+
     const poster = blog.posterURL
     const isPoster = (poster === undefined || poster === '') ? false : true
-    
+
     let content = blog.blogContent
 
     if (content.length > 400)
@@ -21,6 +31,15 @@ const Card = (props) => {
     content += '...'
 
     const bid = blog.bid
+
+
+    useEffect(() => {
+        const dbRef = ref(database, 'users/' + userID + '/bookMarked')
+        
+
+    }, [])
+
+
 
     return (
         <NavLink className="container" to={'/blog/' + bid}>
@@ -44,9 +63,13 @@ const Card = (props) => {
                             <div className="topic-icon readtime">{blog.readtime}</div>
                         </div>
 
-                        <div className="topic_moreabout">
-                            <div className="icons"><MdBookmarkAdd className="icon" /><MdShare className="icon" /></div>
-                        </div>
+                        {/* <div className="topic_moreabout">
+                            <div className="icons">
+                                {isBookmarked && <MdBookmarkAdd className="icon" onClick={handleBookMark}/>}
+                                {!isBookmarked && <MdBookmarkAdd className="icon" onClick={handleBookMark}/>}
+                                <MdShare className="icon" />
+                            </div>
+                        </div> */}
                     </div>
                 </div>
             </div>

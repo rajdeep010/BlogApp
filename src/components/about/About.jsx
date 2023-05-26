@@ -62,7 +62,7 @@ const About = (props) => {
                 </div>
 
                 <div className="name-post">
-                    <h2>{user.name},  <small>{user.blogs} {(user.blogs > 1) ? ' blogs' : ' blog'}</small></h2>
+                    <h2>{user.name}, <small>{user.blogs} {(user.blogs > 1) ? ' blogs' : ' blog'}</small></h2>
                     <p>{user.about}</p>
                 </div>
 

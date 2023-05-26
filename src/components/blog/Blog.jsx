@@ -10,6 +10,9 @@ import { AuthContext } from '../../context/AuthContext';
 import { BlogContext } from '../../context/BlogContext';
 import { VscHeartFilled, VscHeart, VscComment } from "react-icons/vsc";
 import 'react-quill/dist/quill.snow.css';
+import { BiBookmarkPlus, BiBookmarkMinus } from "react-icons/bi";
+// BiBookmarkPlus
+
 
 
 const Blog = (props) => {
@@ -29,9 +32,11 @@ const Blog = (props) => {
     const [isLiked, setIsLiked] = useState(false)
     const [poster, setPoster] = useState('')
     const [isPoster, setIsPoster] = useState(false)
+    const [isBookmarked, setIsBookmarked] = useState(false)
 
 
     useEffect(() => {
+
         onValue(ref(database, ('blogs/' + bid)), (snapshot) => {
             if (snapshot) {
                 // fetch the current blog
@@ -45,7 +50,7 @@ const Blog = (props) => {
                 setCommentCount(blog.metrics.cmnts)
                 setPoster(blog.posterURL)
 
-                setIsPoster((blog.posterURL === undefined || blog.posterURL === '') ? false : true)            
+                setIsPoster((blog.posterURL === undefined || blog.posterURL === '') ? false : true)
 
                 // and update all the comments on the blog
                 if (blog.comments === null || blog.comments === undefined) {
@@ -60,7 +65,7 @@ const Blog = (props) => {
         })
 
 
-        const dbRef = ref(database, 'users/' + userId + '/likedBlogs')
+        const dbRef = ref(database, 'users/' + userId + '/likedBlogs')        
 
         onValue(dbRef, (snapshot) => {
             const res = snapshot.val()
@@ -80,6 +85,29 @@ const Blog = (props) => {
                 }
 
                 setIsLiked((found === true) ? false : true)
+            }
+        })
+
+
+        const bookmarkRef = ref(database, 'users/' + userId + '/bookMarkedBlogs')
+
+        onValue(bookmarkRef, (snapshot) => {
+            const res = snapshot.val()
+
+            if (res === null)
+                setIsBookmarked(false)
+
+            else {
+                let found = false
+
+                for (const key in res) {
+                    if (key === bid) {
+                        found = true
+                        break
+                    }
+                }
+
+                setIsBookmarked((found === true) ? true : false)
             }
         })
 
@@ -99,7 +127,7 @@ const Blog = (props) => {
                 setCommentCount(blog.metrics.cmnts)
                 setPoster(blog.posterURL)
 
-                setIsPoster((blog.posterURL === undefined ||  blog.posterURL === '') ? false : true)  
+                setIsPoster((blog.posterURL === undefined || blog.posterURL === '') ? false : true)
 
                 // and update all the comments on the blog
                 if (blog.comments === null || blog.comments === undefined) {
@@ -124,6 +152,7 @@ const Blog = (props) => {
 
             else {
                 let found = false
+
                 for (const key in res) {
                     // console.log(key)
                     if (key === bid) {
@@ -135,128 +164,44 @@ const Blog = (props) => {
             }
         })
 
-    }, [likecount, commentcount, bid])
+
+        const bookmarkRef = ref(database, 'users/' + userId + '/bookMarkedBlogs')
+
+        onValue(bookmarkRef, (snapshot) => {
+            const res = snapshot.val()
+
+            if (res === null)
+                setIsBookmarked(false)
+
+            else {
+                let found = false
+
+                for (const key in res) {
+                    if (key === bid) {
+                        found = true
+                        break
+                    }
+                }
+
+                setIsBookmarked((found === true) ? true : false)
+            }
+        })
+
+    }, [likecount, commentcount, bid, isBookmarked])
 
 
     const addComment = () => {
-
         const obj = blogContext.makeComment(comment, userId)
         const cmntID = obj.commentID
-
-        const commentListRef = ref(database, 'blogs/' + bid + '/comments/' + cmntID)
-
-        // comment pushed
-        set(commentListRef, obj)
-
-        // comment count update
-        // for that first retrive the previous value
-        const dbRef = ref(database, 'blogs/' + bid + '/metrics')
-
-        let cmnts = 0
-        onValue(dbRef, (snapshot) => {
-            cmnts = snapshot.val().cmnts
-        })
-
-        update(dbRef, {
-            cmnts: cmnts + 1
-        })
-
-        setComment('')
-        // console.log('comment pushed successfully')
+        blogContext.addComment(bid, cmntID, setComment, obj)
     }
 
     const addLike = () => {
+        blogContext.addLike(userId, bid, setIsLiked)
+    }
 
-        const dbRef = ref(database, 'users/' + userId + '/likedBlogs')
-
-        let res
-        onValue(dbRef, (snapshot) => {
-            res = snapshot.val()
-        })
-
-        if (res === null) {
-            const obj = {
-                'time': moment().format('DD/MM/YYYY HH:mm:ss')
-            }
-
-            const newRef = ref(database, 'users/' + userId + '/likedBlogs/' + bid)
-            set(newRef, obj)
-            setIsLiked(false)
-
-            // update the like count
-            const likeCountRef = ref(database, 'blogs/' + bid + '/metrics/')
-
-            let likes = 0
-            onValue(likeCountRef, (snapshot) => {
-                likes = snapshot.val().likes
-            })
-
-            update(likeCountRef, {
-                likes: likes + 1
-            })
-        }
-
-        else {
-            // check whether the current userID already present or not
-            // console.log(res)
-
-            let found = false
-            for (const key in res) {
-                // console.log(key)
-                if (key === bid) {
-                    found = true
-                    break
-                }
-            }
-
-            // already liked blog  => remove from list
-            if (found === true) {
-                const newRef = ref(database, 'users/' + userId + '/likedBlogs/' + bid)
-                remove(newRef)
-
-                // like count update
-                const likeCountRef = ref(database, 'blogs/' + bid + '/metrics/')
-
-                let likes = 0
-                onValue(likeCountRef, (snapshot) => {
-                    likes = snapshot.val().likes
-                })
-
-                if (likes > 0) {
-                    update(likeCountRef, {
-                        likes: likes - 1
-                    })
-
-                    setIsLiked(false)
-                }
-            }
-
-            // not liked blog => now set as liked
-            else {
-                const obj = {
-                    'time': moment().format('DD/MM/YYYY HH:mm:ss')
-                }
-
-                const newRef = ref(database, 'users/' + userId + '/likedBlogs/' + bid)
-                set(newRef, obj)
-
-                setIsLiked(true)
-
-                // update the like count
-                const likeCountRef = ref(database, 'blogs/' + bid + '/metrics/')
-
-                let likes = 0
-                onValue(likeCountRef, (snapshot) => {
-                    likes = snapshot.val().likes
-                })
-
-                update(likeCountRef, {
-                    likes: likes + 1
-                })
-            }
-        }
-
-        // console.log('This blog with blog id : ' + bid + ' has the isliked status : ' + isLiked)
+    const handleBookMark = () => {
+        blogContext.handleBookMark(userId, bid, setIsBookmarked)
     }
 
 
@@ -299,6 +244,16 @@ const Blog = (props) => {
                             <button className="like-box-icons">
                                 <div className="each-icon"><VscComment className="icon" /></div>
                                 <div className="count">{commentcount}</div>
+                            </button>
+
+                            <button className="like-box-icons" onClick={handleBookMark}>
+                                {isBookmarked && <div className="each-icon">
+                                    <BiBookmarkMinus className="icon" />
+                                </div>}
+
+                                {!isBookmarked && <div className="each-icon">
+                                    <BiBookmarkPlus className="icon" />
+                                </div>}
                             </button>
 
                             <button className="like-box-icons"><div className="each-icon"><CiShare2 className="icon" /></div></button>
