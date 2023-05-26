@@ -10,6 +10,13 @@ import TitleProvider from './context/TitleContext'
 import AuthProvider from './context/AuthContext'
 import Profile from './Profile'
 
+import TimeAgo from 'javascript-time-ago'
+import en from 'javascript-time-ago/locale/en.json'
+
+TimeAgo.addDefaultLocale(en)
+
+
+
 const App = () => {
   return (
     <>

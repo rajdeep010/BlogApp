@@ -158,36 +158,45 @@
                     
                     .timeago_edit{
                         display: flex;
-                        gap: 1rem;
                         font-size: 0.8rem;
                         opacity: 0.8;
+                        gap: 0.5rem;
+
+                        // border: 2px solid red;
 
                         .edit{
                             font-size: 1rem;
                             opacity: 1;
+                            display: flex;
+                            gap: 0.5rem;
+                            justify-content: space-between;
+
+                            // border: 2px solid red;
 
                             :hover{
                                 cursor: pointer;
                             }
-                        }
 
-                        .edit_option{
-                            @include flexcolumn;
-                            gap: 0.5rem;
-                            border: $border;
-                            padding: 0.5rem;
-                            border-radius: $border-rad;
-                            
-                            .option{
-                                color: black;
-                                font-size: 0.8rem;
-                                cursor: pointer;
-
-                                &:hover{
-                                    color: $blue;
+                            .edit_option{
+                                @include flexcolumn;
+                                gap: 0.5rem;
+                                border: $border;
+                                padding: 0.2rem 0.7rem;
+                                border-radius: $border-rad;
+                                
+                                .option{
+                                    color: black;
+                                    font-size: 0.8rem;
+                                    cursor: pointer;
+    
+                                    &:hover{
+                                        color: $blue;
+                                    }
                                 }
                             }
                         }
+
+                        
                     }
                 }
 

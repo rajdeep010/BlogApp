@@ -1,7 +1,6 @@
 import './blog.scss'
 import '../../styles/likecmnt.scss'
-import { CiHeart, CiChat1, CiShare2, CiLocationArrow1 } from "react-icons/ci";
-import moment from 'moment'
+import { CiShare2, CiLocationArrow1 } from "react-icons/ci";
 import { useContext, useEffect, useState } from 'react'
 import { onValue, ref, remove, set, update } from 'firebase/database'
 import { database } from '../../firebase'
@@ -11,8 +10,7 @@ import { BlogContext } from '../../context/BlogContext';
 import { VscHeartFilled, VscHeart, VscComment } from "react-icons/vsc";
 import 'react-quill/dist/quill.snow.css';
 import { BiBookmarkPlus, BiBookmarkMinus } from "react-icons/bi";
-// BiBookmarkPlus
-
+import Dummy from '../card/Dummy';
 
 
 const Blog = (props) => {
@@ -271,10 +269,11 @@ const Blog = (props) => {
                             {/* Comment more comments */}
                             <div className="comments">
 
-                                {blogComment.map((each) => (
+                                { blogComment.length > 0 && blogComment.map((each) => (
                                     <Comment value={each} blogID={bid} key={each} />
                                 ))}
-
+                                
+                                { blogComment.length === 0 && <Dummy message={'No Comments Till now'} /> }
                             </div>
                         </div>
                     </section>

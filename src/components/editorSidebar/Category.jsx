@@ -8,7 +8,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { database, storage } from '../../firebase';
 import { onValue, ref, set, update } from 'firebase/database';
 import { ref as ref_storage, uploadBytesResumable, getDownloadURL } from 'firebase/storage'
-
+import { useNavigate } from 'react-router-dom';
 
 const Category = () => {
 
@@ -18,6 +18,13 @@ const Category = () => {
 
     const [image, setImage] = useState(null)
     const [url, setURL] = useState('')
+
+    const navigate = useNavigate()
+    const goToHome = () => {
+        navigate('/')
+    }
+
+
 
     const notify = (msg, type) => {
 
@@ -36,6 +43,32 @@ const Category = () => {
 
         else if (type == 'error') {
             toast.error(msg, {
+                position: "top-right",
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            })
+        }
+
+        else if (type == 'warning') {
+            toast.warn(msg, {
+                position: "top-right",
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            })
+        }
+
+        else if (type == 'info') {
+            toast.info(msg, {
                 position: "top-right",
                 autoClose: 2000,
                 hideProgressBar: false,
@@ -121,8 +154,33 @@ const Category = () => {
             name = res.name
         })
 
+        if(title.trim().length === 0){
+            notify('Please give a title', 'warning')
+            return
+        }
+
+        if(title.trim().length > 100) {
+            notify('Give a short Title !!', 'warning')
+            return
+        }
+
+        if(val.trim().length === 0){
+            notify('Write some content !', 'warning')
+            return
+        }
+
+        if(name.trim().length === 0){
+            notify('Update profile details', 'error')
+            return
+        }
+
         const blog = blogContext.makeBlog(title, val, userId, type, name)
         const bid = blog.bid
+
+        if(blog.blogContent.trim().length === 0 || blog.blogContent.trim().length < 200){
+            notify('Write at least 200 letters !!', 'error')
+            return
+        }
 
         const res = set(ref(database, 'blogs/' + bid), blog)
 
@@ -132,7 +190,6 @@ const Category = () => {
 
         if (res) {
             notify('Successfully Submitted', 'success')
-
         } else {
             notify('Something Went Wrong !!!', 'error')
         }
@@ -142,6 +199,9 @@ const Category = () => {
 
         // Blog Poster Submission (if any)
         handleFileUpload(bid)
+        
+        notify('Redirecting to Home', 'info')
+        setTimeout(goToHome, 4000)
     }
 
     return (
@@ -173,7 +233,6 @@ const Category = () => {
                             <option value="MISC">Misc</option>
 
                         </select>
-
 
 
                         <div className="file_box">

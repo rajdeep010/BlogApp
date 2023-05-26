@@ -4,6 +4,7 @@ import './latestblog.scss'
 import { database } from '../../firebase'
 import { onValue, ref } from 'firebase/database'
 import { useEffect, useState } from 'react'
+import Dummy from '../card/Dummy'
 
 const Latest = () => {
 
@@ -47,9 +48,11 @@ const Latest = () => {
 
                 <div className="blogs_container">
 
-                {arr.map((each) => (
+                {arr.length > 0 && arr.map((each) => (
                     <Latestblog value={each} />
                 ))}
+
+                {arr.length === 0 && <Dummy message={'No Latest Blogs'} />}
 
                 </div>
 

@@ -6,6 +6,7 @@ import { useEffect, useState } from "react"
 import { onValue, ref } from "firebase/database"
 import { database } from "./firebase"
 import { IoMdSearch, IoMdClose } from "react-icons/io";
+import Dummy from "./components/card/Dummy"
 
 
 const App = () => {
@@ -80,7 +81,8 @@ const App = () => {
           </div>
 
           <div className="cards_container">
-            {arr.map((blog) => (<Card className='card' key={blog} value={blog} />))}
+            { arr.length > 0 && arr.map((blog) => (<Card className='card' key={blog} value={blog} />))}
+            {arr.length === 0 && <Dummy className='card' key={123} message={'No Blogs Till Now'} />}
           </div>
 
         </div>

@@ -1,11 +1,8 @@
-import { MdBookmarkAdd, MdShare, MdBookmarkAdded } from 'react-icons/md'
 import { NavLink } from 'react-router-dom'
 import { AuthContext } from '../../context/AuthContext'
 import './card.scss'
-import { useContext, useEffect, useState } from 'react'
-import { onValue, ref, remove, set, update } from 'firebase/database'
-import { database } from '../../firebase'
-
+import { useContext } from 'react'
+import ReactTimeago from 'react-timeago'
 
 
 
@@ -13,9 +10,8 @@ const Card = (props) => {
 
     const blog = props.value
 
-
+    const time = blog.date
     const authCtx = useContext(AuthContext)
-    const userID = authCtx.userId
 
     const poster = blog.posterURL
     const isPoster = (poster === undefined || poster === '') ? false : true
@@ -32,22 +28,15 @@ const Card = (props) => {
 
     const bid = blog.bid
 
-
-    useEffect(() => {
-        const dbRef = ref(database, 'users/' + userID + '/bookMarked')
-        
-
-    }, [])
-
-
-
     return (
         <NavLink className="container" to={'/blog/' + bid}>
             <div className="content">
                 <div className="img_name_date">
                     <div className="img"><img src="../../../public/images/vite.svg" alt="myimg" /></div>
-                    <div className="name"><p> {blog.authorName} </p></div>
-                    <div className="date"><p> {blog.date} </p></div>
+                    <div className="name"><p> {blog.authorName}, </p></div>
+                    <div className="date">
+                        <ReactTimeago date={time} locale='en-US' />
+                    </div>
                 </div>
 
                 <div className="content-overview">

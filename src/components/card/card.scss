@@ -15,14 +15,14 @@
     padding: 1.3rem 1rem 0.3rem 1rem;
 
     display: flex;
-    
+
     color: rgba(23, 18, 18, 0.908);
 
 
     margin-bottom: 1rem;
     transition: 0.15s all ease-in-out;
 
-    &:hover{
+    &:hover {
         cursor: pointer;
         color: rgba(23, 18, 18, 0.908);
     }
@@ -42,51 +42,44 @@
                 img {
                     border-radius: 50%;
                 }
+            }
 
-                .name p,
-                .date p {
-                    font-size: 1.3rem;
-                }
+            .name p,
+            .date p {
+                font-size: 1.1rem;
             }
         }
 
         // content overview
-        .content-overview 
-        {
+        .content-overview {
             padding-right: 2rem;
-            
-            .content-heading 
-            {
+
+            .content-heading {
                 font-weight: 900;
 
-                h2 
-                {
-                    font-size: 2rem;
-                    margin: 0.5rem 0;
+                h2 {
+                    font-size: 2.3rem;
+                    margin-bottom: 1rem;
                 }
             }
 
-            .content-short{
+            .content-short {
                 text-align: justify;
             }
         }
 
         // readtime icons
-        .readtime_icons 
-        {
+        .readtime_icons {
 
-            .content_about 
-            {
+            .content_about {
                 @include flexjustspacebetween;
 
                 margin: 0.5rem 0;
 
-                .topic-container 
-                {
+                .topic-container {
                     display: flex;
 
-                    .topic-icon 
-                    {
+                    .topic-icon {
                         background-color: $med-blue;
                         border-radius: $border-rad;
                         border: $img-border;
@@ -97,20 +90,17 @@
                         margin: 0.8rem 0.2rem;
                     }
 
-                    .readtime 
-                    {
+                    .readtime {
                         border: none;
                         font-size: 0.9rem;
                         background: none;
                     }
                 }
 
-                .topic_moreabout 
-                {
+                .topic_moreabout {
                     @include flexjustspacebetween;
 
-                    .icons 
-                    {
+                    .icons {
                         display: flex;
                         gap: 0.7rem;
 
@@ -131,10 +121,10 @@
         }
     }
 
-    .image{
+    .image {
         @include flexcentre;
 
-        img{
+        img {
             height: 15rem;
             width: 15rem;
 

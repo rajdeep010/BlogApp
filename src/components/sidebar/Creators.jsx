@@ -2,6 +2,7 @@ import Creator from "./Creator"
 import { useEffect, useState } from "react"
 import { database } from "../../firebase"
 import { onValue, ref } from "firebase/database"
+import Dummy from "../card/Dummy"
 
 const Creators = () => {
 
@@ -42,9 +43,11 @@ const Creators = () => {
 
                 <div className="heading"><p>WRITERS</p></div>
 
-                {arr.map((each) => (
+                {arr.length > 0 && arr.map((each) => (
                     <Creator value={each} key={each} />
                 ))}
+
+                {arr.length === 0 && <Dummy message={'Creators Not Found'} />}
 
             </section>
         </>

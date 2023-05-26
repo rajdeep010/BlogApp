@@ -161,7 +161,7 @@ const BlogProvider = (props) => {
 
         if (res === null) {
             const obj = {
-                'time': moment().format('DD/MM/YYYY HH:mm:ss')
+                'time': Date.now()
             }
 
             const newRef = ref(database, 'users/' + userID + '/bookMarkedBlogs/' + bid)
@@ -218,7 +218,7 @@ const BlogProvider = (props) => {
             // not already bookmarked => set it as bookmarked
             else {
                 const obj = {
-                    'time': moment().format('DD/MM/YYYY HH:mm:ss')
+                    'time': Date.now()
                 }
 
                 const newRef = ref(database, 'users/' + userID + '/bookMarkedBlogs/' + bid)
@@ -250,7 +250,7 @@ const BlogProvider = (props) => {
 
         let content = val.replace(/<[^>]+>/g, '')
 
-        let readtime = Math.round(content.length / 250)
+        let readtime = Math.round(content.length / 350)
 
         // console.log(image)
 
@@ -275,7 +275,7 @@ const BlogProvider = (props) => {
                 'cmnts': 0
             },
             'comments': [],
-            'date': moment().format('DD/MM/YYYY'),
+            'date': Date.now(),
             'readtime': readtime
         })
     }

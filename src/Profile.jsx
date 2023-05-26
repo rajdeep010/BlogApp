@@ -36,7 +36,7 @@ const Profile = () => {
             temp.push(blog)
           }
         })
-        setAuthorBlog(temp)
+        setAuthorBlog(temp.reverse())
         setCount(temp.length)
       }
     })
@@ -54,7 +54,7 @@ const Profile = () => {
             temp.push(blog)
           }
         })
-        setAuthorBlog(temp)
+        setAuthorBlog(temp.reverse())
         setCount(temp.length)
       }
     })

@@ -1,0 +1,19 @@
+@import '../../mixins';
+@import '../../var';
+
+.dummy_container{
+    @include flexcentre;
+    width: 65vw;
+
+    border: $border;
+    background-color: $bg-card-blue;
+    border-bottom: 3px solid $blue;
+    border-radius: $border-rad;
+
+    display: flex;
+    font-size: 2rem;
+
+    .icon{
+        margin: 0.7rem;
+    }
+}

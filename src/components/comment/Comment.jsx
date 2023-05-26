@@ -99,19 +99,23 @@ const Comment = (props) => {
                             <div className="ago">
                                 18 hours ago
                             </div>
+
                             {(userID === authorId) && <div className="edit" onClick={handleToggle}>
-                                <FiMoreVertical />
+
+                                <div className="three_dot_icon">
+                                    <FiMoreVertical />
+                                </div>
+
+                                {edit && <div className="edit_option">
+                                    <div className="option" onClick={handleCommentDelete}>
+                                        Delete
+                                    </div>
+                                    <div className="option">
+                                        Copy Link
+                                    </div>
+                                </div>}
                             </div>}
 
-                            {/* Edit Options of deleting or copy the comment */}
-                            {edit && <div className="edit_option">
-                                <div className="option" onClick={handleCommentDelete}>
-                                    Delete
-                                </div>
-                                <div className="option">
-                                    Copy Link
-                                </div>
-                            </div>}
                         </div>
                     </div>
 
