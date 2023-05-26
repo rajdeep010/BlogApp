@@ -10,6 +10,7 @@ import Latest from "./components/sidebar/Latest"
 import CodioShare from "./components/editorSidebar/CodioShare"
 import SidebarFooter from "./components/sidebar/SidebarFooter"
 import './styles/profile.scss'
+import Dummy from "./components/card/Dummy"
 
 
 
@@ -147,7 +148,8 @@ const Profile = () => {
             </div>
 
             <div className="cards_container">
-              {authorBlog.map((blog) => (<Card className='card' key={blog} value={blog} />))}
+              {authorBlog.length > 0 && authorBlog.map((blog) => (<Card className='card' key={blog} value={blog} />))}
+              {authorBlog.length === 0 && <Dummy message={'No Written Blogs'} />}
             </div>
           </div>
 
