@@ -3,12 +3,14 @@ import './category.scss'
 import { BlogContext } from '../../context/BlogContext'
 import { TitleContext } from '../../context/TitleContext'
 import { AuthContext } from '../../context/AuthContext';
-import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
 import { database, storage } from '../../firebase';
 import { onValue, ref, set, update } from 'firebase/database';
 import { ref as ref_storage, uploadBytesResumable, getDownloadURL } from 'firebase/storage'
 import { useNavigate } from 'react-router-dom';
+import { notifier } from '../../utils/notify';
+import { ToastContainer } from 'react-toastify';
+
 
 const Category = () => {
 
@@ -23,7 +25,6 @@ const Category = () => {
     const goToHome = () => {
         navigate('/')
     }
-
 
 
     const notify = (msg, type) => {
@@ -154,31 +155,36 @@ const Category = () => {
             name = res.name
         })
 
-        if(title.trim().length === 0){
-            notify('Please give a title', 'warning')
+        if (title.trim().length === 0) {
+            notifier('Please give a title', 'warning')
             return
         }
 
-        if(title.trim().length > 100) {
-            notify('Give a short Title !!', 'warning')
+        if (title.trim().length > 100) {
+            notifier('Give a short Title !!', 'warning')
             return
         }
 
-        if(val.trim().length === 0){
-            notify('Write some content !', 'warning')
+        if (title.trim().length < 15) {
+            notifier('Title Must Be Longer', 'warning')
             return
         }
 
-        if(name.trim().length === 0){
-            notify('Update profile details', 'error')
+        if (val.trim().length === 0) {
+            notifier('Write some content !', 'warning')
+            return
+        }
+
+        if (name.trim().length === 0) {
+            notifier('Update profile details', 'error')
             return
         }
 
         const blog = blogContext.makeBlog(title, val, userId, type, name)
         const bid = blog.bid
 
-        if(blog.blogContent.trim().length === 0 || blog.blogContent.trim().length < 200){
-            notify('Write at least 200 letters !!', 'error')
+        if (blog.blogContent.trim().length === 0 || blog.blogContent.trim().length < 200) {
+            notifier('Write at least 200 letters !!', 'error')
             return
         }
 
@@ -187,21 +193,16 @@ const Category = () => {
         update(ref(database, 'users/' + userId + '/details'), {
             blogCount: obj.blogCount + 1
         })
+            .then(() => {
+                notifier('Successfully Submitted', 'success')
+                handleFileUpload(bid)
 
-        if (res) {
-            notify('Successfully Submitted', 'success')
-        } else {
-            notify('Something Went Wrong !!!', 'error')
-        }
-
-        // After blog submission make sure to upload the poster of the blog
-
-
-        // Blog Poster Submission (if any)
-        handleFileUpload(bid)
-        
-        notify('Redirecting to Home', 'info')
-        setTimeout(goToHome, 4000)
+                notify('Redirecting to Home', 'info')
+                setTimeout(goToHome, 4000)
+            })
+            .catch((err) => {
+                notifier('Something Went Wrong !!!', 'error')
+            })
     }
 
     return (
@@ -240,12 +241,14 @@ const Category = () => {
                         </div>
 
                         <input type="submit" className='btn' value='Submit' onClick={submit} />
-                        <ToastContainer />
+
                     </form>
 
                 </div>
 
             </div>
+
+            <ToastContainer />
         </>
     )
 }

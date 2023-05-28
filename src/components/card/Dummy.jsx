@@ -9,8 +9,11 @@ const Dummy = (props) => {
     return (
         <>
             <div className="dummy_container">
-                <FiCoffee className='icon'/>
-                {message}
+
+                <div className="message">
+                    {message}
+                </div>
+
             </div>
         </>
     )

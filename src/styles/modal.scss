@@ -1,0 +1,72 @@
+@import '../mixins';
+@import '../var';
+
+
+.modal-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.active-wrapper {
+    background-color: rgba(216, 216, 216, 0.919);
+    opacity: 0.6;
+}
+
+.modal-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    padding: 2rem;
+    border: 0.2rem solid $blue;
+    border-radius: 1rem;
+
+    h2{
+        font-size: 2.5rem;
+        margin-bottom: 2rem;
+    }
+
+    .avatar_container
+    {
+        @include flexcentre;
+        @include flexcolumn;
+        gap: 2rem;
+
+        .avatar_image
+        {
+            height: 13rem;
+            width: 13rem;
+
+            border-radius: 50%;
+            border: $border;
+            box-shadow: $avatar-box-shadow;
+        }
+    }
+
+
+    form {
+        .input-field {
+            @include input-field;
+
+            border: $border;
+            border-radius: 5rem;
+            padding: 1.5rem;
+            margin: 2rem 0.5rem;
+        }
+
+        .form-buttons{
+            display: flex;
+            justify-content: end;
+            gap: 1rem;
+        }
+    }
+}
+
+.active-modal-container {
+    background-color: white;
+}
+

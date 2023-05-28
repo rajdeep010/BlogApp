@@ -27,6 +27,9 @@
 
     .bookmarked_and_edit_buttons {
 
+        display: flex;
+        gap: 1rem;
+
         .about2_icon {
             font-size: 2.5rem;
             color: $blue;

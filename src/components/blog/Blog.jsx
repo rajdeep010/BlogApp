@@ -11,6 +11,10 @@ import { VscHeartFilled, VscHeart, VscComment } from "react-icons/vsc";
 import 'react-quill/dist/quill.snow.css';
 import { BiBookmarkPlus, BiBookmarkMinus } from "react-icons/bi";
 import Dummy from '../card/Dummy';
+import { ToastContainer } from 'react-toastify';
+import { notifier } from '../../utils/notify';
+
+
 
 
 const Blog = (props) => {
@@ -63,12 +67,12 @@ const Blog = (props) => {
         })
 
 
-        const dbRef = ref(database, 'users/' + userId + '/likedBlogs')        
+        const dbRef = ref(database, 'users/' + userId + '/likedBlogs')
 
         onValue(dbRef, (snapshot) => {
             const res = snapshot.val()
 
-            if (res === null)
+            if (res === null || res === undefined)
                 setIsLiked(false)
 
             else {
@@ -82,7 +86,7 @@ const Blog = (props) => {
                     }
                 }
 
-                setIsLiked((found === true) ? false : true)
+                setIsLiked((found === true) ? true : false)
             }
         })
 
@@ -145,7 +149,7 @@ const Blog = (props) => {
         onValue(dbRef, (snapshot) => {
             const res = snapshot.val()
 
-            if (res === null)
+            if (res === null || res === undefined)
                 setIsLiked(false)
 
             else {
@@ -158,7 +162,7 @@ const Blog = (props) => {
                         break
                     }
                 }
-                setIsLiked((found === true) ? false : true)
+                setIsLiked((found === true) ? true : false)
             }
         })
 
@@ -200,6 +204,12 @@ const Blog = (props) => {
 
     const handleBookMark = () => {
         blogContext.handleBookMark(userId, bid, setIsBookmarked)
+
+        if (isBookmarked === false)
+            notifier('Added to BookMarked', 'success')
+
+        else
+            notifier('Removed from BookMarked', 'error')
     }
 
 
@@ -224,15 +234,17 @@ const Blog = (props) => {
                 </section>
 
                 <section className="reaction">
+
                     <section className="lc-container">
-                        <div className="icons">
+
+                        {authCtx.isLoggedIn && authCtx.userId && <div className="icons">
 
                             <button className="like-box-icons" onClick={addLike}>
-                                {isLiked && <div className="each-icon">
+                                {!isLiked && <div className="each-icon">
                                     <VscHeart className="icon" />
                                 </div>}
 
-                                {!isLiked && <div className="each-icon">
+                                {isLiked && <div className="each-icon">
                                     <VscHeartFilled className="icon" color='red' />
                                 </div>}
 
@@ -254,31 +266,33 @@ const Blog = (props) => {
                                 </div>}
                             </button>
 
-                            <button className="like-box-icons"><div className="each-icon"><CiShare2 className="icon" /></div></button>
-                        </div>
+                            <button className="like-box-icons"><div className="each-icon"><CiShare2 className="icon" /></div></button></div>
+                        }
 
 
                         {/* Comment writing part */}
                         <div className="comment-container">
 
-                            <div className="cmntbox">
+                            {authCtx.isLoggedIn && authCtx.userId && <div className="cmntbox">
                                 <div className="comment-input-box"><input type="text" className="cmnt-input" placeholder="Write Your Comment..." value={comment} onChange={(e) => setComment(e.target.value)} /></div>
                                 <div className="comment-submit-button" onClick={addComment} ><button className="like-box-icons"> <CiLocationArrow1 /> </button></div>
-                            </div>
+                            </div>}
 
                             {/* Comment more comments */}
                             <div className="comments">
 
-                                { blogComment.length > 0 && blogComment.map((each) => (
+                                {blogComment.length > 0 && blogComment.map((each) => (
                                     <Comment value={each} blogID={bid} key={each} />
                                 ))}
-                                
-                                { blogComment.length === 0 && <Dummy message={'No Comments Till now'} /> }
+
+                                {blogComment.length === 0 && <Dummy message={'No Comments Till now'} />}
                             </div>
                         </div>
                     </section>
                 </section>
             </section>
+
+            <ToastContainer />
         </>
     )
 }

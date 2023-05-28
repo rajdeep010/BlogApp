@@ -28,9 +28,12 @@
                 display: flex;
 
                 .writer_img {
+                    margin-right: 0.5rem;
                     img {
-                        height: 1.2rem;
-                        width: 1.2rem;
+                        height: 2rem;
+                        width: 2rem;
+                        border-radius: 50%;
+                        border: $border;
                     }
                 }
 
@@ -42,7 +45,7 @@
             }
 
             .blog_title p {
-                font-size: 1.35rem;
+                font-size: 1.38rem;
                 font-weight: 500;
             }
         }

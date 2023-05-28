@@ -1,18 +1,12 @@
-import { useContext, useEffect, useState } from 'react'
-import Button from '../button/Button'
+import { useEffect, useState } from 'react'
 import './creator.scss'
+import { NavLink } from 'react-router-dom'
 import { onValue, ref } from 'firebase/database'
 import { database } from '../../firebase'
-import { AuthContext } from '../../context/AuthContext'
-import { NavLink } from 'react-router-dom'
 
 const Creator = (props) => {
 
-    const [following, setFollowing] = useState([])
-    // const [str, setStr] = useState('')
-
-    const authCtx = useContext(AuthContext)
-    const myid = authCtx.userId
+    const [avatar, setAvatar] = useState(null)
 
     const detail = props.value
 
@@ -22,54 +16,29 @@ const Creator = (props) => {
 
     const path = 'users/' + id
 
-    // const setCorrectButtonContent = (str, strArray) => {
-    //     for (var j = 0; j < strArray.length; j++) {
-    //         if (strArray[j].match(str)){
-    //             setStr('FOLLOW')
-    //             return;
-    //         }
-    //     }
+    useEffect(() => {
+        const dbRef = ref(database, 'users/' + id + '/details')
 
-    //     setStr('UNFOLLOW')
-    // }
-
-
-    // useEffect(() => {
-    //     onValue(ref(database, ('users/' + myid)), (snapshot) => {
-    //         if (snapshot) {
-    //             setFollowing(snapshot.val().following.split(','))
-    //             // setCorrectButtonContent(id, following)
-    //         }
-    //     })
-    // }, [])
-
-    // useEffect(() => {
-    //     onValue(ref(database, ('users/' + myid)), (snapshot) => {
-    //         if (snapshot) {
-    //             setFollowing(snapshot.val().following.split(','))
-    //             setCorrectButtonContent(id, following)
-    //         }
-    //     })
-    // }, [str])
+        onValue(dbRef, (snapshot) => {
+            if (snapshot) {
+                setAvatar(snapshot.val().avatarURL)
+            }
+        })
+    }, [])
 
     return (
         <>
             <NavLink className="creator_info" to={path}>
 
                 <div className="creator_image">
-                    <img src="../../../public/images/vite.svg" alt="creator" />
+                    {avatar && <img src={avatar} alt="myimg" className='card_icon' />}
+                    {!avatar && <img src="../../../public/images/vite.svg" alt="myimg" className='card_icon' />}
                 </div>
 
                 <div className="creator_details">
                     <div className="creator_name"><p>{name}</p></div>
                     <div className="creator_about">{about}</div>
                 </div>
-
-                {/* For not using any recommendation algo, not giving any following feature as of now */}
-
-                {/* <div className="follow_button">
-                    <Button value={str} />
-                </div> */}
 
             </NavLink>
         </>

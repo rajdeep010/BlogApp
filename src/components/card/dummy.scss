@@ -2,8 +2,8 @@
 @import '../../var';
 
 .dummy_container{
-    @include flexcentre;
     width: 65vw;
+    max-width: fit-content;
 
     border: $border;
     background-color: $bg-card-blue;
@@ -15,5 +15,10 @@
 
     .icon{
         margin: 0.7rem;
+    }
+
+    .message{
+        @include flexcentre;
+        width: 65vw;
     }
 }

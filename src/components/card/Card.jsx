@@ -1,8 +1,9 @@
 import { NavLink } from 'react-router-dom'
-import { AuthContext } from '../../context/AuthContext'
 import './card.scss'
-import { useContext } from 'react'
+import { useEffect, useState } from 'react'
 import ReactTimeago from 'react-timeago'
+import { onValue, ref } from 'firebase/database'
+import { database } from '../../firebase'
 
 
 
@@ -10,9 +11,12 @@ const Card = (props) => {
 
     const blog = props.value
 
-    const time = blog.date
-    const authCtx = useContext(AuthContext)
+    const authorID = blog.authorid
 
+    const [avatar, setAvatar] = useState(null)
+    const [authorName, setAuthorName] = useState('')
+
+    const time = blog.date
     const poster = blog.posterURL
     const isPoster = (poster === undefined || poster === '') ? false : true
 
@@ -28,12 +32,31 @@ const Card = (props) => {
 
     const bid = blog.bid
 
+    useEffect(() => {
+        const dbRef = ref(database, 'users/' + authorID + '/details')
+
+        onValue(dbRef, (snapshot) => {
+            // console.log(snapshot.val())
+
+            if (snapshot){
+                setAvatar(snapshot.val().avatarURL)
+                setAuthorName(snapshot.val().name)
+            }
+        })
+
+    }, [])
+
+
     return (
         <NavLink className="container" to={'/blog/' + bid}>
+
             <div className="content">
                 <div className="img_name_date">
-                    <div className="img"><img src="../../../public/images/vite.svg" alt="myimg" /></div>
-                    <div className="name"><p> {blog.authorName}, </p></div>
+                    <div className="img">
+                        {avatar && <img src={avatar} alt="myimg" className='card_icon' />}
+                        {!avatar && <img src="../../../public/images/vite.svg" alt="myimg" className='card_icon'/>}
+                    </div>
+                    <div className="name"><p> {authorName}, </p></div>
                     <div className="date">
                         <ReactTimeago date={time} locale='en-US' />
                     </div>
@@ -52,13 +75,6 @@ const Card = (props) => {
                             <div className="topic-icon readtime">{blog.readtime}</div>
                         </div>
 
-                        {/* <div className="topic_moreabout">
-                            <div className="icons">
-                                {isBookmarked && <MdBookmarkAdd className="icon" onClick={handleBookMark}/>}
-                                {!isBookmarked && <MdBookmarkAdd className="icon" onClick={handleBookMark}/>}
-                                <MdShare className="icon" />
-                            </div>
-                        </div> */}
                     </div>
                 </div>
             </div>

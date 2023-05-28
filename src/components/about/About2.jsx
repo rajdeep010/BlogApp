@@ -2,19 +2,25 @@ import { useEffect, useState } from 'react'
 import './about2.scss'
 import { onValue, ref } from 'firebase/database'
 import { database } from '../../firebase'
-import { FaUserEdit } from "react-icons/fa";
-
+import { FaUserEdit, FaCamera } from "react-icons/fa";
+import Modal from '../modal/Modal';
+import AvatarModal from '../modal/AvatarModal';
 
 
 const About2 = (props) => {
 
     const uid = props.value
 
+    const [showModal, setShowModal] = useState(false)
+    const [showAvatarModal, setShowAvatarModal] = useState(false)
+
+
     const [user, setUser] = useState({
         'name': '',
         'about': '',
         'blogCount': ''
     })
+
 
     useEffect(() => {
         onValue(ref(database, ('users/' + uid + '/details/')), (snapshot) => {
@@ -23,13 +29,23 @@ const About2 = (props) => {
                 const obj = {
                     'name': details.name,
                     'about': details.about,
-                    'blogCount': (details.blogCount == NaN) ? 0 : details.blogCount
+                    'blogCount': details.blogCount
                 }
 
                 setUser(obj)
             }
         })
     }, [])
+
+    useEffect(() => {
+        if(showModal || showAvatarModal)
+            document.body.style.overflowY = 'hidden'
+        
+        else
+            document.body.style.overflowY = 'visible'
+    
+    }, [showModal, showAvatarModal])
+
 
     return (
         <>
@@ -41,7 +57,12 @@ const About2 = (props) => {
                 </div>
 
                 <div className="bookmarked_and_edit_buttons">
-                    <FaUserEdit className='about2_icon'/>
+                    <FaUserEdit className='about2_icon' onClick={ () => setShowModal(true)} />
+                    {showModal && <Modal setShowModal={setShowModal} showModal = {showModal}/>}
+
+                    <FaCamera className='about2_icon' onClick={ () => setShowAvatarModal(true)} />
+                    {showAvatarModal && <AvatarModal setShowAvatarModal={setShowAvatarModal} showAvatarModal = {showAvatarModal}/>}
+
                 </div>
 
             </section>

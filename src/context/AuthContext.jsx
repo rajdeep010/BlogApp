@@ -1,8 +1,9 @@
 import { createContext, useEffect, useState } from 'react'
-import { auth } from '../firebase'
-import { GoogleAuthProvider, onAuthStateChanged, signInWithRedirect, signOut } from "firebase/auth";
+import { auth, database } from '../firebase'
+import { GoogleAuthProvider, getRedirectResult, onAuthStateChanged, signInWithRedirect, signOut } from "firebase/auth";
 import { registerUsingGoogleAccount } from '../utils/login-utils';
 import { redirect } from '../utils/login-utils';
+import { onValue, ref, update } from 'firebase/database';
 
 
 const AuthContext = createContext({
@@ -20,28 +21,46 @@ const AuthProvider = (props) => {
     const [userId, setUserId] = useState('')
     const [isLoggedIn, setIsLoggedIn] = useState(false)
 
+    // const navigate = useNavigate()
+
+    // const goToHome = () => {
+    //     navigate('/')
+    // }
 
     // function
     const updateUid = (uid) => {
         setUserId(uid)
-        console.log('user id updated : ' + uid)
+        // console.log('user id updated : ' + uid)
     }
 
     // authentications
-    const signInUsingGoogle = () => {
+    const signInUsingGoogle = async () => {
+
         const googleProvider = new GoogleAuthProvider()
-        signInWithRedirect(auth, googleProvider)
+        await signInWithRedirect(auth, googleProvider)
+
+        const res = await getRedirectResult(auth)
+        if(res)
+        {
+            // console.log(result.user)
+            isLoggedIn(true)
+            redirect('/')
+        }
     }
+
 
     const logout = () => {
         setIsLoggedIn(false)
         signOut(auth)
-        redirect('')
+        .then(() => {
+            // go to login signup page
+            redirect('/login')
+        })
+        .catch((err) => {
+            console.log( 'Error while logout : ' + err)
+        })
     }
 
-    const handleLogin = () => {
-
-    }
 
     useEffect(() => {
         onAuthStateChanged(auth, async (user) => {
@@ -60,17 +79,27 @@ const AuthProvider = (props) => {
 
                     const res = await registerUsingGoogleAccount(userId, name, email)
 
-                    if (res) {
-                        // console.log('User added using Google Sign in')
-                    } else {
-                        // console.log('Error in Google Sign in login')
-                    }
                 }
             } else {
                 setUserId(null)
+                setIsLoggedIn(false)
             }
         })
     }, [auth])
+    
+
+    useEffect(() => {
+        if(userId)
+        {
+            const dbRef = ref(database, 'users/' + userId + '/details')
+            onValue(dbRef, (snapshot) => {
+                if(snapshot){                   
+                    setIsLoggedIn(true)
+                }
+            })
+        }
+    }, [userId])
+
 
     const authContext = {
         userId: userId,

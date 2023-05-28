@@ -100,7 +100,7 @@ const Comment = (props) => {
                                 18 hours ago
                             </div>
 
-                            {(userID === authorId) && <div className="edit" onClick={handleToggle}>
+                            {authContext.userId && authContext.isLoggedIn && (userID === authorId) && <div className="edit" onClick={handleToggle}>
 
                                 <div className="three_dot_icon">
                                     <FiMoreVertical />

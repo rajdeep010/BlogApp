@@ -7,7 +7,7 @@ import './signup.scss'
 
 const Registration = () => {
 
-  const [login, setLogin] = useState(true)
+  const [login, setLogin] = useState(false)
 
   const log = () => {
     setLogin(true);

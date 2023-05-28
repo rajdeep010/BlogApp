@@ -19,7 +19,7 @@ const Signup = () => {
         navigate('/')
     }
     // Auth Context
-    const authCtx = useContext(AuthContext)    
+    const authCtx = useContext(AuthContext)
 
     const notifier = (msg, type) => {
 
@@ -59,19 +59,25 @@ const Signup = () => {
 
         createUserWithEmailAndPassword(auth, email, password)
             .then(async (userCredentials) => {
-                
-                console.log(userCredentials)
+
+                // console.log(userCredentials)
                 // console.log(email)
+
                 const userId = email && email.split('@')[0].replace(/[.]/g, '_')
                 // console.log(userId)
-                await registerUser(userId, name, email, about, [], true)
 
-                notifier('Account Created Successfully', 'success')
-                setTimeout(goToHome, 3000)
-                authCtx.updateUid(userId)
+                await registerUser(userId, name, email, about, true)
+                    .then(() => {
+                        notifier('Account Created Successfully', 'success')
+                        setTimeout(goToHome, 3000)
+                        authCtx.updateUid(userId)
+                    })
+                    .catch((err) => {
+                        console.log('Error when sign up' + err)
+                    })
             })
     }
-    
+
     return (
         <>
             <div className="signin_container box">

@@ -2,7 +2,7 @@ import './signup.scss'
 import { FaUser, FaLock } from 'react-icons/fa'
 
 import { AuthContext } from '../../context/AuthContext'
-import { useContext,useState } from 'react'
+import { useContext, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import GoogleButton from 'react-google-button'
@@ -11,6 +11,7 @@ import { auth } from '../../firebase'
 import { userLogIn } from '../../utils/login-utils'
 import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
+
 
 
 const Login = () => {
@@ -38,91 +39,101 @@ const Login = () => {
         }
     }
 
-    // -------- EMAIL & PASSWORD FETCH
-    const [user, setUser] = useState({
-        email: '',
-        password: ''
-    })
 
-    let key, value;
-    const getLoginDetails = (e) => {
-        key = e.target.name
-        value = e.target.value
-        setUser({ ...user, [key]: value })
-    }
+    const LogInElement = () => {
 
-    // -------- EMAIL & PASSWORD FETCH
+        // -------- EMAIL & PASSWORD FETCH
+        const [user, setUser] = useState({
+            email: '',
+            password: ''
+        })
 
-    
-    const signInUsingGoogle = () => {
-        authCtx.signInUsingGoogle()
-        goToHome()
-    }
-
-    const handleLogin = async (event) => {
-        event.preventDefault()
-
-        const email = user.email, password = user.password
-
-        // console.log(email + ' ' + password)
-
-        if(email.trim().length === 0 || password.trim().length === 0){
-            console.log('email or password length 0')
-            return
+        let key, value
+        const getLoginDetails = (e) => {
+            key = e.target.name
+            value = e.target.value
+            setUser({ ...user, [key]: value })
         }
 
-        signInWithEmailAndPassword(auth, email, password)
-        .then(async (userCredentials) => {
+        // -------- EMAIL & PASSWORD FETCH
+        const signInUsingGoogle = () => {
+            authCtx.signInUsingGoogle()
+        }
 
-            // console.log(userCredentials)
+        const handleLogin = async (event) => {
+            event.preventDefault()
 
-            //  *** not sent any email verification code so
-            // uncomment till now ***
+            const email = user.email, password = user.password
 
-            // if(!userCredentials.user.emailVerified){
-            //     console.log('Email not verified')
-            //     return
-            // }
+            // console.log(email + ' ' + password)
 
-            const userID = email.split('@')[0].replace(/[.]/g, '_')
-            await userLogIn(userID, 'isLoggedIn', true)
-            // notifier('Logged In Successfully', 'success')
-            goToHome()
-        })
-        .catch((err) => {
-            console.log('Error occurred while login ' + err)
-        })
+            if (email.trim().length === 0 || password.trim().length === 0) {
+                console.log('email or password length 0')
+                return
+            }
+
+            signInWithEmailAndPassword(auth, email, password)
+                .then(async (userCredentials) => {
+
+                    // console.log(userCredentials)
+
+                    //  *** not sent any email verification code so
+                    // uncomment till now ***
+
+                    // if(!userCredentials.user.emailVerified){
+                    //     console.log('Email not verified')
+                    //     return
+                    // }
+
+                    const userID = email.split('@')[0].replace(/[.]/g, '_')
+
+                    await userLogIn(userID, 'isLoggedIn', true)
+                        .then(() => {
+                            goToHome()
+                        })
+                        .catch((err) => {
+                            console.log('Error While login' + err)
+                        })
+
+                    // notifier('Logged In Successfully', 'success')
+                })
+                .catch((err) => {
+                    console.log('Error occurred while login ' + err)
+                })
+        }
+
+
+        return (
+            <>
+                <h2 className='heading'>LOG <span>IN</span></h2>
+
+                <div className="input-field">
+                    <FaUser className='icon' />
+                    <input type="email" placeholder="Email" name="email" value={user.email} onChange={getLoginDetails} autoComplete='off' />
+                </div>
+
+                <div className="input-field">
+                    <FaLock className='icon' />
+                    <input type="password" placeholder="Password" name="password" value={user.password} onChange={getLoginDetails} autoComplete='off' />
+                </div>
+
+                <br />
+
+                <button type="submit" className="btn" onClick={handleLogin}> Log In</button>
+
+                <br />
+
+                <GoogleButton onClick={signInUsingGoogle} style={{ backgroundColor: "#11d7ff", fontFamily: "Poppins, sans-serif" }} />
+            </>
+        )
     }
-    
+
     return (
         <>
             <div className="login_container box">
 
-                <form action="/login" className="log-in-form" method="post">
-
-                    <h2 className='heading'>LOG <span>IN</span></h2>
-
-                    <div class="input-field">
-                        <FaUser className='icon' />
-                        <input type="email" placeholder="Email" name="email" value={user.email} onChange={getLoginDetails} autoComplete='off' />
-                    </div>
-
-                    <div class="input-field">
-                        <FaLock className='icon' />
-                        <input type="password" placeholder="Password" name="password" value={user.password} onChange={getLoginDetails} autoComplete='off' />
-                    </div>
-
-                    {/* <br /> */}
-
-                    {/* <h6>Couldn't remember the password ?<NavLink to='/'> Click Here?</NavLink></h6> */}
-
-                    <br />
-
-                    <button type="submit" className="btn" onClick={handleLogin}> Log In</button>
-
-                    <br />
-
-                    <GoogleButton onClick={signInUsingGoogle} style={{ backgroundColor: "#11d7ff", fontFamily: "Poppins, sans-serif" }} />
+                <form className="log-in-form">
+                    {(authCtx.isLoggedIn) ? (<button className="btn" onClick={goToHome}>Go To Home</button>) : <LogInElement />}
                 </form>
 
             </div>
