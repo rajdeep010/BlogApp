@@ -1,6 +1,5 @@
 import './blog.scss'
 import '../../styles/likecmnt.scss'
-import { CiShare2, CiLocationArrow1 } from "react-icons/ci";
 import { useContext, useEffect, useState } from 'react'
 import { onValue, ref, remove, set, update } from 'firebase/database'
 import { database } from '../../firebase'
@@ -13,7 +12,13 @@ import { BiBookmarkPlus, BiBookmarkMinus } from "react-icons/bi";
 import Dummy from '../card/Dummy';
 import { ToastContainer } from 'react-toastify';
 import { notifier } from '../../utils/notify';
-
+import { FacebookShareButton, LinkedinShareButton } from 'react-share'
+import { FaFacebook, FaWhatsapp, FaLinkedin } from 'react-icons/fa';
+import { FiMoreVertical, FiSend } from 'react-icons/fi';
+import { redirect } from '../../utils/login-utils'
+import { storage } from '../../firebase'
+import { ref as ref_storage, deleteObject } from 'firebase/storage'
+import { useNavigate } from 'react-router-dom'
 
 
 
@@ -24,8 +29,11 @@ const Blog = (props) => {
     const authCtx = useContext(AuthContext)
     const blogContext = useContext(BlogContext)
     const userId = authCtx.userId
+    const url = window.location.href
+
 
     const [title, setTitle] = useState('')
+    const [authorid, setAuthorid] = useState('')
     const [content, setContent] = useState('')
     const [likecount, setLikeCount] = useState(0)
     const [commentcount, setCommentCount] = useState(0)
@@ -35,6 +43,17 @@ const Blog = (props) => {
     const [poster, setPoster] = useState('')
     const [isPoster, setIsPoster] = useState(false)
     const [isBookmarked, setIsBookmarked] = useState(false)
+    const [shareModal, setShareModal] = useState(false)
+    const [writer, setWriter] = useState('')
+    const [deleteOption, setDeleteOption] = useState(false)
+
+
+    const temp = 'https://medium.com'
+
+    const navigate = useNavigate()
+    const goToProfile = () => {
+        navigate('/users/' + userId)
+    }
 
 
     useEffect(() => {
@@ -47,6 +66,7 @@ const Blog = (props) => {
                 // set the details of the blog
                 // title, like, comment count, contents
                 setTitle(blog.blogTitle)
+                setAuthorid(blog.authorid)
                 setContent(blog.blogHTML)
                 setLikeCount(blog.metrics.likes)
                 setCommentCount(blog.metrics.cmnts)
@@ -63,6 +83,11 @@ const Blog = (props) => {
                     const temp = Object.values(blog.comments)
                     setBlogComment(temp)
                 }
+
+                const name = blogContext.blogWriter(bid)
+                setWriter(name)
+
+                // console.log(name)
             }
         })
 
@@ -124,6 +149,7 @@ const Blog = (props) => {
                 // set the details of the blog
                 // title, like, comment count, contents
                 setTitle(blog.blogTitle)
+                setAuthorid(blog.authorid)
                 setContent(blog.blogHTML)
                 setLikeCount(blog.metrics.likes)
                 setCommentCount(blog.metrics.cmnts)
@@ -140,6 +166,9 @@ const Blog = (props) => {
                     const temp = Object.values(blog.comments)
                     setBlogComment(temp)
                 }
+
+                const name = blogContext.blogWriter(bid)
+                setWriter(name)
             }
         })
 
@@ -191,6 +220,15 @@ const Blog = (props) => {
 
     }, [likecount, commentcount, bid, isBookmarked])
 
+    useEffect(() => {
+        if (shareModal)
+            document.body.style.overflowY = 'hidden'
+
+        else
+            document.body.style.overflowY = 'visible'
+
+    }, [shareModal])
+
 
     const addComment = () => {
         const obj = blogContext.makeComment(comment, userId)
@@ -198,8 +236,67 @@ const Blog = (props) => {
         blogContext.addComment(bid, cmntID, setComment, obj)
     }
 
+    
     const addLike = () => {
         blogContext.addLike(userId, bid, setIsLiked)
+    }
+
+
+    const handleDeleteBlog = () => {
+        // delete the blog
+        const dbref = ref(database, 'blogs/' + bid)
+
+        remove(dbref)
+            .then(() => {
+                const blogCountRef = ref(database, 'users/' + userId + '/details')
+
+                let blogs = 0
+                onValue(blogCountRef, (snapshot) => {
+                    if (snapshot) {
+                        blogs = snapshot.val().blogCount
+                    }
+                })
+
+                if (blogs > 0) {
+                    update(blogCountRef, {
+                        blogCount: blogs - 1
+                    })
+                        .then(() => {
+                            const likeRef = ref(database, 'users/' + userId + '/likedBlogs/' + bid)
+                            remove(likeRef)
+                                .then(() => {
+                                    // console.log('Removed from liked blogs')
+                                })
+                                .catch((err) => {
+                                    // console.log('Error while removing from liked blogs')
+                                })
+
+                            const bookmarkRef = ref(database, 'users/' + userId + '/bookMarkedBlogs/' + bid)
+                            remove(bookmarkRef)
+                                .then(() => {
+                                    // console.log('Removed from bookmarked blogs')
+                                })
+                                .catch((err) => {
+                                    // console.log('Error while removing from bookmarked blogs')
+                                })
+
+
+                            const posterRef = ref_storage(storage, 'posters/' + bid)
+                            deleteObject(posterRef)
+                                .then(() => {
+                                    // console.log('File Deletion Successful')
+                                }).catch((err) => {
+                                    // console.log('Error in poster delete')
+                                });
+
+                            notifier('Blog Deleted Successfully', 'success')
+                            setTimeout(goToProfile, 4000);
+                        })
+                        .catch(() => {
+                            console.log('Count update Problem')
+                        })
+                }
+            })
     }
 
     const handleBookMark = () => {
@@ -210,6 +307,12 @@ const Blog = (props) => {
 
         else
             notifier('Removed from BookMarked', 'error')
+    }
+
+    const handleWhatsappShare = () => {
+        const text = `_🔥🔥 Check out this blog, title :"_ ${title}_" written by "_${writer}_ "on CODIO❤️. Link :_ ${url}`
+        const share = `whatsapp://send?text=${text}`
+        window.open(share)
     }
 
 
@@ -223,14 +326,32 @@ const Blog = (props) => {
 
                 <section className="blog-box">
 
-                    <section className="header-img">
-                        {isPoster && <img src={poster} alt="" />}
-                    </section>
+                    <div className="option_icon">
 
-                    <div className="blog_heading"><h1>{title}</h1></div>
-                    <div className="blog_actual_content">
-                        {inner(content)}
+                        {userId && authCtx.isLoggedIn && (userId === authorid) && <div className="icon" onClick={() => setDeleteOption(!deleteOption)}>
+                            <FiMoreVertical />
+                        </div>}
+
+                        {deleteOption && <button className="btn" onClick={handleDeleteBlog}>
+                            Delete Blog
+                        </button>}
+
                     </div>
+
+                    <div className="main_content">
+                        <section className="header-img">
+                            {isPoster && <img src={poster} alt="" />}
+                        </section>
+
+                        <div className="blog_title">
+                            <h1>{title}</h1>
+                        </div>
+
+                        <div className="blog_actual_content">
+                            {inner(content)}
+                        </div>
+                    </div>
+
                 </section>
 
                 <section className="reaction">
@@ -266,7 +387,22 @@ const Blog = (props) => {
                                 </div>}
                             </button>
 
-                            <button className="like-box-icons"><div className="each-icon"><CiShare2 className="icon" /></div></button></div>
+                            <button className='share_icons'>
+                                <div className="each-icon">
+                                    <FacebookShareButton className='icon' url={temp} quote={'Check out the blog'} hashtag={'#codio'} >
+                                        <FaFacebook />
+                                    </FacebookShareButton>
+
+                                    <div className="icon" onClick={handleWhatsappShare}>
+                                        <FaWhatsapp />
+                                    </div>
+
+                                    <LinkedinShareButton className='icon' title={'CODIO'} summary={'Check out this blog on CODIO'} source={'CODIO'} url={temp}>
+                                        <FaLinkedin round={true} />
+                                    </LinkedinShareButton>
+                                </div>
+                            </button>
+                        </div>
                         }
 
 
@@ -275,7 +411,7 @@ const Blog = (props) => {
 
                             {authCtx.isLoggedIn && authCtx.userId && <div className="cmntbox">
                                 <div className="comment-input-box"><input type="text" className="cmnt-input" placeholder="Write Your Comment..." value={comment} onChange={(e) => setComment(e.target.value)} /></div>
-                                <div className="comment-submit-button" onClick={addComment} ><button className="like-box-icons"> <CiLocationArrow1 /> </button></div>
+                                <div className="comment-submit-button" onClick={addComment} ><button className="like-box-icons"> <FiSend /> </button></div>
                             </div>}
 
                             {/* Comment more comments */}

@@ -1,6 +1,6 @@
 import Latestblog from './Latestblog'
 import './latestblog.scss'
-
+import uniqid from 'uniqid'
 import { database } from '../../firebase'
 import { onValue, ref } from 'firebase/database'
 import { useEffect, useState } from 'react'
@@ -49,7 +49,7 @@ const Latest = () => {
                 <div className="blogs_container">
 
                 {arr.length > 0 && arr.map((each) => (
-                    <Latestblog value={each} />
+                    <Latestblog value={each} key={uniqid()} />
                 ))}
 
                 {arr.length === 0 && <Dummy message={'No Latest Blogs'} />}

@@ -51,14 +51,18 @@ const Card = (props) => {
         <NavLink className="container" to={'/blog/' + bid}>
 
             <div className="content">
+
                 <div className="img_name_date">
+
                     <div className="img">
                         {avatar && <img src={avatar} alt="myimg" className='card_icon' />}
                         {!avatar && <img src="../../../public/images/vite.svg" alt="myimg" className='card_icon'/>}
                     </div>
+
                     <div className="name"><p> {authorName}, </p></div>
+
                     <div className="date">
-                        <ReactTimeago date={time} locale='en-US' />
+                        <p><ReactTimeago date={time} locale='en-US' /></p>
                     </div>
                 </div>
 

@@ -38,6 +38,11 @@
                 .icon {
                     font-size: 1.5rem;
                 }
+
+                .icons-container {
+                    display: flex;
+                    justify-content: space-between;
+                }
             }
 
             &:hover {
@@ -46,10 +51,23 @@
                 border-color: $deep-blue;
             }
         }
+
+        .share_icons {
+            border: $border;
+            border-radius: $border-rad;
+            background-color: $bg-card-blue;
+            width: 33.3%;
+
+            .each-icon {
+                display: flex;
+                justify-content: space-around;
+                font-size: 1.5rem;
+                color: $deep-blue;
+            }
+        }
     }
 
-    .comment-container
-    {
+    .comment-container {
         max-width: 70vw;
 
         margin: 1rem 2rem;
@@ -58,9 +76,8 @@
             display: flex;
             gap: 0.3rem;
             width: 100%;
-    
-            .comment-input-box 
-            {
+
+            .comment-input-box {
                 width: 85%;
 
                 .cmnt-input {
@@ -71,30 +88,27 @@
                     border-radius: $border-rad;
                 }
             }
-    
-            .comment-submit-button 
-            {
+
+            .comment-submit-button {
                 width: 15%;
 
-                .like-box-icons 
-                {
+                .like-box-icons {
                     width: 100%;
                     font-size: 1.6rem;
                     padding: 0.55rem;
-    
+
                     border: $border;
                     border-radius: $border-rad;
                     color: $white;
                     background-color: $bg-deep-blue;
-    
+
                     transition: 0.2s ease-in-out;
-    
-                    &:hover 
-                    {
+
+                    &:hover {
                         color: $bg-deep-blue;
                         background-color: $white;
                     }
-    
+
                 }
             }
         }
@@ -102,25 +116,22 @@
 
 
     // ALL COMMENTS PART
-    .comments
-    {
+    .comments {
         @include flexcolumn;
-        
+
         margin: 1rem 0;
         gap: 0.8rem;
         width: 100%;
 
-        .cmnt
-        {
+        .cmnt {
             display: flex;
             border: $border;
             border-radius: $border-rad;
             padding: 0.5rem;
             gap: 1rem;
 
-            .person-img
-            {
-                img{
+            .person-img {
+                img {
                     height: 2rem;
                     width: 2rem;
                     border-radius: 50%;
@@ -128,35 +139,36 @@
                 }
             }
 
-            .details_edit_cmnt{
+            .details_edit_cmnt {
                 width: 100%;
 
                 display: flex;
                 flex-direction: column;
                 gap: 1rem;
 
-                .details_edit{
+                .details_edit {
                     display: flex;
                     justify-content: space-between;
                     // border: 2px solid red;
 
-                    .details{
-                        p{
+                    .details {
+                        p {
                             margin-bottom: 0;
                             font-size: 0.8rem;
                             opacity: 0.8;
                         }
 
-                        .details_name{
+                        .details_name {
                             font-weight: bold;
-                            p{
+
+                            p {
                                 font-size: 0.95rem;
                                 opacity: 1;
                             }
                         }
                     }
-                    
-                    .timeago_edit{
+
+                    .timeago_edit {
                         display: flex;
                         font-size: 0.8rem;
                         opacity: 0.8;
@@ -164,7 +176,7 @@
 
                         // border: 2px solid red;
 
-                        .edit{
+                        .edit {
                             font-size: 1rem;
                             opacity: 1;
                             display: flex;
@@ -173,34 +185,34 @@
 
                             // border: 2px solid red;
 
-                            :hover{
+                            :hover {
                                 cursor: pointer;
                             }
 
-                            .edit_option{
+                            .edit_option {
                                 @include flexcolumn;
                                 gap: 0.5rem;
                                 border: $border;
                                 padding: 0.2rem 0.7rem;
                                 border-radius: $border-rad;
-                                
-                                .option{
+
+                                .option {
                                     color: black;
                                     font-size: 0.8rem;
                                     cursor: pointer;
-    
-                                    &:hover{
+
+                                    &:hover {
                                         color: $blue;
                                     }
                                 }
                             }
                         }
 
-                        
+
                     }
                 }
 
-                .comment{
+                .comment {
                     font-size: 0.9rem;
                 }
 

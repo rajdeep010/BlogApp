@@ -47,6 +47,11 @@
         }
     }
 
+    .icons-container{
+        display: flex;
+        gap: 2rem;
+    }
+
 
     form {
         .input-field {
@@ -69,4 +74,5 @@
 .active-modal-container {
     background-color: white;
 }
+
 

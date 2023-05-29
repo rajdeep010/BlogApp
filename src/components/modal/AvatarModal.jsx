@@ -1,6 +1,6 @@
 import ReactDOM from 'react-dom'
 import '../../styles/modal.scss'
-import { useContext, useEffect, useState } from 'react'
+import { useContext, useState } from 'react'
 import { AuthContext } from '../../context/AuthContext'
 import { FaTimes } from 'react-icons/fa'
 import { ref as ref_storage, uploadBytesResumable, getDownloadURL } from 'firebase/storage'
@@ -8,6 +8,7 @@ import { database, storage } from '../../firebase'
 import { ref, update } from 'firebase/database'
 import { ToastContainer } from 'react-toastify'
 import { notifier } from '../../utils/notify'
+
 
 
 const AvatarModal = ({ setShowAvatarModal, showAvatarModal }) => {

@@ -20,6 +20,26 @@
 
         margin: 1rem 2rem;
 
+        .option_icon{
+            display: flex;
+            justify-content: end;
+            margin-bottom: 1rem;
+
+            .icon{
+                cursor: pointer;
+                margin-right: 0.5rem;
+            }
+
+            .options{
+                cursor: pointer;
+                border: $border;
+                border-radius: $border-rad;
+                padding: 0.5rem;
+                background-color: $white;
+            }
+
+        }
+
         .post_content {
             margin: 0.7rem 0.5rem;
 

@@ -3,6 +3,7 @@ import moment from "moment";
 import uniqid from 'uniqid'
 import { onValue, ref, remove, set, update } from 'firebase/database'
 import { database } from "../firebase";
+import { notifier } from "../utils/notify";
 
 
 const BlogContext = createContext({
@@ -11,9 +12,10 @@ const BlogContext = createContext({
     makeBlog: () => { },
     updateVal: () => { },
     makeComment: () => { },
-    addLike: () => {},
-    handleBookMark: () => {},
-    addComment: () => {}
+    addLike: () => { },
+    handleBookMark: () => { },
+    addComment: () => { },
+    blogWriter: () => { },
 })
 
 const BlogProvider = (props) => {
@@ -24,6 +26,23 @@ const BlogProvider = (props) => {
         setValue(val);
     }
 
+    const blogWriter = (bid) => {
+        let uid = ''
+        const dbref = ref(database, 'blogs/' + bid)
+        onValue(dbref, (snapshot) => {
+            if (snapshot)
+                uid = snapshot.val().authorid
+        })
+
+        const newRef = ref(database, 'users/' + uid + '/details')
+        let name = ''
+        onValue(newRef, (snapshot) => {
+            if (snapshot)
+                name = snapshot.val().name
+        })
+
+        return name
+    }
 
 
     const makeComment = (comment, author) => {
@@ -242,10 +261,6 @@ const BlogProvider = (props) => {
     }
 
 
-    const deleteBlog = (uid) => {
-
-    }
-
     const makeBlog = (title, val, userId, type, name, image) => {
 
         let content = val.replace(/<[^>]+>/g, '')
@@ -288,7 +303,8 @@ const BlogProvider = (props) => {
         makeComment: makeComment,
         addLike: addLike,
         handleBookMark: handleBookMark,
-        addComment: addComment
+        addComment: addComment,
+        blogWriter: blogWriter,
     }
 
     return (

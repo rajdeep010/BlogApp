@@ -60,7 +60,8 @@ const Comment = (props) => {
 
                 let cmnts = 0
                 onValue(dbRef, (snapshot) => {
-                    cmnts = snapshot.val().cmnts
+                    if(snapshot)
+                        cmnts = snapshot.val().cmnts
                 })
 
                 if (cmnts > 0) {

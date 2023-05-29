@@ -75,19 +75,21 @@ const App = () => {
 
           <div className="search_bar">
             <h1>{!visibleSearchBar ? allBlogs : searchByTitle} {!visibleSearchBar && <IoMdSearch className='searchIcon' onClick={toggleSearchBar} />}</h1>
-            
+
             {visibleSearchBar && <input type="text" placeholder="Search by title..." value={searchInput} onChange={(e) => setSearchInput(e.target.value)} />}
-            {visibleSearchBar && <IoMdClose className='searchIcon' onClick={toggleSearchBar} />}
+            {visibleSearchBar && <IoMdClose className='searchIcon closeIcon' onClick={toggleSearchBar} />}
           </div>
 
           <div className="cards_container">
-            { arr.length > 0 && arr.map((blog) => (<Card className='card' key={blog} value={blog} />))}
+            {arr.length > 0 && arr.map((blog) => (<Card className='card' key={blog} value={blog} />))}
             {arr.length === 0 && <Dummy className='card' key={123} message={'No Blogs Till Now'} />}
           </div>
 
         </div>
 
-        <Sidebar className='sidebar' />
+        <div>
+          <Sidebar className='sidebar' />
+        </div>
       </section>
     </>
   )

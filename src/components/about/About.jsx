@@ -27,28 +27,33 @@ const About = (props) => {
         })
 
         onValue(ref(database, ('users/' + authorId + '/details/')), snapshot => {
-            const value = snapshot.val()
+            if (snapshot.val()) {
+                const value = snapshot.val()
 
-            const name = value.name
-            const about = value.about
-            const email = value.email
-            const blogs = value.blogCount
-            setUser({ name, about, blogs, email })
+                const name = value.name
+                const about = value.about
+                const email = value.email
+                const blogs = value.blogCount
+                setUser({name, about, blogs, email })
+            }
         })
     }, [])
 
     useEffect(() => {
         onValue(ref(database, ('blogs/' + bid)), (snapshot) => {
-            setAuthorId(snapshot.val().authorid)
+            if (snapshot)
+                setAuthorId(snapshot.val().authorid)
         })
 
-        onValue(ref(database, ('users/' + authorId + '/details/')), snapshot => {
-            const value = snapshot.val()
-            const name = value.name
-            const about = value.about
-            const email = value.email
-            const blogs = value.blogCount
-            setUser({ name, about, blogs, email })
+        onValue(ref(database, ('users/' + authorId + '/details/')), (snapshot) => {
+            if (snapshot.val()) {
+                const value = snapshot.val()
+                const name = value.name
+                const about = value.about
+                const email = value.email
+                const blogs = value.blogCount
+                setUser({ name, about, blogs, email })
+            }
         })
     }, [authorId])
 
@@ -70,7 +75,7 @@ const About = (props) => {
 
                     {/* <Button value={'FOLLOW'} /> */}
 
-                    <NavLink to={'/mailto:'+user.email} className='button'>
+                    <NavLink to={'/mailto:' + user.email} className='button'>
                         <MdMail className='icon' />
                     </NavLink>
                 </div>

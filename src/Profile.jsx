@@ -133,7 +133,7 @@ const Profile = () => {
 
             <About2 value={uid} />
 
-            <div className="select_box">
+            {/* <div className="select_box">
 
               <select name="category" id="category" value={type} onChange={(e) => setType(e.target.value)}>
 
@@ -145,7 +145,7 @@ const Profile = () => {
 
               <h4> {count} {(count > 1) ? ' blogs' : ' blog'} </h4>
 
-            </div>
+            </div> */}
 
             <div className="cards_container">
               {authorBlog.length > 0 && authorBlog.map((blog) => (<Card className='card' key={blog} value={blog} />))}

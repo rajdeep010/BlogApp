@@ -1,11 +1,21 @@
 @import '../../var';
 @import '../../mixins';
 
+$medium: 850px;
+
 .latest_blogs {
+
+    @media screen and (max-width: $medium) {
+        margin-top: 2rem;
+    }
 
 
     .heading p {
         @include heading;
+
+        @media screen and (max-width: $medium) {
+            margin-bottom: 2rem;
+        }
     }
 
     .blogs_container {
@@ -19,6 +29,13 @@
             margin: 1rem 0;
             border-radius: $border-rad;
 
+            @media screen and (max-width: $medium) {
+                margin-bottom: 2rem;
+                border-bottom: 1.5px solid #8b8b8b8d;
+                border-radius: 0.8rem;
+                // box-shadow: 0.5px 0px #8b8b8b8d;
+            }
+
             &:hover {
                 cursor: pointer;
                 background-color: $bg-light-blue;
@@ -29,6 +46,7 @@
 
                 .writer_img {
                     margin-right: 0.5rem;
+
                     img {
                         height: 2rem;
                         width: 2rem;
