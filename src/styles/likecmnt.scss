@@ -17,26 +17,38 @@
         margin: 1rem 2rem;
         gap: 0.5rem;
 
+        @media screen and (max-width: $mobile) {
+            margin: 0rem;
+        }
+
         .like-box-icons {
             background-color: $bg-card-blue;
             border-radius: $border-rad;
             border: $border;
-
             display: flex;
             width: 33.3%;
             justify-content: center;
             align-items: center;
             padding: 0.5rem;
             gap: 0.3rem;
-
             font-weight: 600;
             font-size: 1.1rem;
-
             transition: 0.2s ease-in-out;
+
+            @media screen and (max-width: $mobile) {
+                font-size: 0.9rem;
+                width: 25%;
+            }
+
+            
 
             .each-icon {
                 .icon {
                     font-size: 1.5rem;
+
+                    @media screen and (max-width: $mobile) {
+                        font-size: 1rem;
+                    }
                 }
 
                 .icons-container {
@@ -58,19 +70,35 @@
             background-color: $bg-card-blue;
             width: 33.3%;
 
+            @media screen and (max-width: $mobile){
+                width: 25%;
+            }
+
             .each-icon {
                 display: flex;
                 justify-content: space-around;
                 font-size: 1.5rem;
                 color: $deep-blue;
+
+                @media screen and (max-width: $mobile){
+                    font-size: 1.1rem;
+                }
+
             }
         }
     }
 
     .comment-container {
         max-width: 70vw;
-
         margin: 1rem 2rem;
+
+        @media screen and (max-width: $lg-medium){
+            max-width: none;
+        }
+
+        @media screen and (max-width: $mobile){
+            margin: 1rem 0;
+        }
 
         .cmntbox {
             display: flex;
@@ -86,6 +114,10 @@
                     outline: none;
                     border: $border;
                     border-radius: $border-rad;
+
+                    @media screen and (max-width: $mobile){
+                        font-size: 0.9rem;
+                    }
                 }
             }
 
@@ -96,12 +128,10 @@
                     width: 100%;
                     font-size: 1.6rem;
                     padding: 0.55rem;
-
                     border: $border;
                     border-radius: $border-rad;
                     color: $white;
                     background-color: $bg-deep-blue;
-
                     transition: 0.2s ease-in-out;
 
                     &:hover {
@@ -109,6 +139,9 @@
                         background-color: $white;
                     }
 
+                    @media screen and (max-width: $mobile){
+                        font-size: 1.4rem;
+                    }
                 }
             }
         }

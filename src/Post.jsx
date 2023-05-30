@@ -4,21 +4,22 @@ import About from "./components/about/About"
 import Latest from "./components/sidebar/Latest"
 import CodioShare from "./components/editorSidebar/CodioShare"
 import { useParams } from "react-router-dom"
-
 import './post.scss'
 import { useEffect, useState } from "react"
+// import About2 from './components/about/About2'
+
 
 const Post = () => {
 
     const [blogId, setBlogId] = useState('')
-    
-    const {bid} = useParams()
 
-    useEffect(()=> {
+    const { bid } = useParams()
+
+    useEffect(() => {
         setBlogId(bid)
     }, [])
 
-    useEffect(()=> {
+    useEffect(() => {
         setBlogId(bid)
     }, [bid])
 
@@ -26,16 +27,30 @@ const Post = () => {
     return (
         <>
             <section className="post-container">
+
                 <Navbar />
+
                 <div className="post-page-element">
 
-                    <Blog value={bid}/>
+                    <div className="page_blog">
+                        <Blog value={bid} />
+                    </div>
 
                     <div className="post-sidebar">
-                        <About value={bid}/>
-                        <Latest />
-                        <CodioShare/>
+
+                        <div className="element">
+                            <About value={bid} />
+                        </div>
+
+                        <div className="element">
+                            <Latest />
+                        </div>
+
+                        <div className="element">
+                            <CodioShare />
+                        </div>
                     </div>
+
                 </div>
             </section>
 

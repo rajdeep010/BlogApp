@@ -52,7 +52,7 @@ const About2 = (props) => {
             <section className="author_about">
 
                 <div className="author_details">
-                    <h2> {user.name}, <small>{user.blogCount} {(user.blogCount > 1) ? ' blogs' : ' blog'}</small></h2>
+                    <h2> {user.name}<small>, {user.blogCount} {(user.blogCount > 1) ? ' blogs' : ' blog'}</small></h2>
                     <p className='short_details'> {user.about} </p>
                 </div>
 

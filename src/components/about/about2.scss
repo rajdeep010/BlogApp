@@ -14,14 +14,26 @@
             color: $black;
             font-size: 3rem;
 
+            @media screen and (max-width: 576px){
+                font-size: 2rem;
+            }
+
             small {
                 font-size: 1.4rem;
+
+                @media screen and (max-width: 576px){
+                    font-size: 1rem;
+                }
             }
         }
 
         .short_details {
             margin-bottom: 0.5rem;
             opacity: 0.85;
+
+            @media screen and (max-width: 576px){
+                font-size: 0.9rem;
+            }
         }
     }
 
@@ -39,6 +51,10 @@
 
             &:hover {
                 color: $black;
+            }
+
+            @media screen and (max-width: 576px){
+                font-size: 1.5rem;
             }
         }
     }

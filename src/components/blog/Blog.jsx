@@ -339,6 +339,7 @@ const Blog = (props) => {
                     </div>
 
                     <div className="main_content">
+                    
                         <section className="header-img">
                             {isPoster && <img src={poster} alt="" />}
                         </section>

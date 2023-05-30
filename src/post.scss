@@ -1,14 +1,25 @@
 @import './mixins';
+@import './var';
+
 
 .post-container{
 
     .post-page-element{
         display: flex;
+        padding: 2rem 1rem;
+
+        @media screen and (max-width: $lg-medium){
+            display: block;
+        }
 
         .post-sidebar{
             @include flexcolumn;
-            width: 30vw;
-            padding: 0 1rem;
+            justify-content: center;
+            align-items: center;
+
+            @media screen and (max-width: $small){
+                padding: 00+.5rem;
+             }
         }
     }
 

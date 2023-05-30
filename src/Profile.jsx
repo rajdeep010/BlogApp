@@ -25,10 +25,10 @@ const Profile = () => {
   const [authorBlog, setAuthorBlog] = useState([])
 
 
-  useEffect ( () => {
+  useEffect(() => {
 
     onValue(ref(database, 'blogs/'), (snapshot) => {
-      if(snapshot){
+      if (snapshot) {
         const all = snapshot.val()
         const blogs = Object.values(all)
         let temp = []
@@ -43,10 +43,10 @@ const Profile = () => {
     })
   }, [])
 
-  useEffect ( () => {
+  useEffect(() => {
 
     onValue(ref(database, 'blogs/'), (snapshot) => {
-      if(snapshot){
+      if (snapshot) {
         const all = snapshot.val()
         const blogs = Object.values(all)
         let temp = []
@@ -131,26 +131,24 @@ const Profile = () => {
 
           <div className="name_heading">
 
-            <About2 value={uid} />
+            <div className="user_about">
+              <About2 value={uid} />
+            </div>
 
             {/* <div className="select_box">
-
               <select name="category" id="category" value={type} onChange={(e) => setType(e.target.value)}>
-
                 <option value="all_blogs" defaultValue>All Blogs</option>
                 <option value="likedblogs" >Liked Blogs</option>
                 <option value="bookmarked">Bookmarked Blogs</option>
-
               </select>
-
               <h4> {count} {(count > 1) ? ' blogs' : ' blog'} </h4>
-
             </div> */}
 
             <div className="cards_container">
               {authorBlog.length > 0 && authorBlog.map((blog) => (<Card className='card' key={blog} value={blog} />))}
               {authorBlog.length === 0 && <Dummy message={'No Written Blogs'} />}
             </div>
+
           </div>
 
 
