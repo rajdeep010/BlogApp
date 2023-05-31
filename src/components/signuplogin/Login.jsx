@@ -11,7 +11,8 @@ import { auth } from '../../firebase'
 import { userLogIn } from '../../utils/login-utils'
 import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
-
+import { notifier } from '../../utils/notify'
+import { ToastContainer } from 'react-toastify'
 
 
 const Login = () => {
@@ -22,23 +23,6 @@ const Login = () => {
     const goToHome = () => {
         navigate('/')
     }
-
-    const notifier = (msg, type) => {
-
-        if (type == 'success') {
-            toast.success(`${msg}`, {
-                position: "top-right",
-                autoClose: 2000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "light",
-            })
-        }
-    }
-
 
     const LogInElement = () => {
 
@@ -62,13 +46,21 @@ const Login = () => {
 
         const handleLogin = async (event) => {
             event.preventDefault()
-
             const email = user.email, password = user.password
 
-            // console.log(email + ' ' + password)
+            
+            if(email.trim().length === 0){
+                notifier('Email not valid !!', 'error')
+                return
+            }
 
-            if (email.trim().length === 0 || password.trim().length === 0) {
-                console.log('email or password length 0')
+            if(password.trim().length === 0){
+                notifier('Check your password', 'warning')
+                return
+            }
+
+            if (email.trim().length === 0 && password.trim().length === 0) {
+                notifier('All fields required', 'info')
                 return
             }
 
@@ -98,7 +90,12 @@ const Login = () => {
                     // notifier('Logged In Successfully', 'success')
                 })
                 .catch((err) => {
-                    console.log('Error occurred while login ' + err)
+                    notifier('Invalid credentials !!!', 'error')
+                    setUser({
+                        'email': '',
+                        'password': ''
+                    })
+                    return
                 })
         }
 
@@ -124,6 +121,7 @@ const Login = () => {
                 <br />
 
                 <GoogleButton onClick={signInUsingGoogle} style={{ backgroundColor: "#11d7ff", fontFamily: "Poppins, sans-serif" }} />
+                
             </>
         )
     }
@@ -135,8 +133,10 @@ const Login = () => {
                 <form className="log-in-form">
                     {(authCtx.isLoggedIn) ? (<button className="btn" onClick={goToHome}>Go To Home</button>) : <LogInElement />}
                 </form>
-
+                
             </div>
+
+            <ToastContainer />
         </>
     )
 }

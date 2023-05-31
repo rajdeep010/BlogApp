@@ -14,7 +14,8 @@ const About = (props) => {
         'name': '',
         'about': '',
         'blogs': '',
-        'email': ''
+        'email': '',
+        'avatarURL': '',
     })
 
     const [authorId, setAuthorId] = useState('')
@@ -34,7 +35,8 @@ const About = (props) => {
                 const about = value.about
                 const email = value.email
                 const blogs = value.blogCount
-                setUser({name, about, blogs, email })
+                const avatarURL = value.avatarURL
+                setUser({name, about, blogs, email, avatarURL })
             }
         })
     }, [])
@@ -52,7 +54,8 @@ const About = (props) => {
                 const about = value.about
                 const email = value.email
                 const blogs = value.blogCount
-                setUser({ name, about, blogs, email })
+                const avatarURL = value.avatarURL
+                setUser({name, about, blogs, email, avatarURL })
             }
         })
     }, [authorId])
@@ -63,7 +66,8 @@ const About = (props) => {
             <section className="about-me">
 
                 <div className="myimg">
-                    <img src="../../../public/me.jpg" alt="myimg" />
+                    {user.avatarURL && <img src={user.avatarURL} alt="myimg" />}
+                    {!user.avatarURL && <img src="../../../public/me.jpg" alt="myimg" />}
                 </div>
 
                 <div className="name-post">

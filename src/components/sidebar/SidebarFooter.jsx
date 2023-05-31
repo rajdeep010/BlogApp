@@ -1,6 +1,6 @@
-import { MdBookmarkAdd } from 'react-icons/md'
 import { NavLink } from 'react-router-dom'
 
+import { BiBookmarkPlus, BiBookmarkMinus } from 'react-icons/bi'
 import './sidebarfooter.scss'
 
 
@@ -13,7 +13,7 @@ const SidebarFooter = () => {
             </div>
 
             <div className="about">
-                Click the <MdBookmarkAdd className='icon'/> on any post to easily add it to your reading list or a custom list that you can share.
+                Click the <BiBookmarkPlus className='icon'/> on any post to easily add it to your bookmarked list and click on <BiBookmarkMinus className='icon' /> to remove it from your bookmarked list.
             </div>
 
             <div className="links">

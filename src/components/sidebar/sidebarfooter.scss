@@ -6,6 +6,11 @@
     .about{
         margin: 1.2rem 0;
 
+        @media screen and (max-width: 420px) {
+            font-size: 0.9rem;
+            opacity: 0.92;
+        }
+
         .icon{
             font-size: 1.7rem;
         }
@@ -17,7 +22,14 @@
 
     .links 
     {
-        @include flexjustspaceevenly;
+        display: flex;
+        justify-content: center;
+        gap: 2rem;
+
+        @media screen and (max-width: 420px) {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
         
         .footer_link{
             color: #212121;

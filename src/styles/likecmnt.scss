@@ -40,7 +40,7 @@
                 width: 25%;
             }
 
-            
+
 
             .each-icon {
                 .icon {
@@ -70,7 +70,7 @@
             background-color: $bg-card-blue;
             width: 33.3%;
 
-            @media screen and (max-width: $mobile){
+            @media screen and (max-width: $mobile) {
                 width: 25%;
             }
 
@@ -80,7 +80,7 @@
                 font-size: 1.5rem;
                 color: $deep-blue;
 
-                @media screen and (max-width: $mobile){
+                @media screen and (max-width: $mobile) {
                     font-size: 1.1rem;
                 }
 
@@ -92,11 +92,11 @@
         max-width: 70vw;
         margin: 1rem 2rem;
 
-        @media screen and (max-width: $lg-medium){
+        @media screen and (max-width: $lg-medium) {
             max-width: none;
         }
 
-        @media screen and (max-width: $mobile){
+        @media screen and (max-width: $mobile) {
             margin: 1rem 0;
         }
 
@@ -115,8 +115,9 @@
                     border: $border;
                     border-radius: $border-rad;
 
-                    @media screen and (max-width: $mobile){
+                    @media screen and (max-width: $mobile) {
                         font-size: 0.9rem;
+                        // padding: 0.5rem;
                     }
                 }
             }
@@ -139,7 +140,7 @@
                         background-color: $white;
                     }
 
-                    @media screen and (max-width: $mobile){
+                    @media screen and (max-width: $mobile) {
                         font-size: 1.4rem;
                     }
                 }
@@ -164,11 +165,17 @@
             gap: 1rem;
 
             .person-img {
+
                 img {
                     height: 2rem;
                     width: 2rem;
                     border-radius: 50%;
                     border: $border;
+
+                    @media screen and (max-width: 420px) {
+                        height: 1.5rem;
+                        width: 1.5rem;
+                    }
                 }
             }
 
@@ -182,14 +189,8 @@
                 .details_edit {
                     display: flex;
                     justify-content: space-between;
-                    // border: 2px solid red;
 
                     .details {
-                        p {
-                            margin-bottom: 0;
-                            font-size: 0.8rem;
-                            opacity: 0.8;
-                        }
 
                         .details_name {
                             font-weight: bold;
@@ -197,6 +198,21 @@
                             p {
                                 font-size: 0.95rem;
                                 opacity: 1;
+                                margin-bottom: 0;
+
+                            }
+                        }
+
+                        .details_about {
+                            opacity: 0.8;
+
+                            p {
+                                margin-bottom: 0;
+                                font-size: 0.8rem;
+
+                                @media screen and (max-width: 420px) {
+                                    font-size: 0.65rem;
+                                }
                             }
                         }
                     }
@@ -207,7 +223,11 @@
                         opacity: 0.8;
                         gap: 0.5rem;
 
-                        // border: 2px solid red;
+                        .ago {
+                            @media screen and (max-width: 420px) {
+                                font-size: 0.65rem;
+                            }
+                        }
 
                         .edit {
                             font-size: 1rem;
@@ -252,5 +272,9 @@
             }
 
         }
+    }
+
+    .dummy_comments {
+        @include flexcentre;
     }
 }

@@ -1,8 +1,8 @@
-import { useState, useContext, useEffect } from "react"
+import { useState, useContext } from "react"
 import { TitleContext } from "../../context/TitleContext"
-
 import '../editor/title.scss'
-import { BlogContext } from "../../context/BlogContext"
+
+
 
 const Title = () => {
 
@@ -19,11 +19,11 @@ const Title = () => {
 
     return (
         <>
-            <input 
-            className="title-box" 
-            onChange={update} 
-            placeholder="Enter the title..."
-            value={val}
+            <input
+                className="title-box"
+                onChange={update}
+                placeholder="Enter the title..."
+                value={val}
             />
         </>
     )

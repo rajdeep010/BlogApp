@@ -11,6 +11,11 @@
     margin: 1rem 1rem 2.5rem 0;
     height: fit-content;
 
+    @media screen and (max-width: $mobile){
+        padding: 1.5rem;
+        margin: 1rem;
+    }
+
     .myimg
     {
         @include flexcentre;
@@ -35,13 +40,25 @@
         h2 {
             font-size: 1.5rem;
 
+            @media screen and (max-width: $mobile){
+                font-size: 1.3rem;
+            }
+
             small{
                 font-size: 1rem;
+
+                @media screen and (max-width: $mobile){
+                    font-size: 0.9rem;
+                }
             }
         }
 
         p {
             color: #444;
+
+            @media screen and (max-width: $mobile){
+                font-size: 0.9rem;
+            }
         }
     }
 

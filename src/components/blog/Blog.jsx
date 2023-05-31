@@ -231,12 +231,17 @@ const Blog = (props) => {
 
 
     const addComment = () => {
+        if(comment.trim().length === 0){
+            notifier('Please write something !!', 'info')
+            return
+        }
+
         const obj = blogContext.makeComment(comment, userId)
         const cmntID = obj.commentID
         blogContext.addComment(bid, cmntID, setComment, obj)
     }
 
-    
+
     const addLike = () => {
         blogContext.addLike(userId, bid, setIsLiked)
     }
@@ -339,7 +344,7 @@ const Blog = (props) => {
                     </div>
 
                     <div className="main_content">
-                    
+
                         <section className="header-img">
                             {isPoster && <img src={poster} alt="" />}
                         </section>
@@ -421,7 +426,9 @@ const Blog = (props) => {
                                 {blogComment.length > 0 && blogComment.map((each) => (
                                     <Comment value={each} blogID={bid} key={each} />
                                 ))}
+                            </div>
 
+                            <div className="dummy_comments">
                                 {blogComment.length === 0 && <Dummy message={'No Comments Till now'} />}
                             </div>
                         </div>

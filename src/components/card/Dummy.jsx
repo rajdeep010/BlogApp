@@ -1,5 +1,4 @@
 import './dummy.scss'
-import { FiCoffee } from "react-icons/fi";
 
 
 const Dummy = (props) => {

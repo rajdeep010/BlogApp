@@ -3,7 +3,7 @@ import { useContext, useEffect, useState } from "react";
 import { onValue, ref, remove, update } from "firebase/database";
 import { database } from "../../firebase";
 import { AuthContext } from "../../context/AuthContext";
-
+import ReactTimeago from 'react-timeago'
 
 
 
@@ -14,7 +14,8 @@ const Comment = (props) => {
 
     const [commentor, setCommentor] = useState({
         'name': '',
-        'about': ''
+        'about': '',
+        'avatarURL': '',
     })
 
     const [edit, setEdit] = useState(false)
@@ -24,14 +25,18 @@ const Comment = (props) => {
     const authorId = user.author
     const cmntID = user.commentID
     const bid = props.blogID
+    const time = user.time
 
 
     useEffect(() => {
         onValue(ref(database, ('users/' + authorId + '/details/')), (snapshot) => {
-            const details = snapshot.val()
-            const name = details.name
-            const about = details.about
-            setCommentor({ name, about })
+            if (snapshot) {
+                const details = snapshot.val()
+                const name = details.name
+                const about = details.about
+                const avatarURL = details.avatarURL
+                setCommentor({ name, about, avatarURL })
+            }
         })
     }, [])
 
@@ -40,7 +45,8 @@ const Comment = (props) => {
             const details = snapshot.val()
             const name = details.name
             const about = details.about
-            setCommentor({ name, about })
+            const avatarURL = details.avatarURL
+            setCommentor({ name, about, avatarURL })
         })
     }, [authorId, edit])
 
@@ -60,7 +66,7 @@ const Comment = (props) => {
 
                 let cmnts = 0
                 onValue(dbRef, (snapshot) => {
-                    if(snapshot)
+                    if (snapshot)
                         cmnts = snapshot.val().cmnts
                 })
 
@@ -79,8 +85,10 @@ const Comment = (props) => {
     return (
         <>
             <div className="cmnt">
+
                 <div className="person-img">
-                    <img src="../../public/vite.svg" alt="img" />
+                    {commentor.avatarURL && <img src={commentor.avatarURL} alt="dp" />}
+                    {!commentor.avatarURL && <img src="../../public/vite.svg" alt="img" />}
                 </div>
 
                 <div className="details_edit_cmnt">
@@ -98,7 +106,7 @@ const Comment = (props) => {
 
                         <div className="timeago_edit">
                             <div className="ago">
-                                18 hours ago
+                            <p><ReactTimeago date={time} locale='en-US' /></p>
                             </div>
 
                             {authContext.userId && authContext.isLoggedIn && (userID === authorId) && <div className="edit" onClick={handleToggle}>

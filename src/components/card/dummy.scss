@@ -2,23 +2,18 @@
 @import '../../var';
 
 .dummy_container{
-    width: 65vw;
     max-width: fit-content;
-
-    border: $border;
+    padding: 1rem;
     background-color: $bg-card-blue;
-    border-bottom: 3px solid $blue;
+    border-bottom: 2px solid $blue;
     border-radius: $border-rad;
-
-    display: flex;
-    font-size: 2rem;
+    font-size: 0.9rem;
 
     .icon{
         margin: 0.7rem;
     }
 
-    .message{
-        @include flexcentre;
-        width: 65vw;
+    @media screen and (max-width: 430px){
+        padding: 0.5rem;
     }
 }

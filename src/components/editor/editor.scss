@@ -2,12 +2,12 @@
 
 
 .editor {
-    padding: 1rem 0.5rem 0.5rem 2rem;
-    height: 77vh;
+    height: 100vh;
+    padding: 0.5rem;
+
 
     .ql-editor {
         box-shadow: $deep-blue 0px 6px 14px;
-
         padding: 2rem;
 
         &::-webkit-scrollbar {
@@ -34,6 +34,14 @@
             padding: 2rem;
             border-radius: 0.5rem;
             font-size: 0.9rem;
+
+            @media screen and (max-width: $mobile){
+                padding: 1rem;
+            }
+        }
+
+        @media screen and (max-width: $mobile){
+            padding: 1rem;
         }
     }
 
@@ -44,6 +52,10 @@
         padding: 1rem;
         border-radius: 0.8rem;
         margin-bottom: 1.5rem;
+
+        @media screen and (max-width: $medium){
+            padding: 0.5rem;
+        }
 
         .ql-icon-picker .ql-picker-label{
             border: none;
@@ -60,6 +72,11 @@
             height: 2rem;
             width: 2rem;
             margin-right: 1.2rem;
+
+            @media screen and (max-width: $medium){
+                height: 1.5rem;
+                width: 1.5rem;
+            }
         }
     }
 
@@ -141,14 +158,26 @@
 
     .ql-editor h1 {
         font-size: 2rem;
+
+        @media screen and (max-width: $medium){
+            font-size: 1.5rem;
+        }
     }
 
     .ql-editor h2 {
         font-size: 1.7rem;
+
+        @media screen and (max-width: $medium){
+            font-size: 1.3rem;
+        }
     }
 
     .ql-editor h3 {
         font-size: 1.4rem;
+
+        @media screen and (max-width: $medium){
+            font-size: 1.2rem;
+        }
     }
 
     .ql-editor blockquote {
@@ -160,6 +189,12 @@
         border-left: 0.5rem solid #57e3ffcf;
         padding: 0.5rem;
         margin: 0.8rem 0;
+
+        @media screen and (max-width: $medium){
+            font-size: 1rem;
+            padding: 0.3rem;
+            margin: 0.5rem 0;
+        }
     }
 
     .ql-editor p,
@@ -167,5 +202,13 @@
     .ql-editor ul,
     .ql-editor pre {
         font-size: 1.2rem;
+
+        @media screen and (max-width: $medium){
+            font-size: 1rem;
+        }
+
+        @media screen and (max-width: $mobile){
+            padding: 0.9rem;
+        }
     }
 }

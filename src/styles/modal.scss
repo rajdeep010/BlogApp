@@ -2,6 +2,8 @@
 @import '../var';
 
 
+$med: 550px;
+
 .modal-wrapper {
     position: fixed;
     top: 0;
@@ -11,8 +13,13 @@
 }
 
 .active-wrapper {
-    background-color: rgba(216, 216, 216, 0.919);
+    background-color: rgba(222, 217, 217, 0.737);
     opacity: 0.6;
+
+    @media screen and (max-width: $med){
+        opacity: 0.75;
+    }
+    
 }
 
 .modal-container {
@@ -25,8 +32,11 @@
     border: 0.2rem solid $blue;
     border-radius: 1rem;
 
-    h2{
-        font-size: 2.5rem;
+    @media screen and (max-width: $med){
+        padding: 1.5rem;
+    }
+
+    h1{
         margin-bottom: 2rem;
     }
 
@@ -34,7 +44,8 @@
     {
         @include flexcentre;
         @include flexcolumn;
-        gap: 2rem;
+
+        gap: 1rem;
 
         .avatar_image
         {
@@ -44,6 +55,29 @@
             border-radius: 50%;
             border: $border;
             box-shadow: $avatar-box-shadow;
+
+            @media screen and (max-width: $med){
+                height: 10rem;
+                width: 10rem;
+            }
+        }
+
+        .file_box {
+            padding: 0.5rem 0;
+            border-radius: $border-rad;
+            background-color: $bg-card-blue;
+            border-bottom: 2px solid $blue;
+            cursor: pointer;
+
+            .custom-file-input {
+                @media screen and (max-width: 485px) {
+                    font-size: 0.9rem;
+                }
+
+                &::-webkit-file-upload-button {
+                    visibility: hidden;
+                }
+            }
         }
     }
 
@@ -54,13 +88,26 @@
 
 
     form {
+        display: flex;
+        flex-direction: column;
+
         .input-field {
             @include input-field;
 
             border: $border;
             border-radius: 5rem;
             padding: 1.5rem;
-            margin: 2rem 0.5rem;
+
+            @media screen and (max-width: $med){
+                padding: 1rem;
+                width: 300px;
+            }
+
+            .icon{
+                @media screen and (max-width: $med){
+                    font-size: 1.3rem;
+                }
+            }
         }
 
         .form-buttons{
@@ -68,6 +115,7 @@
             justify-content: end;
             gap: 1rem;
         }
+
     }
 }
 

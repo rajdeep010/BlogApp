@@ -35,14 +35,19 @@ const Editor = () => {
     }, [value])
 
     return (
-        <ReactQuill
-            theme="snow"
-            value={value}
-            modules={modules}
-            formats={formats}
-            onChange={setValue}
-            className={'editor'}
-        />
+        <>
+            <div className="editor">
+                <ReactQuill
+                    theme="snow"
+                    value={value}
+                    modules={modules}
+                    formats={formats}
+                    onChange={setValue}
+                    className={'editor'}
+                />
+            </div>
+
+        </>
     );
 }
 

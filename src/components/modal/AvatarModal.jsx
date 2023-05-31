@@ -2,7 +2,7 @@ import ReactDOM from 'react-dom'
 import '../../styles/modal.scss'
 import { useContext, useState } from 'react'
 import { AuthContext } from '../../context/AuthContext'
-import { FaTimes } from 'react-icons/fa'
+import { FaHandPointDown, FaTimes } from 'react-icons/fa'
 import { ref as ref_storage, uploadBytesResumable, getDownloadURL } from 'firebase/storage'
 import { database, storage } from '../../firebase'
 import { ref, update } from 'firebase/database'
@@ -29,7 +29,12 @@ const AvatarModal = ({ setShowAvatarModal, showAvatarModal }) => {
     const handleAvatarUpdate = (e) => {
         e.preventDefault()
 
-        // console.log(file)
+        if (file === null) {
+            notifier('Please select an image', 'warning')
+            return
+        }
+
+        notifier('Your request on process !!', 'info')
 
         const avatarPath = 'avatars/' + userID
         const avatarRef = ref_storage(storage, avatarPath)
@@ -38,18 +43,18 @@ const AvatarModal = ({ setShowAvatarModal, showAvatarModal }) => {
 
         uploadTask.on('state_changed',
             (snapshot) => {
-                const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100
-                // console.log('Upload is ' + progress + '% done')
+                // const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+                // // console.log('Upload is ' + progress + '% done')
 
-                switch (snapshot.state) {
-                    case 'paused':
-                        // console.log('Upload is paused')
-                        break
+                // switch (snapshot.state) {
+                //     case 'paused':
+                //         // console.log('Upload is paused')
+                //         break
 
-                    case 'running':
-                        // console.log('Upload is running')
-                        break
-                }
+                //     case 'running':
+                //         // console.log('Upload is running')
+                //         break
+                // }
             }, (error) => {
                 // Error in uploading function
                 switch (error.code) {
@@ -104,12 +109,16 @@ const AvatarModal = ({ setShowAvatarModal, showAvatarModal }) => {
                         {!imageFile && <img src="../../../public/me.jpg" alt="dp" className='avatar_image' />}
                         {imageFile && <img src={imageFile} alt="dp" className='avatar_image' />}
 
-                        <input
-                            type="file"
-                            accept="image/*"
-                            className='file_input'
-                            onChange={handleFileChange}
-                        />
+                        <p>Click below <FaHandPointDown/> to upload an image</p>
+
+                        <div className="file_box">
+                            <input
+                                type="file"
+                                accept="image/*"
+                                className='custom-file-input'
+                                onChange={handleFileChange}
+                            />
+                        </div>
 
                         <div className="form-buttons">
                             <button className='btn' onClick={() => setShowAvatarModal(false)}>
@@ -125,7 +134,7 @@ const AvatarModal = ({ setShowAvatarModal, showAvatarModal }) => {
                 </form>
 
             </div>
-            <ToastContainer/>
+            <ToastContainer />
         </>,
         document.querySelector('.myPortalModalDiv')
     )

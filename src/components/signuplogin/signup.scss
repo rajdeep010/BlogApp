@@ -2,9 +2,6 @@
 @import '../../var';
 
 
-* {
-    font-family: 'Merriweather', serif;
-}
 
 .wrapper {
 
@@ -51,13 +48,13 @@
                 @include flexprop;
                 border: $border;
                 box-shadow: $blue 0px 4px 9px;
-
                 padding: 2rem;
-                
                 margin: 1.5rem 0;
-
                 border-radius: 1rem;
 
+                @media screen and (max-width: $mobile){
+                    padding: 1rem;
+                }
 
                 .heading {
                     font-size: 2rem;
@@ -70,7 +67,27 @@
                 }
 
                 .input-field {
-                    @include input-field
+                    @include input-field;
+
+                    input{
+                        @media screen and (max-width: $mobile){
+                            &::placeholder{
+                                font-size: 0.9rem;
+                            }
+                        }
+                    }
+
+                    @media screen and (max-width: $mobile){
+                        padding: 0.8rem;
+                        font-size: 0.9rem;
+                        width: 300px;
+                    }
+
+                    .icon{
+                        @media screen and (max-width: $mobile){
+                            font-size: 1.3rem;
+                        }
+                    }
                 }
             }
         }

@@ -51,7 +51,7 @@ const BlogProvider = (props) => {
         return ({
             'commentID': commentID,
             'comment': comment,
-            'time': moment().format('DD/MM/YYYY HH:mm:ss'),
+            'time': Date.now(),
             'author': author
         })
     }

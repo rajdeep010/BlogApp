@@ -9,9 +9,14 @@ const EditSidebar = () => {
         <>
             <div className="content_box">
 
-                <Category />
-                <CodioShare/>
-                
+                <div className="element">
+                    <Category />
+                </div>
+
+                <div className="element">
+                    <CodioShare />
+                </div>
+
             </div>
 
         </>

@@ -13,12 +13,9 @@
         }
 
         .post-sidebar{
-            @include flexcolumn;
-            justify-content: center;
-            align-items: center;
 
             @media screen and (max-width: $small){
-                padding: 00+.5rem;
+                padding: 0.5rem;
              }
         }
     }

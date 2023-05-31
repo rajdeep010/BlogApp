@@ -65,10 +65,11 @@ $small: 579px;
 
             .name p,
             .date p {
-                font-size: 1.1rem;
+                font-size: 1.15rem;
 
                 @media screen and (max-width: $small) {
                     font-size: 0.9rem;
+                    font-weight: 500;
                 }
             }
         }
@@ -98,7 +99,7 @@ $small: 579px;
                 text-align: justify;
 
                 @media screen and (max-width: $small) {
-                    font-size: 0.8rem;
+                    font-size: 0.9rem;
                 }
             }
         }

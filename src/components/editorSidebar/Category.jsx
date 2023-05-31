@@ -27,61 +27,6 @@ const Category = () => {
     }
 
 
-    const notify = (msg, type) => {
-
-        if (type == 'success') {
-            toast.success(msg, {
-                position: "top-right",
-                autoClose: 2000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "light",
-            })
-        }
-
-        else if (type == 'error') {
-            toast.error(msg, {
-                position: "top-right",
-                autoClose: 2000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "light",
-            })
-        }
-
-        else if (type == 'warning') {
-            toast.warn(msg, {
-                position: "top-right",
-                autoClose: 2000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "light",
-            })
-        }
-
-        else if (type == 'info') {
-            toast.info(msg, {
-                position: "top-right",
-                autoClose: 2000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "light",
-            })
-        }
-    }
-
     // setting the type of blog
     const [type, setType] = useState('webdev')
 
@@ -97,26 +42,27 @@ const Category = () => {
     }
 
     const handleFileUpload = (bid) => {
-        if (image == null)
+        if (image == null) {
             return
+        }
 
         const storageRef = ref_storage(storage, 'posters/' + bid)
         const uploadTask = uploadBytesResumable(storageRef, image)
 
         uploadTask.on('state_changed',
             (snapshot) => {
-                const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100
-                // console.log('Upload is ' + progress + '% done')
+                // const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+                // // console.log('Upload is ' + progress + '% done')
 
-                switch (snapshot.state) {
-                    case 'paused':
-                        // console.log('Upload is paused')
-                        break
+                // switch (snapshot.state) {
+                //     case 'paused':
+                //         // console.log('Upload is paused')
+                //         break
 
-                    case 'running':
-                        // console.log('Upload is running')
-                        break
-                }
+                //     case 'running':
+                //         // console.log('Upload is running')
+                //         break
+                // }
             }, (error) => {
                 // Error in uploading function
                 switch (error.code) {
@@ -197,7 +143,7 @@ const Category = () => {
                 notifier('Successfully Submitted', 'success')
                 handleFileUpload(bid)
 
-                notify('Redirecting to Home', 'info')
+                notifier('Redirecting to Home', 'info')
                 setTimeout(goToHome, 4000)
             })
             .catch((err) => {
@@ -215,8 +161,6 @@ const Category = () => {
 
                 <div className="category_about">
                     <h6>Select a Category & Choose Poster Image</h6>
-
-                    <small> <b>NOTE :</b> Please try to give a rectangular poster image</small>
                 </div>
 
                 <div className="category_box">
@@ -235,9 +179,19 @@ const Category = () => {
 
                         </select>
 
+                        <div className="file_upload_heading">
+                            <div className="elem heading">
+                                <p>Upload an Image File</p>
+                            </div>
+
+                            <div className="elem">
+                                <small> <b>NOTE :</b> Please try to give a rectangular poster image</small>
+                            </div>
+                        </div>
+
 
                         <div className="file_box">
-                            <input type="file" accept="image/*" className='file_input' onChange={(e) => setImage(e.target.files[0])} />
+                            <input type="file" accept="image/*" className='custom-file-input' onChange={(e) => setImage(e.target.files[0])} />
                         </div>
 
                         <input type="submit" className='btn' value='Submit' onClick={submit} />

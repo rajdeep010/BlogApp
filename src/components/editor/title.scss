@@ -11,10 +11,21 @@
     border-radius: 1.3rem;
     outline: none;
 
-    margin: 1rem 0 0 2rem;
+    margin: 1rem 0 0 1rem;
     font-size: 1.4rem;
 
     &::placeholder{
         color: $black;
+    }
+
+    @media screen and (max-width: 1300px){
+        width: 95vw;
+    }
+
+    @media screen and (max-width: $medium){
+        width: 90vw;
+        padding: 1rem;
+        font-size: 1.1rem;
+        margin-bottom: -0.5rem;
     }
 }

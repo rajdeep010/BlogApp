@@ -12,6 +12,10 @@
 
     max-width: 25vw;
 
+    @media screen and (max-width: 1300px) {
+        max-width: none;
+    }
+
     padding: 1rem;
 
     * {
@@ -23,7 +27,7 @@
     }
 
     .category_about {
-        
+
 
         @include flexprop;
 
@@ -49,15 +53,42 @@
                 margin-bottom: 1rem;
                 font-size: 1.2rem;
                 cursor: pointer;
+
+                @media screen and (max-width: 1300px) {
+                    width: inherit;
+                    font-size: 1rem;
+                }
+
+                @media screen and (max-width: 485px) {
+                    font-size: 1rem;
+                }
+            }
+
+            .file_upload_heading{
+                display: flex;
+                flex-direction: column;
+
+                .elem{
+                    @include flexcentre;
+                }
             }
 
             .file_box {
-                
-                border: $border;
-                padding: 0.5rem;
+                padding: 0.5rem 0;
                 border-radius: $border-rad;
-                background-color: $white;
+                background-color: $bg-card-blue;
+                border-bottom: 2px solid $blue;
                 cursor: pointer;
+
+                .custom-file-input {
+                    @media screen and (max-width: 485px) {
+                        font-size: 0.9rem;
+                    }
+
+                    &::-webkit-file-upload-button {
+                        visibility: hidden;
+                    }
+                }
             }
         }
     }
