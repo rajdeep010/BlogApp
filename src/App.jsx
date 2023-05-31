@@ -25,8 +25,8 @@ const App = () => {
           <BlogProvider>
             <BrowserRouter>
               <Routes>
-                <Route path='/home' element={<Home />}></Route>
-                <Route path='/' element={<Index />}></Route>
+                <Route path='/' element={<Home />}></Route>
+                <Route path='/dashboard' element={<Index />}></Route>
                 <Route path='/write' element={<Write />}></Route>
                 <Route path='/blog' element={<Post />}></Route>
                 <Route path='/blog/:bid' element={<Post />}></Route>

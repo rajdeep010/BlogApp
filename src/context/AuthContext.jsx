@@ -39,7 +39,7 @@ const AuthProvider = (props) => {
         if (res) {
             setIsAuthenticated(true)
             isLoggedIn(true)
-            redirect('/')
+            redirect('/dashboard')
         }
     }
 
@@ -84,7 +84,7 @@ const AuthProvider = (props) => {
             const dbRef = ref(database, 'users/' + userId)
 
             onValue(dbRef, (snapshot) => {
-                
+
                 const details = null || (snapshot.val() && snapshot.val().details)
 
                 if (details) {

@@ -23,7 +23,7 @@ const Category = () => {
 
     const navigate = useNavigate()
     const goToHome = () => {
-        navigate('/')
+        navigate('/dashboard')
     }
 
 

@@ -23,7 +23,7 @@ const Navbar = () => {
 
                 <div className="container-fluid">
 
-                    <NavLink to='/' className={'navbar-brand'}>
+                    <NavLink to='/dashboard' className={'navbar-brand'}>
                         <a><FiCoffee /> CODIO</a>
                     </NavLink>
 

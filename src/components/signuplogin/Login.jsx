@@ -17,7 +17,7 @@ const Login = () => {
 
     const navigate = useNavigate()
     const goToHome = () => {
-        navigate('/')
+        navigate('/dashboard')
     }
 
     const LogInElement = () => {
