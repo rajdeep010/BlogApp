@@ -88,7 +88,7 @@ const Comment = (props) => {
 
                 <div className="person-img">
                     {commentor.avatarURL && <img src={commentor.avatarURL} alt="dp" />}
-                    {!commentor.avatarURL && <img src="../../public/vite.svg" alt="img" />}
+                    {!commentor.avatarURL && <img src="../../public/images/user.png" alt="img" />}
                 </div>
 
                 <div className="details_edit_cmnt">
@@ -109,7 +109,7 @@ const Comment = (props) => {
                             <p><ReactTimeago date={time} locale='en-US' /></p>
                             </div>
 
-                            {authContext.userId && authContext.isLoggedIn && (userID === authorId) && <div className="edit" onClick={handleToggle}>
+                            {authContext.userId && authContext.isAuthenticated && (userID === authorId) && <div className="edit" onClick={handleToggle}>
 
                                 <div className="three_dot_icon">
                                     <FiMoreVertical />

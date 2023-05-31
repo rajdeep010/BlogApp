@@ -32,7 +32,7 @@ const Creator = (props) => {
 
                 <div className="creator_image">
                     {avatar && <img src={avatar} alt="myimg" className='card_icon' />}
-                    {!avatar && <img src="../../../public/images/vite.svg" alt="myimg" className='card_icon' />}
+                    {!avatar && <img src="../../../public/images/user.png" alt="myimg" className='card_icon' />}
                 </div>
 
                 <div className="creator_details">

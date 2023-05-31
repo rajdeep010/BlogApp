@@ -1,18 +1,22 @@
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import './about2.scss'
 import { onValue, ref } from 'firebase/database'
 import { database } from '../../firebase'
 import { FaUserEdit, FaCamera } from "react-icons/fa";
 import Modal from '../modal/Modal';
 import AvatarModal from '../modal/AvatarModal';
+import { AuthContext } from '../../context/AuthContext';
 
 
 const About2 = (props) => {
+
+    const authCtx = useContext(AuthContext)
 
     const uid = props.value
 
     const [showModal, setShowModal] = useState(false)
     const [showAvatarModal, setShowAvatarModal] = useState(false)
+
 
 
     const [user, setUser] = useState({
@@ -57,10 +61,10 @@ const About2 = (props) => {
                 </div>
 
                 <div className="bookmarked_and_edit_buttons">
-                    <FaUserEdit className='about2_icon' onClick={ () => setShowModal(true)} />
-                    {showModal && <Modal setShowModal={setShowModal} showModal = {showModal}/>}
+                    {authCtx.isAuthenticated && <FaUserEdit className='about2_icon' onClick={ () => setShowModal(true)} />}
+                    {showModal &&  <Modal setShowModal={setShowModal} showModal = {showModal}/>}
 
-                    <FaCamera className='about2_icon' onClick={ () => setShowAvatarModal(true)} />
+                    {authCtx.isAuthenticated && <FaCamera className='about2_icon' onClick={ () => setShowAvatarModal(true)} />}
                     {showAvatarModal && <AvatarModal setShowAvatarModal={setShowAvatarModal} showAvatarModal = {showAvatarModal}/>}
 
                 </div>

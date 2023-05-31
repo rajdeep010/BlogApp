@@ -56,7 +56,7 @@ const Card = (props) => {
 
                     <div className="img">
                         {avatar && <img src={avatar} alt="myimg" className='card_icon' />}
-                        {!avatar && <img src="../../../public/images/vite.svg" alt="myimg" className='card_icon'/>}
+                        {!avatar && <img src="../../../public/images/user.png" alt="myimg" className='card_icon'/>}
                     </div>
 
                     <div className="name"><p> {authorName}, </p></div>

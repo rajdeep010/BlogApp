@@ -7,7 +7,11 @@ import { auth } from '../../firebase';
 
 const Navbar = () => {
 
+
     const authCtx = useContext(AuthContext)
+
+    // console.log(authCtx.userId )
+    // console.log(authCtx.isAuthenticated)
 
     const handleLogOut = () => {
         authCtx.logout()
@@ -36,21 +40,21 @@ const Navbar = () => {
 
                         <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
 
-                            {authCtx.isLoggedIn && authCtx.userId && <li className="nav-item">
+                            {authCtx.isAuthenticated && authCtx.userId && <li className="nav-item">
                                 <NavLink to='/write' className={'nav-link'}>
                                     WRITE <FiEdit />
                                 </NavLink>
                             </li>}
 
-                            {authCtx.isLoggedIn && authCtx.userId && <li className="nav-item">
+                            {authCtx.isAuthenticated && authCtx.userId && <li className="nav-item">
                                 <NavLink to={'/users/' + authCtx.userId} className={'nav-link'}>
                                     PROFILE
                                 </NavLink>
                             </li>}
 
-                            {!authCtx.isLoggedIn && <li className="nav-item"><NavLink to='/login' className={'nav-link'}>LOGIN</NavLink></li>}
+                            {!authCtx.isAuthenticated && <li className="nav-item"><NavLink to='/login' className={'nav-link'}>LOGIN</NavLink></li>}
 
-                            {authCtx.isLoggedIn && authCtx.userId && <li className="nav-item" onClick={handleLogOut}><NavLink to='/login' className={'nav-link'}>LOGOUT</NavLink></li>}
+                            {authCtx.isAuthenticated && authCtx.userId && <li className="nav-item" onClick={handleLogOut}><NavLink to='/login' className={'nav-link'}>LOGOUT</NavLink></li>}
                         </ul>
 
                     </div>

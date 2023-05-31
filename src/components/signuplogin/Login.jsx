@@ -1,18 +1,14 @@
 import './signup.scss'
 import { FaUser, FaLock } from 'react-icons/fa'
-
 import { AuthContext } from '../../context/AuthContext'
 import { useContext, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-
 import GoogleButton from 'react-google-button'
 import { signInWithEmailAndPassword } from 'firebase/auth'
 import { auth } from '../../firebase'
-import { userLogIn } from '../../utils/login-utils'
-import { toast } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css';
 import { notifier } from '../../utils/notify'
 import { ToastContainer } from 'react-toastify'
+
 
 
 const Login = () => {
@@ -69,33 +65,24 @@ const Login = () => {
 
                     // console.log(userCredentials)
 
-                    //  *** not sent any email verification code so
-                    // uncomment till now ***
+                    if(!userCredentials.user.emailVerified){
+                        notifier('Email is not verified', 'info')
+                        return
+                    }
 
-                    // if(!userCredentials.user.emailVerified){
-                    //     console.log('Email not verified')
-                    //     return
-                    // }
+                    else
+                    {
+                        const userID = email.split('@')[0].replace(/[.]/g, '_')
 
-                    const userID = email.split('@')[0].replace(/[.]/g, '_')
-
-                    await userLogIn(userID, 'isLoggedIn', true)
-                        .then(() => {
-                            goToHome()
-                        })
-                        .catch((err) => {
-                            console.log('Error While login' + err)
-                        })
-
-                    // notifier('Logged In Successfully', 'success')
+                        authCtx.updateUid(userID)
+                        authCtx.isLoggedIn = true
+                        authCtx.isAuthenticated = true
+                        goToHome()
+                        notifier('Logged In Successfully', 'success')
+                    }
                 })
                 .catch((err) => {
                     notifier('Invalid credentials !!!', 'error')
-                    setUser({
-                        'email': '',
-                        'password': ''
-                    })
-                    return
                 })
         }
 
@@ -131,7 +118,7 @@ const Login = () => {
             <div className="login_container box">
 
                 <form className="log-in-form">
-                    {(authCtx.isLoggedIn) ? (<button className="btn" onClick={goToHome}>Go To Home</button>) : <LogInElement />}
+                    {(authCtx.isAuthenticated) ? (<button className="btn" onClick={goToHome}>Go To Home</button>) : <LogInElement />}
                 </form>
                 
             </div>

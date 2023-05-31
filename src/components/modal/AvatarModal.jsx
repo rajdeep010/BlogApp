@@ -1,11 +1,11 @@
 import ReactDOM from 'react-dom'
 import '../../styles/modal.scss'
-import { useContext, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { AuthContext } from '../../context/AuthContext'
 import { FaHandPointDown, FaTimes } from 'react-icons/fa'
 import { ref as ref_storage, uploadBytesResumable, getDownloadURL } from 'firebase/storage'
 import { database, storage } from '../../firebase'
-import { ref, update } from 'firebase/database'
+import { onValue, ref, update } from 'firebase/database'
 import { ToastContainer } from 'react-toastify'
 import { notifier } from '../../utils/notify'
 
@@ -17,6 +17,8 @@ const AvatarModal = ({ setShowAvatarModal, showAvatarModal }) => {
 
     const [imageFile, setImageFile] = useState(null)
     const [file, setFile] = useState(null)
+
+    const [currImg, setCurrImg] = useState(null)
 
     const userID = authCtx.userId
 
@@ -75,6 +77,16 @@ const AvatarModal = ({ setShowAvatarModal, showAvatarModal }) => {
             })
     }
 
+    useEffect(() => {
+        const imgRef = ref(database, 'users/' + userID + '/details/avatarURL')
+
+        onValue(imgRef, (snapshot) => {
+            if(snapshot){
+                setCurrImg(snapshot.val())
+            }
+        })
+    }, [])
+
     const handleFileChange = (e) => {
         const fileName = e.target.files[0].name
         const fileTypeArray = fileName.split('.')
@@ -106,7 +118,7 @@ const AvatarModal = ({ setShowAvatarModal, showAvatarModal }) => {
 
                     <div className="avatar_container">
 
-                        {!imageFile && <img src="../../../public/me.jpg" alt="dp" className='avatar_image' />}
+                        {!imageFile && <img src={(currImg === null) ? "../../../public/images/user.png" : currImg} alt="dp" className='avatar_image' />}
                         {imageFile && <img src={imageFile} alt="dp" className='avatar_image' />}
 
                         <p>Click below <FaHandPointDown/> to upload an image</p>

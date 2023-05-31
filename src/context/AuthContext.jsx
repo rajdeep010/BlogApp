@@ -3,99 +3,95 @@ import { auth, database } from '../firebase'
 import { GoogleAuthProvider, getRedirectResult, onAuthStateChanged, signInWithRedirect, signOut } from "firebase/auth";
 import { registerUsingGoogleAccount } from '../utils/login-utils';
 import { redirect } from '../utils/login-utils';
-import { onValue, ref, update } from 'firebase/database';
+import { onValue, ref } from 'firebase/database';
+import { notifier } from '../utils/notify';
 
 
 const AuthContext = createContext({
     userId: '',
     isLoggedIn: '',
+    isAuthenticated: '',
 
     // functions
     updateUid: () => { },
     signInUsingGoogle: () => { },
     logout: () => { },
-    handleLogin: () => {}
+    handleLogin: () => { }
 })
 
 const AuthProvider = (props) => {
     const [userId, setUserId] = useState('')
     const [isLoggedIn, setIsLoggedIn] = useState(false)
+    const [isAuthenticated, setIsAuthenticated] = useState(false)
 
-    // const navigate = useNavigate()
-
-    // const goToHome = () => {
-    //     navigate('/')
-    // }
 
     // function
     const updateUid = (uid) => {
         setUserId(uid)
-        // console.log('user id updated : ' + uid)
     }
 
     // authentications
     const signInUsingGoogle = async () => {
-
         const googleProvider = new GoogleAuthProvider()
         await signInWithRedirect(auth, googleProvider)
 
         const res = await getRedirectResult(auth)
-        if(res)
-        {
-            // console.log(result.user)
+        if (res) {
+            setIsAuthenticated(true)
             isLoggedIn(true)
             redirect('/')
         }
     }
 
-
     const logout = () => {
-        setIsLoggedIn(false)
         signOut(auth)
-        .then(() => {
-            // go to login signup page
-            redirect('/login')
-        })
-        .catch((err) => {
-            console.log( 'Error while logout : ' + err)
-        })
     }
-
 
     useEffect(() => {
         onAuthStateChanged(auth, async (user) => {
             if (user) {
                 const userId = user.email && user.email.split('@')[0].replace(/[.]/g, '_')
                 setUserId(userId)
-
                 const provider = user.providerData[0].providerId
                 // console.log(provider)
 
-                if (provider === 'google.com') 
-                {
-                    // console.log(user)
-                    const name = user.displayName
+                if (provider === 'google.com') {
+                    let name = user.displayName
                     const email = user.email
 
-                    const res = await registerUsingGoogleAccount(userId, name, email)
-
+                    await registerUsingGoogleAccount(userId, name, email)
+                    .then(() => {
+                        notifier('Logged in as ' + userId, 'success')
+                    })
+                    .catch((err) => {
+                        console.log(err)
+                    })
                 }
             } else {
                 setUserId(null)
                 setIsLoggedIn(false)
+                setIsAuthenticated(false)
             }
-        })
+        },{
+            onlyOnce: true
+        }
+        )
     }, [auth])
-    
+
 
     useEffect(() => {
-        if(userId)
-        {
-            const dbRef = ref(database, 'users/' + userId + '/details')
+        if (userId) {
+            const dbRef = ref(database, 'users/' + userId)
+
             onValue(dbRef, (snapshot) => {
-                if(snapshot){                   
-                    setIsLoggedIn(true)
+                
+                const details = null || (snapshot.val() && snapshot.val().details)
+
+                if (details) {
+                    setIsAuthenticated(true)
                 }
+            }, {
+                onlyOnce: true
             })
         }
     }, [userId])
@@ -104,6 +100,7 @@ const AuthProvider = (props) => {
     const authContext = {
         userId: userId,
         isLoggedIn: isLoggedIn,
+        isAuthenticated: isAuthenticated,
 
         // functions
         updateUid: updateUid,

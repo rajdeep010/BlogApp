@@ -19,8 +19,6 @@ const Latestblog = (props) => {
     const readtime = detail.readtime
     const bid = detail.bid
 
-    // console.log(bid)
-
     useEffect(() => {
 
         const dbRef = ref(database, 'users/' + authorID + '/details')
@@ -44,7 +42,7 @@ const Latestblog = (props) => {
 
                         <div className="writer_img">
                             {avatar && <img src={avatar} alt="myimg" className='card_icon' />}
-                            {!avatar && <img src="../../../public/images/vite.svg" alt="myimg" className='card_icon' />}
+                            {!avatar && <img src="../../../public/images/user.png" alt="myimg" className='card_icon' />}
                         </div>
 
                         <div className="writer_name">

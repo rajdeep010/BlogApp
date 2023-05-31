@@ -9,7 +9,7 @@ const Loader = () => {
             color="#11d7ff"
             ariaLabel="triangle-loading"
             wrapperStyle={{}}
-            wrapperClassName=""
+            wrapperclassName=""
             visible={true}
         />
     )

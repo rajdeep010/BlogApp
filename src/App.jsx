@@ -9,7 +9,7 @@ import BlogProvider from './context/BlogContext'
 import TitleProvider from './context/TitleContext'
 import AuthProvider from './context/AuthContext'
 import Profile from './Profile'
-
+import Home from './Home'
 import TimeAgo from 'javascript-time-ago'
 import en from 'javascript-time-ago/locale/en.json'
 
@@ -21,20 +21,21 @@ const App = () => {
   return (
     <>
       <AuthProvider>
-          <TitleProvider>
-            <BlogProvider>
-              <BrowserRouter>
-                <Routes>
-                  <Route path='/' element={<Index />}></Route>
-                  <Route path='/write' element={<Write />}></Route>
-                  <Route path='/blog' element={<Post />}></Route>
-                  <Route path='/blog/:bid' element={<Post />}></Route>
-                  <Route path='/users/:uid' element={<Profile />}></Route>
-                  <Route path='/login' element={<Registration />}></Route>
-                </Routes>
-              </BrowserRouter>
-            </BlogProvider>
-          </TitleProvider>
+        <TitleProvider>
+          <BlogProvider>
+            <BrowserRouter>
+              <Routes>
+                <Route path='/home' element={<Home />}></Route>
+                <Route path='/' element={<Index />}></Route>
+                <Route path='/write' element={<Write />}></Route>
+                <Route path='/blog' element={<Post />}></Route>
+                <Route path='/blog/:bid' element={<Post />}></Route>
+                <Route path='/users/:uid' element={<Profile />}></Route>
+                <Route path='/login' element={<Registration />}></Route>
+              </Routes>
+            </BrowserRouter>
+          </BlogProvider>
+        </TitleProvider>
       </AuthProvider>
     </>
   )

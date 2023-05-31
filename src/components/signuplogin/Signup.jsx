@@ -4,20 +4,16 @@ import { AuthContext } from '../../context/AuthContext'
 import { FaUser, FaLock, FaPen, FaKey } from 'react-icons/fa'
 import { auth } from '../../firebase'
 import { registerUser } from '../../utils/login-utils';
-import { useNavigate } from 'react-router-dom'
-import { createUserWithEmailAndPassword } from 'firebase/auth'
+import { createUserWithEmailAndPassword, sendEmailVerification } from 'firebase/auth'
 import { notifier } from '../../utils/notify'
 import { ToastContainer } from 'react-toastify'
 
 
 const Signup = () => {
 
-    const navigate = useNavigate()
-    const goToHome = () => {
-        navigate('/')
-    }
     // Auth Context
     const authCtx = useContext(AuthContext)
+
 
     // state change handled
     const [user, setUser] = useState({
@@ -39,25 +35,25 @@ const Signup = () => {
 
         const name = user.name, about = user.about, email = user.email, password = user.password
 
-        if(name.trim().length === 0){
+        if (name.trim().length === 0) {
             notifier('Please fill the Name', 'info')
             return
         }
 
-        if(email.trim().length === 0){
+        if (email.trim().length === 0) {
             notifier('Please fill the Email', 'info')
             return
         }
 
-        if(password.trim().length === 0){
+        if (password.trim().length === 0) {
             notifier('Please fill the Password', 'info')
             return
         }
 
-        const emailRegex = /^[A-Za-z_.]{3,}@[A-Za-z]{3,}[.]{1}[A-Za-z.]{2,5}$/
+        const emailRegex = /^[A-Za-z_.0-9]{3,}@[A-Za-z]{3,}[.]{1}[A-Za-z.]{2,5}$/
         const isEmailValid = emailRegex.test(email)
 
-        if(!isEmailValid){
+        if (!isEmailValid) {
             notifier('Email is not Valid', 'error')
             return
         }
@@ -65,9 +61,7 @@ const Signup = () => {
         const passwordRegex = /^(?=.*[0-9])(?=.*[!@#$%^&*])(?=.*[A-Z])(?=.*[a-z])[a-zA-Z0-9!@#$%^&*]{6,16}$/
         const isPasswordValid = passwordRegex.test(password)
 
-        // console.log(isPasswordValid)
-
-        if(!isPasswordValid){
+        if (!isPasswordValid) {
             notifier('Passwords must contain 1 Uppercase, 1 Lowercase, 1 Numeric, 1 Special Character and No space', 'error')
             return
         }
@@ -77,17 +71,32 @@ const Signup = () => {
 
                 const userId = email && email.split('@')[0].replace(/[.]/g, '_')
 
-                await registerUser(userId, name, email, about, true)
+                // console.log('This is before register' + authCtx)
+
+                await registerUser(userId, name, email, about)
                     .then(() => {
                         notifier('Account Created Successfully', 'success')
-                        notifier('Redirecting to home page', 'info')
-                        setTimeout(goToHome, 3000)
                         authCtx.updateUid(userId)
+                        // console.log( 'After register : ' + authCtx)
                     })
                     .catch((err) => {
                         notifier('Something went wrong', 'error')
-                        // console.log('Error when sign up' + err)
                     })
+
+                const user = auth.currentUser
+                await sendEmailVerification(user)
+                    .then(() => {
+                        notifier('Email Verification Link Sent', 'info')
+                        setUser({
+                            name: '',
+                            email: '',
+                            about: '',
+                            password: ''
+                        })
+                    })
+            })
+            .catch((err) => {
+                notifier('Email already registered', 'error')
             })
     }
 
@@ -103,7 +112,7 @@ const Signup = () => {
                         <input type="text" placeholder="Full Name" name="name" value={user.name} onChange={getUserData} autoComplete='off' />
                     </div>
 
-                    <div class="input-field">
+                    <div className="input-field">
                         <FaUser className='icon' />
                         <input type="email" placeholder="Email" name="email" value={user.email} onChange={getUserData} autoComplete='off' />
                     </div>
@@ -125,7 +134,7 @@ const Signup = () => {
 
             </div>
 
-            <ToastContainer/>
+            <ToastContainer />
         </>
     )
 }

@@ -16,6 +16,9 @@ import Dummy from "./components/card/Dummy"
 
 const Profile = () => {
 
+  // console.log('PRINTING FROM THE LOGIN PAGE : ' + auth.currentUser.emailVerified)
+
+
   const { uid } = useParams()
 
   const [type, setType] = useState('')
@@ -43,6 +46,7 @@ const Profile = () => {
     })
   }, [])
 
+
   useEffect(() => {
 
     onValue(ref(database, 'blogs/'), (snapshot) => {
@@ -61,66 +65,6 @@ const Profile = () => {
     })
 
   }, [uid])
-
-  // useEffect(() => {
-
-  //   if(type == 'bookmarked')
-  //   {
-  //     onValue(ref(database, 'blogs/'), (snapshot) => {
-  //       if(snapshot)
-  //       {
-  //         const all = snapshot.val()
-  //         const blogs = Object.values(all)
-  //         let temp = []
-  //         blogs.map((blog) => {
-  //           if (blog.authorid == uid) {
-  //             temp.push(blog)
-  //           }
-  //         })
-  //         setAuthorBlog(temp)
-  //         setCount(temp.length)
-  //       }
-  //     })
-
-  //     const bookRef = ref(database, 'users/' + uid + '/bookMarkedBlogs')
-
-  //     let bmarr = []
-  //     onValue(bookRef, (snapshot) => {
-  //       if(snapshot)
-  //         bmarr = snapshot.val()
-  //     })
-
-  //     console.log( 'the bookmarked array snapshot : ' + bmarr)
-
-  //     let bids = []
-  //     for(const key in bmarr)
-  //       bids.push(key)
-
-  //     console.log( 'printing the bids : ' + bids)
-
-  //     let temp = authorBlog
-  //     // console.log('Now the authorBlog is : ' + authorBlog)
-
-  //     let ans = []
-  //     bids.map( (id) => {
-  //       temp.map( (blog) => {
-  //         if(blog.bid == id)
-  //           ans.push(blog)
-  //       })
-  //     })
-
-  //     console.log(ans)
-  //     setAuthorBlog(ans)
-  //     setCount(ans.length)
-  //   }
-
-  //   else
-  //   {
-
-  //   }
-
-  // }, [type])
-
 
   return (
     <>

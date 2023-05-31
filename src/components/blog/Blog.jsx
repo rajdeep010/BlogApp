@@ -333,7 +333,7 @@ const Blog = (props) => {
 
                     <div className="option_icon">
 
-                        {userId && authCtx.isLoggedIn && (userId === authorid) && <div className="icon" onClick={() => setDeleteOption(!deleteOption)}>
+                        {userId && authCtx.isAuthenticated && (userId === authorid) && <div className="icon" onClick={() => setDeleteOption(!deleteOption)}>
                             <FiMoreVertical />
                         </div>}
 
@@ -364,7 +364,7 @@ const Blog = (props) => {
 
                     <section className="lc-container">
 
-                        {authCtx.isLoggedIn && authCtx.userId && <div className="icons">
+                        {authCtx.isAuthenticated && authCtx.userId && <div className="icons">
 
                             <button className="like-box-icons" onClick={addLike}>
                                 {!isLiked && <div className="each-icon">
@@ -415,7 +415,7 @@ const Blog = (props) => {
                         {/* Comment writing part */}
                         <div className="comment-container">
 
-                            {authCtx.isLoggedIn && authCtx.userId && <div className="cmntbox">
+                            {authCtx.isAuthenticated && authCtx.userId && <div className="cmntbox">
                                 <div className="comment-input-box"><input type="text" className="cmnt-input" placeholder="Write Your Comment..." value={comment} onChange={(e) => setComment(e.target.value)} /></div>
                                 <div className="comment-submit-button" onClick={addComment} ><button className="like-box-icons"> <FiSend /> </button></div>
                             </div>}
