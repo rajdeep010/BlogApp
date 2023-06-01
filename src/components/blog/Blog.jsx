@@ -15,10 +15,11 @@ import { notifier } from '../../utils/notify';
 import { FacebookShareButton, LinkedinShareButton } from 'react-share'
 import { FaFacebook, FaWhatsapp, FaLinkedin } from 'react-icons/fa';
 import { FiMoreVertical, FiSend } from 'react-icons/fi';
-import { redirect } from '../../utils/login-utils'
 import { storage } from '../../firebase'
 import { ref as ref_storage, deleteObject } from 'firebase/storage'
 import { useNavigate } from 'react-router-dom'
+import uniqid from 'uniqid'
+
 
 
 
@@ -43,7 +44,6 @@ const Blog = (props) => {
     const [poster, setPoster] = useState('')
     const [isPoster, setIsPoster] = useState(false)
     const [isBookmarked, setIsBookmarked] = useState(false)
-    const [shareModal, setShareModal] = useState(false)
     const [writer, setWriter] = useState('')
     const [deleteOption, setDeleteOption] = useState(false)
 
@@ -220,15 +220,6 @@ const Blog = (props) => {
 
     }, [likecount, commentcount, bid, isBookmarked])
 
-    useEffect(() => {
-        if (shareModal)
-            document.body.style.overflowY = 'hidden'
-
-        else
-            document.body.style.overflowY = 'visible'
-
-    }, [shareModal])
-
 
     const addComment = () => {
         if(comment.trim().length === 0){
@@ -404,7 +395,7 @@ const Blog = (props) => {
                                     </div>
 
                                     <LinkedinShareButton className='icon' title={'CODIO'} summary={'Check out this blog on CODIO'} source={'CODIO'} url={temp}>
-                                        <FaLinkedin round={true} />
+                                        <FaLinkedin />
                                     </LinkedinShareButton>
                                 </div>
                             </button>
@@ -422,9 +413,8 @@ const Blog = (props) => {
 
                             {/* Comment more comments */}
                             <div className="comments">
-
                                 {blogComment.length > 0 && blogComment.map((each) => (
-                                    <Comment value={each} blogID={bid} key={each} />
+                                    <Comment value={each} blogID={bid} key={uniqid()} />
                                 ))}
                             </div>
 

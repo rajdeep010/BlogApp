@@ -33,7 +33,7 @@ const Comment = (props) => {
         onValue(ref(database, ('users/' + authorId + '/details/')), (snapshot) => {
             if (snapshot) {
                 const details = snapshot.val()
-                const name = details.name
+                const name = (details.name === null) ? 'Anonymous' : details.name
                 const about = details.about
                 const avatarURL = details.avatarURL
                 setCommentor({ name, about, avatarURL })
@@ -44,7 +44,7 @@ const Comment = (props) => {
     useEffect(() => {
         onValue(ref(database, ('users/' + authorId + '/details/')), (snapshot) => {
             const details = snapshot.val()
-            const name = details.name
+            const name = (details.name === null) ? 'Anonymous' : details.name
             const about = details.about
             const avatarURL = details.avatarURL
             setCommentor({ name, about, avatarURL })

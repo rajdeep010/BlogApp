@@ -10,12 +10,11 @@ const Navbar = () => {
 
     const authCtx = useContext(AuthContext)
 
-    // console.log(authCtx.use
-
-
     const handleLogOut = () => {
         authCtx.logout()
     }
+
+    console.log(authCtx.user, authCtx.userId, authCtx.user.emailVerified)
 
     return (
         <>
@@ -31,11 +30,6 @@ const Navbar = () => {
                         <span className="navbar-toggler-icon"></span>
                     </button>
 
-                    {/* <form className="d-flex">
-                        <input className="form-control me-2" type="search" placeholder="Search by title..." aria-label="Search" value={title} onChange={ (e) => setTitle(e.target.value) }/>
-                        <button className="button" type="submit" onClick={handleSearch} >SEARCH</button>
-                    </form> */}
-
                     <div className="collapse navbar-collapse" id="navbarSupportedContent">
 
                         <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
@@ -47,7 +41,7 @@ const Navbar = () => {
                             </li>}
 
                             {authCtx.user && authCtx.userId && authCtx.user.emailVerified && <li className="nav-item">
-                                <NavLink to={'users/' + authCtx.userId} className={'nav-link'}>
+                                <NavLink to={'/users/' + authCtx.userId} className={'nav-link'}>
                                     PROFILE
                                 </NavLink>
                             </li>}

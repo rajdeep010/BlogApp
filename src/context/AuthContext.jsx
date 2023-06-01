@@ -1,9 +1,7 @@
 import { createContext, useEffect, useState } from 'react'
 import { auth } from '../firebase'
 import { GoogleAuthProvider, createUserWithEmailAndPassword, getRedirectResult, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signInWithRedirect, signOut } from "firebase/auth";
-import { registerUsingGoogleAccount } from '../utils/login-utils';
 import { redirect } from '../utils/login-utils';
-import { notifier } from '../utils/notify';
 
 
 
@@ -82,23 +80,6 @@ const AuthProvider = (props) => {
                 const userId = user.email && user.email.split('@')[0].replace(/[.]/g, '_')
                 setUserId(userId)
                 setUser(user)
-
-                const provider = user.providerData[0].providerId
-
-                if (provider === 'google.com') 
-                {
-                    let name = user.displayName
-                    const email = user.email
-
-                    await registerUsingGoogleAccount(userId, name, email)
-                        .then(() => {
-                            notifier('Logged in as ' + userId, 'success')
-                        })
-                        .catch((err) => {
-                            console.log(err)
-                        })
-                }
-
             } else {
                 setUserId(null)
                 setIsAuthenticated(false)

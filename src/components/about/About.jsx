@@ -18,6 +18,8 @@ const About = (props) => {
         'avatarURL': '',
     })
 
+    const mailurl = 'https://mail.google.com/mail/u/0/?fs=1&tf=cm&source=mailto&to='
+
     const [authorId, setAuthorId] = useState('')
 
     const bid = props.value
@@ -79,7 +81,7 @@ const About = (props) => {
 
                     {/* <Button value={'FOLLOW'} /> */}
 
-                    <NavLink to={'/mailto:' + user.email} className='button'>
+                    <NavLink target='_blank' to={mailurl + user.email} className='button'>
                         <MdMail className='icon' />
                     </NavLink>
                 </div>

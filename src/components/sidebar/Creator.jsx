@@ -14,7 +14,7 @@ const Creator = (props) => {
     const about = detail.about
     const id = detail.authorId
 
-    const path = 'users/' + id
+    const path = '/users/' + id
 
     useEffect(() => {
         const dbRef = ref(database, 'users/' + id + '/details')

@@ -6,6 +6,7 @@ import { onValue, ref } from 'firebase/database'
 import { useEffect, useState } from 'react'
 import Dummy from '../card/Dummy'
 
+
 const Latest = () => {
 
     const [arr, setArr] = useState([])
