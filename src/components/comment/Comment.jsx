@@ -10,6 +10,7 @@ import ReactTimeago from 'react-timeago'
 const Comment = (props) => {
 
     const authContext = useContext(AuthContext)
+
     const userID = authContext.userId
 
     const [commentor, setCommentor] = useState({
@@ -109,7 +110,7 @@ const Comment = (props) => {
                             <p><ReactTimeago date={time} locale='en-US' /></p>
                             </div>
 
-                            {authContext.userId && authContext.isAuthenticated && (userID === authorId) && <div className="edit" onClick={handleToggle}>
+                            {authContext.userId && authContext.user && authContext.user.emailVerified  && (userID === authorId) && <div className="edit" onClick={handleToggle}>
 
                                 <div className="three_dot_icon">
                                     <FiMoreVertical />

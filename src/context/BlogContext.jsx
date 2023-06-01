@@ -13,7 +13,7 @@ const BlogContext = createContext({
     updateVal: () => { },
     makeComment: () => { },
     addLike: () => { },
-    handleBookMark: () => { },
+    handleBookMark:  () => { },
     addComment: () => { },
     blogWriter: () => { },
 })
@@ -192,7 +192,7 @@ const BlogProvider = (props) => {
 
             let bookmarked = 0
             onValue(bookmarkCountRef, (snapshot) => {
-                bookmarked = snapshot.val().bookmarked
+                bookmarked = (snapshot.val().bookmarked === null) ? 0 : snapshot.val().bookmarked
             })
 
             update(bookmarkCountRef, {

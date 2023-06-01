@@ -3,7 +3,7 @@ import './signup.scss'
 import { AuthContext } from '../../context/AuthContext'
 import { FaUser, FaLock, FaPen, FaKey } from 'react-icons/fa'
 import { auth } from '../../firebase'
-import { registerUser } from '../../utils/login-utils';
+import { redirect, registerUser } from '../../utils/login-utils';
 import { createUserWithEmailAndPassword, sendEmailVerification } from 'firebase/auth'
 import { notifier } from '../../utils/notify'
 import { ToastContainer } from 'react-toastify'
@@ -28,6 +28,21 @@ const Signup = () => {
         key = e.target.name
         value = e.target.value
         setUser({ ...user, [key]: value })
+    }
+
+    const dummyHandleSignup = async (e) => {
+        e.preventDefault()
+
+        const email = user.email, password = user.password
+
+        await authCtx.signUp(email, password)
+        .then(() => {
+            notifier('Account created Sueccessfully', 'success')
+            redirect('/login')
+        })
+        .catch((err) => {
+            console.log('Sign up problem: ' + err)
+        })
     }
 
     const handleSignup = (e) => {
@@ -69,6 +84,18 @@ const Signup = () => {
         createUserWithEmailAndPassword(auth, email, password)
             .then(async (userCredentials) => {
 
+                const user = auth.currentUser
+                await sendEmailVerification(user)
+                    .then(() => {
+                        notifier('Email Verification Link Sent', 'info')
+                        setUser({
+                            name: '',
+                            email: '',
+                            about: '',
+                            password: ''
+                        })
+                    })
+
                 const userId = email && email.split('@')[0].replace(/[.]/g, '_')
 
                 // console.log('This is before register' + authCtx)
@@ -83,17 +110,7 @@ const Signup = () => {
                         notifier('Something went wrong', 'error')
                     })
 
-                const user = auth.currentUser
-                await sendEmailVerification(user)
-                    .then(() => {
-                        notifier('Email Verification Link Sent', 'info')
-                        setUser({
-                            name: '',
-                            email: '',
-                            about: '',
-                            password: ''
-                        })
-                    })
+
             })
             .catch((err) => {
                 notifier('Email already registered', 'error')

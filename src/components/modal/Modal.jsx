@@ -75,7 +75,6 @@ const Modal = ({ setShowModal, showModal }) => {
 
     return ReactDOM.createPortal(
         <>
-
             <div className={showModal ? "modal-wrapper active-wrapper" : "modal-wrapper"} onClick={() => setShowModal(false)}></div>
             <div className={showModal ? "modal-container active-modal-container" : "modal-container"}>
 
@@ -85,12 +84,12 @@ const Modal = ({ setShowModal, showModal }) => {
 
                     <div className="input-field">
                         <FaUser className='icon' />
-                        <input type="text" placeholder="Name" name="name" value={user.name} autoComplete='off' onChange={getDetails} />
+                        <input type="text" className='name' placeholder="Name" name="name" value={user.name} autoComplete='off' onChange={getDetails} />
                     </div>
 
                     <div className="input-field">
                         <FaEdit className='icon' />
-                        <input type="text" placeholder="About" name='about' value={user.about} autoComplete='off' onChange={getDetails} />
+                        <input type="text" className='about' placeholder="About" name='about' value={user.about} autoComplete='off' onChange={getDetails} />
                     </div>
 
                     <div className="form-buttons">

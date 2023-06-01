@@ -36,7 +36,6 @@ const registerUsingGoogleAccount = async (userId, name, email) => {
     update(dbRef, {
         name: name,
         email: email,
-        isLoggedIn: true,
         blogCount: 0,
         bookmarked: 0
     }).then((res) => {

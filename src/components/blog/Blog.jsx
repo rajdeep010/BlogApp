@@ -333,11 +333,11 @@ const Blog = (props) => {
 
                     <div className="option_icon">
 
-                        {userId && authCtx.isAuthenticated && (userId === authorid) && <div className="icon" onClick={() => setDeleteOption(!deleteOption)}>
+                        {userId && authCtx.user && authCtx.user.emailVerified && (userId === authorid) && <div className="icon" onClick={() => setDeleteOption(!deleteOption)}>
                             <FiMoreVertical />
                         </div>}
 
-                        {deleteOption && <button className="btn" onClick={handleDeleteBlog}>
+                        {deleteOption && authCtx.user.emailVerified &&  <button className="btn" onClick={handleDeleteBlog}>
                             Delete Blog
                         </button>}
 
@@ -364,7 +364,7 @@ const Blog = (props) => {
 
                     <section className="lc-container">
 
-                        {authCtx.isAuthenticated && authCtx.userId && <div className="icons">
+                        {authCtx.user && authCtx.user.emailVerified  && authCtx.userId && <div className="icons">
 
                             <button className="like-box-icons" onClick={addLike}>
                                 {!isLiked && <div className="each-icon">
@@ -415,7 +415,7 @@ const Blog = (props) => {
                         {/* Comment writing part */}
                         <div className="comment-container">
 
-                            {authCtx.isAuthenticated && authCtx.userId && <div className="cmntbox">
+                            {authCtx.user && authCtx.userId && authCtx.user.emailVerified  &&  <div className="cmntbox">
                                 <div className="comment-input-box"><input type="text" className="cmnt-input" placeholder="Write Your Comment..." value={comment} onChange={(e) => setComment(e.target.value)} /></div>
                                 <div className="comment-submit-button" onClick={addComment} ><button className="like-box-icons"> <FiSend /> </button></div>
                             </div>}

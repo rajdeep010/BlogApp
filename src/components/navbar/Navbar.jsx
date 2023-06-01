@@ -3,15 +3,15 @@ import { FiEdit, FiCoffee } from "react-icons/fi";
 import { NavLink } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthContext';
 import { useContext } from 'react';
-import { auth } from '../../firebase';
+
+
 
 const Navbar = () => {
 
-
     const authCtx = useContext(AuthContext)
 
-    // console.log(authCtx.userId )
-    // console.log(authCtx.isAuthenticated)
+    // console.log(authCtx.use
+
 
     const handleLogOut = () => {
         authCtx.logout()
@@ -40,21 +40,21 @@ const Navbar = () => {
 
                         <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
 
-                            {authCtx.isAuthenticated && authCtx.userId && <li className="nav-item">
+                            {authCtx.user && authCtx.userId && authCtx.user.emailVerified && <li className="nav-item">
                                 <NavLink to='/write' className={'nav-link'}>
                                     WRITE <FiEdit />
                                 </NavLink>
                             </li>}
 
-                            {authCtx.isAuthenticated && authCtx.userId && <li className="nav-item">
-                                <NavLink to={'/users/' + authCtx.userId} className={'nav-link'}>
+                            {authCtx.user && authCtx.userId && authCtx.user.emailVerified && <li className="nav-item">
+                                <NavLink to={'users/' + authCtx.userId} className={'nav-link'}>
                                     PROFILE
                                 </NavLink>
                             </li>}
 
-                            {!authCtx.isAuthenticated && <li className="nav-item"><NavLink to='/login' className={'nav-link'}>LOGIN</NavLink></li>}
+                            {(!authCtx.user || !authCtx.userId || !authCtx.user.emailVerified) && <li className="nav-item"><NavLink to='/login' className={'nav-link'}>LOGIN</NavLink></li>}
 
-                            {authCtx.isAuthenticated && authCtx.userId && <li className="nav-item" onClick={handleLogOut}><NavLink to='/login' className={'nav-link'}>LOGOUT</NavLink></li>}
+                            {authCtx.user && authCtx.userId && authCtx.user.emailVerified &&  <li className="nav-item" onClick={handleLogOut}><NavLink to='/login' className={'nav-link'}>LOGOUT</NavLink></li>}
                         </ul>
 
                     </div>

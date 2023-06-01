@@ -1,33 +1,49 @@
 import { createContext, useEffect, useState } from 'react'
-import { auth, database } from '../firebase'
-import { GoogleAuthProvider, getRedirectResult, onAuthStateChanged, signInWithRedirect, signOut } from "firebase/auth";
+import { auth } from '../firebase'
+import { GoogleAuthProvider, createUserWithEmailAndPassword, getRedirectResult, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signInWithRedirect, signOut } from "firebase/auth";
 import { registerUsingGoogleAccount } from '../utils/login-utils';
 import { redirect } from '../utils/login-utils';
-import { onValue, ref } from 'firebase/database';
 import { notifier } from '../utils/notify';
+
 
 
 const AuthContext = createContext({
     userId: '',
-    isLoggedIn: '',
     isAuthenticated: '',
+    user: {},
 
     // functions
     updateUid: () => { },
     signInUsingGoogle: () => { },
     logout: () => { },
-    handleLogin: () => { }
+    handleLogin: () => { },
+    updateAuthStatus: () => { },
+    updateUser: () => { },
+
+
+    // auth-func
+    logIn: () => { },
+    signUp: () => { },
+    googleSignIn: () => { }
 })
 
-const AuthProvider = (props) => {
-    const [userId, setUserId] = useState('')
-    const [isLoggedIn, setIsLoggedIn] = useState(false)
-    const [isAuthenticated, setIsAuthenticated] = useState(false)
 
+const AuthProvider = (props) => {
+    const [user, setUser] = useState({})
+    const [userId, setUserId] = useState('')
+    const [isAuthenticated, setIsAuthenticated] = useState(false)
 
     // function
     const updateUid = (uid) => {
         setUserId(uid)
+    }
+
+    const updateUser = (status) => {
+        setUser(status)
+    }
+
+    const updateAuthStatus = (status) => {
+        setIsAuthenticated(status)
     }
 
     // authentications
@@ -38,74 +54,80 @@ const AuthProvider = (props) => {
         const res = await getRedirectResult(auth)
         if (res) {
             setIsAuthenticated(true)
-            isLoggedIn(true)
             redirect('/dashboard')
         }
     }
 
     const logout = () => {
-        signOut(auth)
+        return signOut(auth)
+    }
+
+    const logIn = async (email, password) => {
+        return signInWithEmailAndPassword(auth, email, password)
+    }
+
+    const signUp = (email, password) => {
+        return createUserWithEmailAndPassword(auth, email, password)
+    }
+
+    const googleSignIn = () => {
+        const googleAuthProvider = new GoogleAuthProvider()
+        return signInWithPopup(auth, googleAuthProvider)
     }
 
     useEffect(() => {
-        onAuthStateChanged(auth, async (user) => {
+
+        const unsubscribe = onAuthStateChanged(auth, async (user) => {
             if (user) {
                 const userId = user.email && user.email.split('@')[0].replace(/[.]/g, '_')
                 setUserId(userId)
-                const provider = user.providerData[0].providerId
-                // console.log(provider)
+                setUser(user)
 
-                if (provider === 'google.com') {
+                const provider = user.providerData[0].providerId
+
+                if (provider === 'google.com') 
+                {
                     let name = user.displayName
                     const email = user.email
 
                     await registerUsingGoogleAccount(userId, name, email)
-                    .then(() => {
-                        notifier('Logged in as ' + userId, 'success')
-                    })
-                    .catch((err) => {
-                        console.log(err)
-                    })
+                        .then(() => {
+                            notifier('Logged in as ' + userId, 'success')
+                        })
+                        .catch((err) => {
+                            console.log(err)
+                        })
                 }
+
             } else {
                 setUserId(null)
-                setIsLoggedIn(false)
                 setIsAuthenticated(false)
+                setUser(null)
             }
-        },{
-            onlyOnce: true
+        })
+
+        return () => {
+            unsubscribe()
         }
-        )
-    }, [auth])
-
-
-    useEffect(() => {
-        if (userId) {
-            const dbRef = ref(database, 'users/' + userId)
-
-            onValue(dbRef, (snapshot) => {
-
-                const details = null || (snapshot.val() && snapshot.val().details)
-
-                if (details) {
-                    setIsAuthenticated(true)
-                }
-            }, {
-                onlyOnce: true
-            })
-        }
-    }, [userId])
+    }, [])
 
 
     const authContext = {
         userId: userId,
-        isLoggedIn: isLoggedIn,
         isAuthenticated: isAuthenticated,
+        user: user,
 
         // functions
         updateUid: updateUid,
         signInUsingGoogle: signInUsingGoogle,
         logout: logout,
+        updateAuthStatus: updateAuthStatus,
+        updateUser: updateUser,
+
+
+        logIn: logIn,
+        signUp: signUp,
+        googleSignIn: googleSignIn
     }
 
 

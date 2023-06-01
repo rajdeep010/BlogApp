@@ -61,10 +61,10 @@ const About2 = (props) => {
                 </div>
 
                 <div className="bookmarked_and_edit_buttons">
-                    {authCtx.isAuthenticated && <FaUserEdit className='about2_icon' onClick={ () => setShowModal(true)} />}
+                    {authCtx.user && authCtx.user.emailVerified  && <FaUserEdit className='about2_icon' onClick={ () => setShowModal(true)} />}
                     {showModal &&  <Modal setShowModal={setShowModal} showModal = {showModal}/>}
 
-                    {authCtx.isAuthenticated && <FaCamera className='about2_icon' onClick={ () => setShowAvatarModal(true)} />}
+                    {authCtx.user && authCtx.user.emailVerified  && <FaCamera className='about2_icon' onClick={ () => setShowAvatarModal(true)} />}
                     {showAvatarModal && <AvatarModal setShowAvatarModal={setShowAvatarModal} showAvatarModal = {showAvatarModal}/>}
 
                 </div>
