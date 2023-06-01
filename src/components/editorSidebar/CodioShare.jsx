@@ -1,6 +1,7 @@
 import { FiCoffee } from "react-icons/fi";
-import { FaFacebook, FaInstagram, FaTelegram, FaLinkedin } from "react-icons/fa";
+import { FaFacebook, FaInstagram, FaTelegram, FaLinkedin, FaGithub } from "react-icons/fa";
 import '../../styles/codioShare.scss'
+import { NavLink } from "react-router-dom";
 
 
 const CodioShare = () => {
@@ -24,10 +25,22 @@ const CodioShare = () => {
                     </div>
 
                     <div className="social_icon">
-                        <FaFacebook className="icon"/>
-                        <FaInstagram className="icon"/>
-                        <FaLinkedin className="icon"/>
-                        <FaTelegram className="icon"/>
+                        <NavLink target="_blank" to={'https://www.linkedin.com/in/rajdeep-mallick-6477381b4/'}>
+                            <FaLinkedin className="icon" />
+                        </NavLink>
+
+                        <NavLink target="_blank" to={'https://github.com/rajdeep010'}>
+                            <FaGithub className="icon" />
+                        </NavLink>
+
+                        <NavLink target="_blank" to={'https://www.instagram.com/rajdeepmallick010/'}>
+                            <FaInstagram className="icon" />
+                        </NavLink>
+
+                        <NavLink target="_blank" to={'https://www.facebook.com/profile.php?id=100059688039141&mibextid=ZbWKwL'}>
+                            <FaFacebook className="icon" />
+                        </NavLink>
+
                     </div>
 
                 </div>

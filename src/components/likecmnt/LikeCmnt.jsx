@@ -14,7 +14,7 @@ import { database } from '../../firebase';
 
 const LikeCmnt = ({ bid }) => {
 
-    const temp = 'https://medium.com'
+    const temp = window.location.href
 
     const authCtx = useContext(AuthContext)
     const blogContext = useContext(BlogContext)
@@ -112,6 +112,7 @@ const LikeCmnt = ({ bid }) => {
     }
 
     const handleWhatsappShare = () => {
+        const url = temp
         const text = `_🔥🔥 Check out this blog, title :"_ ${title}_" written by "_${writer}_ "on CODIO❤️. Link :_ ${url}`
         const share = `whatsapp://send?text=${text}`
         window.open(share)
