@@ -3,7 +3,7 @@ import '../../styles/signup.scss'
 import { AuthContext } from '../../context/AuthContext'
 import { FaUser, FaLock, FaPen, FaKey } from 'react-icons/fa'
 import { auth } from '../../firebase'
-import { redirect, registerUser } from '../../utils/login-utils';
+import { registerUser } from '../../utils/login-utils';
 import { createUserWithEmailAndPassword, sendEmailVerification } from 'firebase/auth'
 import { notifier } from '../../utils/notify'
 import { ToastContainer } from 'react-toastify'
@@ -30,20 +30,6 @@ const Signup = () => {
         setUser({ ...user, [key]: value })
     }
 
-    const dummyHandleSignup = async (e) => {
-        e.preventDefault()
-
-        const email = user.email, password = user.password
-
-        await authCtx.signUp(email, password)
-        .then(() => {
-            notifier('Account created Sueccessfully', 'success')
-            redirect('/login')
-        })
-        .catch((err) => {
-            console.log('Sign up problem: ' + err)
-        })
-    }
 
     const handleSignup = (e) => {
         e.preventDefault()
