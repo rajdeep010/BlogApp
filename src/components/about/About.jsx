@@ -80,7 +80,7 @@ const About = (props) => {
 
                     {/* <Button value={'FOLLOW'} /> */}
 
-                    <NavLink target='_blank' to={mailurl + user.email} className='button'>
+                    <NavLink target='_blank' to={mailurl + user.email} className='btn'>
                         <MdMail className='icon' />
                     </NavLink>
                 </div>

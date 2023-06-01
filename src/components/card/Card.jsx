@@ -25,9 +25,6 @@ const Card = (props) => {
     if (content.length > 400)
         content = content.substr(0, 400)
 
-    if (content[content.length - 1] == ' ')
-        content[content.length - 1] = ''
-
     content += '...'
 
     const bid = blog.bid

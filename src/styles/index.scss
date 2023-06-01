@@ -10,6 +10,24 @@ $small: 600px;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+
+  .btn{
+    border: $border;
+
+    color: $white;
+    background-color: $blue;
+
+    padding: 0.5rem 1rem;
+    text-transform: uppercase;
+
+    transition: 0.2s ease-in-out;
+
+    &:hover {
+        color: $blue;
+        background-color: $white;
+    }
+  }
+
 }
 
 .app_container {
