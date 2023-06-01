@@ -1,7 +1,6 @@
 import Card from "./components/card/Card"
 import Sidebar from "./components/sidebar/Sidebar"
-import Navbar from "./components/navbar/Navbar"
-import './index.scss'
+import './styles/index.scss'
 import { useEffect, useState } from "react"
 import { onValue, ref } from "firebase/database"
 import { database } from "./firebase"
@@ -67,7 +66,7 @@ const App = () => {
 
   return (
     <>
-      <Navbar />
+      {/* <Navbar /> */}
 
       <section className="app_container">
 

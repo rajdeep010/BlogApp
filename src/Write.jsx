@@ -2,8 +2,7 @@ import Navbar from "./components/navbar/Navbar"
 import Editor from "./components/editor/Editor"
 import Title from "./components/editor/Title"
 import EditSidebar from './components/editorSidebar/EditSidebar'
-import './write.scss'
-
+import './styles/write.scss'
 import Category from "./components/editorSidebar/Category"
 import CodioShare from "./components/editorSidebar/CodioShare"
 
@@ -12,7 +11,7 @@ const Write = () => {
 
   return (
     <>
-      <Navbar />
+      {/* <Navbar /> */}
 
       <div className="writing_section">
 

@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from 'react'
-import './about2.scss'
+import '../../styles/about2.scss'
 import { onValue, ref } from 'firebase/database'
 import { database } from '../../firebase'
 import { FaUserEdit, FaCamera } from "react-icons/fa";

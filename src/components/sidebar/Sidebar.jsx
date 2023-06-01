@@ -1,21 +1,21 @@
-import './sidebar.scss'
-
+import '../../styles/sidebar.scss'
 import Latest from './Latest'
 import Creators from './Creators'
 import SidebarFooter from './SidebarFooter'
 
+
+
 const Sidebar = () => {
 
-    
     return (
         <>
             <div className="sidebar_container">
 
-                <Latest/>
+                <Latest />
 
-                <Creators/>
+                <Creators />
 
-                <SidebarFooter/>
+                <SidebarFooter />
 
             </div>
         </>

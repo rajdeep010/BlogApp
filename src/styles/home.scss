@@ -10,20 +10,29 @@
     left: 0;
     right: 0;
 
-    background: #000046;
+    background: #2980B9;
     /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #1CB5E0, #000046);
+    background: -webkit-linear-gradient(to right, #FFFFFF, #6DD5FA, #2980B9);
     /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, #1CB5E0, #000046);
+    background: linear-gradient(to left, #FFFFFF, #6DD5FA, #2980B9);
     /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
-    background: #000046;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #1CB5E0, #000046);  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, #1CB5E0, #000046); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background-size: 400% 400%;
+    animation: gradient 5s linear infinite;
 
-    background: #B2FEFA;  /* fallback for old browsers */
-background: -webkit-linear-gradient(to left, #0ED2F7, #B2FEFA);  /* Chrome 10-25, Safari 5.1-6 */
-background: linear-gradient(to left, #0ED2F7, #B2FEFA); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    @keyframes gradient {
+        0% {
+            background-position: 0% 50%;
+        }
+
+        50% {
+            background-position: 100%;
+        }
+
+        100% {
+            background-position: 0% 50%;
+        }
+    }
 
 }
 
@@ -58,7 +67,6 @@ background: linear-gradient(to left, #0ED2F7, #B2FEFA); /* W3C, IE 10+/ Edge, Fi
                 width: 20rem;
             }
         }
-
     }
 
     .codio_about_content {
@@ -67,7 +75,6 @@ background: linear-gradient(to left, #0ED2F7, #B2FEFA); /* W3C, IE 10+/ Edge, Fi
         justify-content: center;
         align-items: center;
         gap: 1rem;
-
         padding: 2rem;
 
         @media screen and (max-width: $mobile) {
@@ -80,7 +87,7 @@ background: linear-gradient(to left, #0ED2F7, #B2FEFA); /* W3C, IE 10+/ Edge, Fi
             flex-direction: column;
             gap: 0.5rem;
 
-            h2{
+            h2 {
                 font-size: 3rem;
                 font-weight: 500;
             }

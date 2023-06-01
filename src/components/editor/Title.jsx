@@ -1,7 +1,6 @@
 import { useState, useContext } from "react"
 import { TitleContext } from "../../context/TitleContext"
-import '../editor/title.scss'
-
+import '../../styles/title.scss'
 
 
 const Title = () => {

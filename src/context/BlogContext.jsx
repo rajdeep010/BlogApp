@@ -61,6 +61,12 @@ const BlogProvider = (props) => {
 
         // comment pushed
         set(commentListRef, obj)
+        .then(() => {
+            notifier('Comment added', 'success')
+        })
+        .catch((err)=>{
+            notifier('Something went wrong', 'error')
+        })
 
         // comment count update
         // for that first retrive the previous value
@@ -94,8 +100,6 @@ const BlogProvider = (props) => {
             const newRef = ref(database, 'users/' + userId + '/likedBlogs/' + bid)
             set(newRef, obj)
 
-            setIsLiked(false)
-
             // update the like count
             const likeCountRef = ref(database, 'blogs/' + bid + '/metrics/')
 
@@ -106,6 +110,13 @@ const BlogProvider = (props) => {
 
             update(likeCountRef, {
                 likes: likes + 1
+            })
+            .then(() => {
+                setIsLiked(true)
+                notifier('Liked', 'success')
+            })
+            .catch((err) => {
+                notifier('Something went wrong', 'error')
             })
         }
 
@@ -139,8 +150,13 @@ const BlogProvider = (props) => {
                     update(likeCountRef, {
                         likes: likes - 1
                     })
-
-                    setIsLiked(false)
+                    .then(() => {
+                        setIsLiked(false)
+                        notifier('Like Removed', 'error')
+                    })
+                    .catch((err) => {
+                        notifier('Something went wrong', 'error')
+                    })
                 }
             }
 
@@ -153,8 +169,6 @@ const BlogProvider = (props) => {
                 const newRef = ref(database, 'users/' + userId + '/likedBlogs/' + bid)
                 set(newRef, obj)
 
-                setIsLiked(true)
-
                 // update the like count
                 const likeCountRef = ref(database, 'blogs/' + bid + '/metrics/')
 
@@ -165,6 +179,13 @@ const BlogProvider = (props) => {
 
                 update(likeCountRef, {
                     likes: likes + 1
+                })
+                .then(() => {
+                    setIsLiked(true)
+                    notifier('Liked', 'success')
+                })
+                .catch((err) => {
+                    notifier('Something went wrong', 'error')
                 })
             }
         }

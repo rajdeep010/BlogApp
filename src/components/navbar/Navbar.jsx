@@ -1,4 +1,4 @@
-import './navbar.scss'
+import '../../styles/navbar.scss'
 import { FiEdit, FiCoffee } from "react-icons/fi";
 import { NavLink } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthContext';
@@ -14,7 +14,7 @@ const Navbar = () => {
         authCtx.logout()
     }
 
-    console.log(authCtx.user, authCtx.userId, authCtx.user.emailVerified)
+    // console.log(authCtx.user, authCtx.userId, authCtx.user.emailVerified)
 
     return (
         <>

@@ -1,5 +1,5 @@
 import Latestblog from './Latestblog'
-import './latestblog.scss'
+import '../../styles/latestblog.scss'
 import uniqid from 'uniqid'
 import { database } from '../../firebase'
 import { onValue, ref } from 'firebase/database'

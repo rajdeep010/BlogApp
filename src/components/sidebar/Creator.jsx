@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import './creator.scss'
+import '../../styles/creator.scss'
 import { NavLink } from 'react-router-dom'
 import { onValue, ref } from 'firebase/database'
 import { database } from '../../firebase'

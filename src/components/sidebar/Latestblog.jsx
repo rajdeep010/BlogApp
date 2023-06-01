@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom'
-import './latestblog.scss'
+import '../../styles/latestblog.scss'
 import { useEffect, useState } from 'react'
 import { onValue, ref } from 'firebase/database'
 import { database } from '../../firebase'

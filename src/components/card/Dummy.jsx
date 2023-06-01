@@ -1,4 +1,4 @@
-import './dummy.scss'
+import '../../styles/dummy.scss'
 
 
 const Dummy = (props) => {

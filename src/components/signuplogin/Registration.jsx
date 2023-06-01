@@ -1,8 +1,9 @@
 import { useState } from 'react'
 import Login from './Login'
 import Signup from './Signup'
+import '../../styles/signup.scss'
 
-import './signup.scss'
+
 
 const Registration = () => {
 

@@ -1,7 +1,7 @@
 import { FiCoffee } from "react-icons/fi";
 import { FaFacebook, FaInstagram, FaTelegram, FaLinkedin } from "react-icons/fa";
+import '../../styles/codioShare.scss'
 
-import './codioShare.scss'
 
 const CodioShare = () => {
     return (

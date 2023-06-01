@@ -2,9 +2,8 @@ import Index from './Index'
 import Write from './Write'
 import Registration from './components/signuplogin/Registration'
 import Post from './Post'
-
+import Navbar from './components/navbar/Navbar'
 import { BrowserRouter, Routes, Route } from "react-router-dom"
-
 import BlogProvider from './context/BlogContext'
 import TitleProvider from './context/TitleContext'
 import AuthProvider from './context/AuthContext'
@@ -24,6 +23,8 @@ const App = () => {
         <TitleProvider>
           <BlogProvider>
             <BrowserRouter>
+              <Navbar/>
+
               <Routes>
                 <Route path='/' element={<Home />}></Route>
                 <Route path='/dashboard' element={<Index />}></Route>

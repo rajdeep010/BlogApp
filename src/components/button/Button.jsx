@@ -1,9 +1,6 @@
-import '../button/button.scss'
+import '../../styles/button.scss'
 
 const Button = (props) => {
-
-    // const str = props.value
-
 
     return (
         <>

@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom'
-import './card.scss'
+import '../../styles/card.scss'
 import { useEffect, useState } from 'react'
 import ReactTimeago from 'react-timeago'
 import { onValue, ref } from 'firebase/database'

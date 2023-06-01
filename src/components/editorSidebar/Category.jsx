@@ -1,5 +1,5 @@
 import { useContext, useState } from 'react'
-import './category.scss'
+import '../../styles/category.scss'
 import { BlogContext } from '../../context/BlogContext'
 import { TitleContext } from '../../context/TitleContext'
 import { AuthContext } from '../../context/AuthContext';

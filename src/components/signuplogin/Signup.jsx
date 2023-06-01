@@ -1,5 +1,5 @@
 import { useState, useContext } from 'react'
-import './signup.scss'
+import '../../styles/signup.scss'
 import { AuthContext } from '../../context/AuthContext'
 import { FaUser, FaLock, FaPen, FaKey } from 'react-icons/fa'
 import { auth } from '../../firebase'

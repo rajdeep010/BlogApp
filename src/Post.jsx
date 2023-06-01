@@ -4,7 +4,7 @@ import About from "./components/about/About"
 import Latest from "./components/sidebar/Latest"
 import CodioShare from "./components/editorSidebar/CodioShare"
 import { useParams } from "react-router-dom"
-import './post.scss'
+import './styles/post.scss'
 import { useEffect, useState } from "react"
 // import About2 from './components/about/About2'
 
@@ -28,7 +28,7 @@ const Post = () => {
         <>
             <section className="post-container">
 
-                <Navbar />
+                {/* <Navbar /> */}
 
                 <div className="post-page-element">
 

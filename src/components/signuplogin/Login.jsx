@@ -1,4 +1,4 @@
-import './signup.scss'
+import '../../styles/signup.scss'
 import { FaUser, FaLock } from 'react-icons/fa'
 import { AuthContext } from '../../context/AuthContext'
 import { useContext, useState } from 'react'

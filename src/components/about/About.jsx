@@ -1,7 +1,7 @@
 import { NavLink } from 'react-router-dom'
 import { MdMail } from 'react-icons/md'
 
-import './about.scss'
+import '../../styles/about.scss'
 
 import Button from '../button/Button'
 import { useEffect, useState } from 'react'
