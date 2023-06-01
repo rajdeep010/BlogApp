@@ -1,12 +1,11 @@
 import { NavLink } from 'react-router-dom'
 import { MdMail } from 'react-icons/md'
-
 import '../../styles/about.scss'
-
-import Button from '../button/Button'
 import { useEffect, useState } from 'react'
 import { onValue, ref } from 'firebase/database'
 import { database } from '../../firebase'
+
+
 
 const About = (props) => {
 

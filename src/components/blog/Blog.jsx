@@ -1,27 +1,18 @@
 import '../../styles/blog.scss'
 import '../../styles/likecmnt.scss'
 import { useContext, useEffect, useState } from 'react'
-import { onValue, ref, remove, set, update } from 'firebase/database'
+import { onValue, ref, remove, update } from 'firebase/database'
 import { database } from '../../firebase'
-import Comment from '../comment/Comment';
 import { AuthContext } from '../../context/AuthContext';
-import { BlogContext } from '../../context/BlogContext';
-import { VscHeartFilled, VscHeart, VscComment } from "react-icons/vsc";
 import 'react-quill/dist/quill.snow.css';
-import { BiBookmarkPlus, BiBookmarkMinus } from "react-icons/bi";
-import Dummy from '../card/Dummy';
 import { ToastContainer } from 'react-toastify';
 import { notifier } from '../../utils/notify';
-import { FacebookShareButton, LinkedinShareButton } from 'react-share'
-import { FaFacebook, FaWhatsapp, FaLinkedin } from 'react-icons/fa';
-import { FiMoreVertical, FiSend } from 'react-icons/fi';
+import { FiMoreVertical } from 'react-icons/fi';
 import { storage } from '../../firebase'
 import { ref as ref_storage, deleteObject } from 'firebase/storage'
 import { useNavigate } from 'react-router-dom'
-import uniqid from 'uniqid'
 import AllComments from '../comment/AllComments'
 import LikeCmnt from '../likecmnt/LikeCmnt'
-
 
 
 
@@ -30,7 +21,6 @@ const Blog = (props) => {
     const bid = props.value
 
     const authCtx = useContext(AuthContext)
-    const blogContext = useContext(BlogContext)
     const userId = authCtx.userId
 
     const [title, setTitle] = useState('')
@@ -152,32 +142,17 @@ const Blog = (props) => {
                     </div>
 
                     <div className="main_content">
-
-                        <section className="header-img">
-                            {isPoster && <img src={poster} alt="" />}
-                        </section>
-
-                        <div className="blog_title">
-                            <h1>{title}</h1>
-                        </div>
-
-                        <div className="blog_actual_content">
-                            {inner(content)}
-                        </div>
+                        <section className="header-img">{isPoster && <img src={poster} alt="" />}</section>
+                        <div className="blog_title"><h1>{title}</h1></div>
+                        <div className="blog_actual_content">{inner(content)}</div>
                     </div>
 
                 </section>
 
                 <section className="reaction">
-
                     <section className="lc-container">
-
-                        {authCtx.user && authCtx.user.emailVerified && authCtx.userId &&
-                            <LikeCmnt bid={bid} />
-                        }
-
+                        {authCtx.user && authCtx.user.emailVerified && authCtx.userId && <LikeCmnt bid={bid} />}
                         <AllComments value={bid} />
-
                     </section>
                 </section>
             </section>
