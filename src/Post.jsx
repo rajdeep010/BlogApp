@@ -6,22 +6,23 @@ import CodioShare from "./components/editorSidebar/CodioShare"
 import { useParams } from "react-router-dom"
 import './styles/post.scss'
 import { useEffect, useState } from "react"
-// import About2 from './components/about/About2'
 
 
 const Post = () => {
 
-    const [blogId, setBlogId] = useState('')
-
     const { bid } = useParams()
+
+    const [blogId, setBlogId] = useState(bid)
+
 
     useEffect(() => {
         setBlogId(bid)
     }, [])
 
+
     useEffect(() => {
         setBlogId(bid)
-    }, [bid])
+    }, [blogId, bid])
 
 
     return (

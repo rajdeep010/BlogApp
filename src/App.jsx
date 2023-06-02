@@ -15,7 +15,6 @@ import en from 'javascript-time-ago/locale/en.json'
 TimeAgo.addDefaultLocale(en)
 
 
-
 const App = () => {
   return (
     <>
@@ -34,6 +33,7 @@ const App = () => {
                 <Route path='/users/:uid' element={<Profile />}></Route>
                 <Route path='/login' element={<Registration />}></Route>
               </Routes>
+
             </BrowserRouter>
           </BlogProvider>
         </TitleProvider>

@@ -42,9 +42,9 @@ $med: 550px;
 
     .fbwpln
     {
-        width: 20vw;
         display: flex;
         justify-content: space-between;
+        gap: 3.5rem;
 
         .share_icons{
             font-size: 2rem;
