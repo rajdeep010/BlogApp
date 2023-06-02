@@ -1,0 +1,36 @@
+@import '../mixins';
+@import '../var';
+
+
+
+.button {
+    @include btn;
+}
+
+.btn{
+    border: $border;
+
+    color: $white;
+    background-color: $blue;
+
+    padding: 0.5rem 1rem;
+    text-transform: uppercase;
+
+    transition: 0.2s ease-in-out;
+
+    &:hover {
+        color: $blue;
+        background-color: $white;
+    }
+}
+
+.follow {
+    background-color: $blue;
+    color: $white;
+}
+
+.unfollow {
+    background-color: $white;
+    color: $blue;
+    border: $border;
+}

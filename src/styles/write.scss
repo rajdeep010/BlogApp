@@ -1,0 +1,28 @@
+@import '../mixins';
+@import '../var';
+
+
+
+.writing_section{
+    display: flex;
+
+    @media screen and (max-width: 1300px){
+        display: block;
+    }
+
+    .editor-sidebar
+    {
+        display: flex;
+        flex-direction: column;
+        padding: 1rem;
+
+        @media screen and (max-width: 1300px){
+            margin-top: 8rem;
+        }
+
+        @media screen and (max-width: 485px){
+            margin-top: 11rem;
+        }
+    }
+
+}

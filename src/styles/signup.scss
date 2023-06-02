@@ -1,0 +1,95 @@
+@import '../mixins';
+@import '../var';
+
+
+
+.wrapper {
+
+    @include flexprop;
+    
+    background: #2980B9;
+    /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #FFFFFF, #6DD5FA, #2980B9);
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to left, #FFFFFF, #6DD5FA, #2980B9);
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+    background-size: 400% 400%;
+    height: 100vh;
+
+    animation: gradient 5s linear infinite;
+
+    @keyframes gradient {
+        0% {
+            background-position: 0% 50%;
+        }
+
+        50% {
+            background-position: 100%;
+        }
+
+        100% {
+            background-position: 0% 50%;
+        }
+    }
+
+    .signup-login-buttons {
+        display: flex;
+        gap: 2.5rem;
+    }
+
+    .signup-login {
+
+        .box {
+            @include flexprop;
+
+            form {
+                @include flexprop;
+                border: $border;
+                box-shadow: $blue 0px 4px 9px;
+                padding: 2rem;
+                margin: 1.5rem 0;
+                border-radius: 1rem;
+
+                @media screen and (max-width: $mobile){
+                    padding: 1rem;
+                }
+
+                .heading {
+                    font-size: 2rem;
+                    font-weight: 600;
+
+                    span {
+                        color: $blue;
+                        border-bottom: $border;
+                    }
+                }
+
+                .input-field {
+                    @include input-field;
+
+                    input{
+                        @media screen and (max-width: $mobile){
+                            &::placeholder{
+                                font-size: 0.9rem;
+                            }
+                        }
+                    }
+
+                    @media screen and (max-width: $mobile){
+                        padding: 0.8rem;
+                        font-size: 0.9rem;
+                        width: 300px;
+                    }
+
+                    .icon{
+                        @media screen and (max-width: $mobile){
+                            font-size: 1.3rem;
+                        }
+                    }
+                }
+            }
+        }
+
+    }
+}

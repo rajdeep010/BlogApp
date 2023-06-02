@@ -1,0 +1,51 @@
+@import '../mixins';
+@import '../var';
+
+.profile{
+
+    .about_sidebar
+    {
+        display: flex;
+
+        @media screen and (max-width: $lg-medium){
+            display: block;
+        }
+
+        .profile_sidebar{
+            margin: 2rem 1rem 2rem 0;
+
+            @media screen and (max-width: $lg-medium) {
+                padding: 0 2rem;
+            }
+
+            @media screen and (max-width: $small) {
+                padding: 0 1.5rem;
+            }
+
+            @media screen and (max-width: $mobile) {
+                padding: 0 1rem;
+            }
+        }
+
+        .cards_container{
+            padding: 1rem 2rem;
+        }
+
+        .select_box
+        {
+            padding: 0.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+
+            select
+            {
+                border: $border;
+                padding: 0.5rem;
+                border-radius: $border-rad;
+                outline: none;
+                cursor: pointer;
+                background-color: $bg-light_blue;
+            }
+        }
+    }
+}

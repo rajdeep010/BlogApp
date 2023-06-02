@@ -1,0 +1,185 @@
+@import '../mixins';
+@import '../var';
+
+
+$medium: 850px;
+$small: 579px;
+
+.container {
+    border: $border;
+    background-color: $bg-card-blue;
+    border-bottom: 3px solid $blue;
+    border-radius: $border-rad;
+    text-decoration: none;
+    width: 65vw;
+    padding: 1.3rem 1rem 0.3rem 1rem;
+    display: flex;
+    color: rgba(23, 18, 18, 0.908);
+    margin-bottom: 1rem;
+    transition: 0.15s all ease-in-out;
+
+    &:hover {
+        cursor: pointer;
+        color: rgba(23, 18, 18, 0.908);
+    }
+
+    @media screen and (max-width: $medium) {
+        width: 100vw;
+        padding: 0.3rem;
+    }
+
+    @media screen and (max-width: $small) {
+        width: fit-content;
+    }
+
+
+    .content {
+
+        padding: 0.5rem;
+
+        @media screen and (max-width: $small) {
+            padding: 0.8rem;
+        }
+
+        // image date & name
+        .img_name_date {
+
+            display: flex;
+            gap: 0.65rem;
+            line-height: 35px;
+
+            .img {
+
+                img {
+                    height: 2.5rem;
+                    width: 2.5rem;
+                    border-radius: 50%;
+                    border: $border;
+
+                    @media screen and (max-width: $small) {
+                        height: 2rem;
+                        width: 2rem;
+                        border: 1.5px solid $blue;
+                    }
+                }
+            }
+
+            .name p,
+            .date p {
+                font-size: 1.15rem;
+
+                @media screen and (max-width: $small) {
+                    font-size: 0.9rem;
+                    font-weight: 500;
+                }
+            }
+        }
+
+        // content overview
+        .content-overview {
+            padding-right: 2rem;
+
+            @media screen and (max-width: $small) {
+                padding-right: 0.5rem;
+            }
+
+            .content-heading {
+                font-weight: 900;
+
+                h2 {
+                    font-size: 2.3rem;
+                    margin-bottom: 1rem;
+
+                    @media screen and (max-width: $small) {
+                        font-size: 1.7rem;
+                    }
+                }
+            }
+
+            .content-short {
+                text-align: justify;
+
+                @media screen and (max-width: $small) {
+                    font-size: 0.9rem;
+                }
+            }
+        }
+
+        // readtime icons
+        .readtime_icons {
+
+            .content_about {
+                @include flexjustspacebetween;
+
+                margin: 0.5rem 0;
+
+                .topic-container {
+                    display: flex;
+
+                    .topic-icon {
+                        background-color: $med-blue;
+                        border-radius: $border-rad;
+                        border: $img-border;
+
+                        display: inline;
+                        padding: 0.3rem;
+
+                        margin: 0.8rem 0.2rem;
+
+                        @media screen and (max-width: $small) {
+                            font-size: 0.8rem;
+                        }
+                    }
+
+                    .readtime {
+                        border: none;
+                        font-size: 0.9rem;
+                        background: none;
+
+                        @media screen and (max-width: $small) {
+                            font-size: 0.8rem;
+                        }
+                    }
+                }
+
+                .topic_moreabout {
+                    @include flexjustspacebetween;
+
+                    .icons {
+                        display: flex;
+                        gap: 0.7rem;
+
+                        .icon {
+                            font-size: 1.6rem;
+                            cursor: pointer;
+                            transition: all 0.2s ease-in-out;
+
+
+                            &:hover {
+                                color: $blue;
+                            }
+                        }
+                    }
+                }
+
+            }
+        }
+    }
+
+    .image {
+        @include flexcentre;
+
+        img {
+            height: 15rem;
+            width: 15rem;
+            border: $img-border;
+
+            @media screen and (max-width: $medium) {
+                display: none;
+            }
+        }
+
+
+
+    }
+}

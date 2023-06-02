@@ -1,0 +1,61 @@
+@import '../mixins';
+@import '../var';
+
+.author_about {
+    margin: 1rem 2rem;
+    border-bottom: $border;
+    padding: 2rem 0 0 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+
+    .author_details {
+        h2 {
+            color: $black;
+            font-size: 3rem;
+
+            @media screen and (max-width: 576px){
+                font-size: 2rem;
+            }
+
+            small {
+                font-size: 1.4rem;
+
+                @media screen and (max-width: 576px){
+                    font-size: 1rem;
+                }
+            }
+        }
+
+        .short_details {
+            margin-bottom: 0.5rem;
+            opacity: 0.85;
+
+            @media screen and (max-width: 576px){
+                font-size: 0.9rem;
+            }
+        }
+    }
+
+    .bookmarked_and_edit_buttons {
+
+        display: flex;
+        gap: 1rem;
+
+        .about2_icon {
+            font-size: 2.5rem;
+            color: $blue;
+            transition: 0.2s ease-in-out;
+            cursor: pointer;
+            margin-bottom: 0.5rem;
+
+            &:hover {
+                color: $black;
+            }
+
+            @media screen and (max-width: 576px){
+                font-size: 1.5rem;
+            }
+        }
+    }
+}

@@ -1,0 +1,21 @@
+@import '../mixins';
+@import '../var';
+
+
+
+.dummy_container{
+    max-width: fit-content;
+    padding: 1rem;
+    background-color: $bg-card-blue;
+    border-bottom: 2px solid $blue;
+    border-radius: $border-rad;
+    font-size: 0.9rem;
+
+    .icon{
+        margin: 0.7rem;
+    }
+
+    @media screen and (max-width: 430px){
+        padding: 0.5rem;
+    }
+}

@@ -1,0 +1,75 @@
+@import '../mixins';
+@import '../var';
+
+
+.about-me {
+    @include flexprop;
+    border: $border;
+    background-color: $light-blue;
+    border-radius: $border-rad;
+    padding: 2rem;
+    margin: 1rem 1rem 2.5rem 0;
+    height: fit-content;
+
+    @media screen and (max-width: $mobile){
+        padding: 1.5rem;
+        margin: 1rem;
+    }
+
+    .myimg
+    {
+        @include flexcentre;
+
+        img
+        {
+            border: $border;
+
+            height: 8rem;
+            width: 8rem;
+            border-radius: 50%;
+            margin: 0 1rem 1.5rem;
+            box-shadow: #11d7ff 0px 5px 5px;
+        }
+    }
+
+    .name-post {
+
+        @include flexprop;
+
+
+        h2 {
+            font-size: 1.5rem;
+
+            @media screen and (max-width: $mobile){
+                font-size: 1.3rem;
+            }
+
+            small{
+                font-size: 1rem;
+
+                @media screen and (max-width: $mobile){
+                    font-size: 0.9rem;
+                }
+            }
+        }
+
+        p {
+            color: #444;
+
+            @media screen and (max-width: $mobile){
+                font-size: 0.9rem;
+            }
+        }
+    }
+
+    .buttons {
+        display: flex;
+        margin-top: 1rem;
+
+        .btn {
+            .icon {
+                font-size: 1.5rem;
+            }
+        }
+    }
+}

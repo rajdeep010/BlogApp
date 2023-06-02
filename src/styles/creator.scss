@@ -1,0 +1,47 @@
+@import '../mixins';
+@import '../var';
+
+// Creators area
+.creators {
+    margin: 2rem 0;
+
+    .creator_info {
+        display: flex;
+        padding: 0.8rem 0;
+        text-decoration: none;
+        color: black;
+
+        &:hover {
+            color: $blue;
+            background-color: $white;
+        }
+
+        div {
+            margin: 0 0.3rem;
+        }
+
+        .creator_details {
+            @include flexcolumn;
+
+            .creator_name p {
+                font-size: 1.2rem;
+                margin-bottom: 0.15rem;
+            }
+
+            .creator_about {
+                font-size: 0.8rem;
+                opacity: 0.8;
+            }
+        }
+
+        .creator_image
+        {
+            img{
+                height: 2.2rem;
+                width: 2.2rem;
+                border: $border;
+
+            }
+        }
+    }
+}

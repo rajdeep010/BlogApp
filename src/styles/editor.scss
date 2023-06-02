@@ -1,0 +1,201 @@
+@import '../var';
+
+
+.editor {
+    height: 100vh;
+    padding: 0.5rem;
+
+
+    .ql-editor {
+        box-shadow: $deep-blue 0px 6px 14px;
+        padding: 2rem;
+
+        &::-webkit-scrollbar {
+            width: 0.5rem;
+        }
+
+        &::-webkit-scrollbar-track {
+
+            background-color: $blue;
+            border-radius: 1.3rem;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            border-radius: $border-rad;
+            background: $white;
+
+            border: 3px solid transparent;
+            background-clip: content-box;
+        }
+
+        pre.ql-syntax {
+            background-color: $editor-black;
+
+            padding: 2rem;
+            border-radius: 0.5rem;
+            font-size: 0.9rem;
+
+            @media screen and (max-width: $mobile){
+                padding: 1rem;
+            }
+        }
+
+        @media screen and (max-width: $mobile){
+            padding: 1rem;
+        }
+    }
+
+    .ql-toolbar.ql-snow {
+        border: $light-border;
+        background-color: $light-blue;
+
+        padding: 1rem;
+        border-radius: 0.8rem;
+        margin-bottom: 1.5rem;
+
+        @media screen and (max-width: $medium){
+            padding: 0.5rem;
+        }
+
+        .ql-icon-picker .ql-picker-label{
+            border: none;
+            height: 2rem;
+            width: 2rem;
+        }
+
+        .ql-picker-label {
+            border: $border;
+            border-radius: $border-rad;
+        }
+
+        button {
+            height: 2rem;
+            width: 2rem;
+            margin-right: 1.2rem;
+
+            @media screen and (max-width: $medium){
+                height: 1.5rem;
+                width: 1.5rem;
+            }
+        }
+    }
+
+    .ql-tooltip {
+        background-color: $light-blue;
+        border: $border;
+        color: $black;
+
+        border-radius: 0.5rem;
+        padding: 0.8rem 1rem;
+        font-size: 1.1rem;
+    }
+
+    .ql-snow .ql-tooltip[data-mode=link]::before {
+        content: "Link :";
+    }
+
+    .ql-snow .ql-tooltip.ql-editing a.ql-action::after {
+        border: $light-border;
+        border-radius: $border-rad;
+        color: $white;
+        background-color: $blue;
+
+        content: 'Save';
+
+        padding: 0.3rem;
+        
+
+        &:hover {
+            color: $blue;
+            background-color: $white;
+        }
+    }
+
+    .ql-snow .ql-stroke {
+        stroke: $stroke-blue;
+    }
+
+    .ql-snow .ql-fill {
+        fill: $stroke-blue;
+    }
+
+    .ql-snow .ql-tooltip input[type=text] {
+        outline: $border;
+        border-radius: $border-rad;
+
+        height: 2rem;
+        width: 13rem;
+
+        padding: 0.5rem;
+        font-size: 1.1rem;
+    }
+
+    .ql-container.ql-snow {
+        border: none;
+    }
+
+    .ql-editor {
+        background-color: $fade-blue;
+        border: $border;
+        border-radius: $border-rad;
+        
+        outline: none;
+    }
+
+
+    .ql-editor h1 {
+        font-size: 2rem;
+
+        @media screen and (max-width: $medium){
+            font-size: 1.5rem;
+        }
+    }
+
+    .ql-editor h2 {
+        font-size: 1.7rem;
+
+        @media screen and (max-width: $medium){
+            font-size: 1.3rem;
+        }
+    }
+
+    .ql-editor h3 {
+        font-size: 1.4rem;
+
+        @media screen and (max-width: $medium){
+            font-size: 1.2rem;
+        }
+    }
+
+    .ql-editor blockquote {
+        background-color: $quote-blue;
+
+        font-size: 1.3rem;
+        font-style: italic;
+        font-weight: 400;
+        border-left: 0.5rem solid #57e3ffcf;
+        padding: 0.5rem;
+        margin: 0.8rem 0;
+
+        @media screen and (max-width: $medium){
+            font-size: 1rem;
+            padding: 0.3rem;
+            margin: 0.5rem 0;
+        }
+    }
+
+    .ql-editor p,
+    .ql-editor ol,
+    .ql-editor ul,
+    .ql-editor pre {
+        font-size: 1.2rem;
+
+        @media screen and (max-width: $medium){
+            font-size: 1rem;
+        }
+
+        @media screen and (max-width: $mobile){
+            padding: 0.9rem;
+        }
+    }
+}

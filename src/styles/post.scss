@@ -1,0 +1,23 @@
+@import '../mixins';
+@import '../var';
+
+
+.post-container{
+
+    .post-page-element{
+        display: flex;
+        padding: 2rem 1rem;
+
+        @media screen and (max-width: $lg-medium){
+            display: block;
+        }
+
+        .post-sidebar{
+
+            @media screen and (max-width: $small){
+                padding: 0.5rem;
+             }
+        }
+    }
+
+}
