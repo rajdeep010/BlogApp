@@ -15,13 +15,13 @@ const Home = () => {
             <div className="home_container">
 
                 <div className="codio_image">
-                    <img src="../images/blog.svg" alt="" />
+                    <img src="./images/blog.svg" alt="" />
                 </div>
 
                 <div className="codio_about_content">
 
                     <div className="heading">
-                        <img src="../images/mug-hot.svg" alt="" />
+                        <img src="./images/mug-hot.svg" alt="" />
                         <h2>CODIO</h2>
                     </div>
 

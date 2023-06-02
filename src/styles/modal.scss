@@ -40,6 +40,36 @@ $med: 550px;
         margin-bottom: 2rem;
     }
 
+    .fbwpln
+    {
+        width: 20vw;
+        display: flex;
+        justify-content: space-between;
+
+        .share_icons{
+            font-size: 2rem;
+
+            .icon{
+                transition: 0.2s ease-in-out;
+                &:hover{
+                    scale: 1.3;
+                }
+            }
+
+            .fb{
+                color: #0F87E8;
+            }
+
+            .wp{
+                color: #56F074;
+            }
+
+            .ln{
+                color: #0963BD;
+            }
+        }
+    }
+
     .avatar_container
     {
         @include flexcentre;
@@ -121,6 +151,9 @@ $med: 550px;
 
 .active-modal-container {
     background-color: white;
+
+    
+
 }
 
 
