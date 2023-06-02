@@ -118,7 +118,7 @@ const AvatarModal = ({ setShowAvatarModal, showAvatarModal }) => {
 
                     <div className="avatar_container">
 
-                        {!imageFile && <img src={(currImg === null) ? "../../../public/images/user.png" : currImg} alt="dp" className='avatar_image' />}
+                        {!imageFile && <img src={(currImg === null) ? "../../../images/user.png" : currImg} alt="dp" className='avatar_image' />}
                         {imageFile && <img src={imageFile} alt="dp" className='avatar_image' />}
 
                         <p>Click below <FaHandPointDown/> to upload an image</p>

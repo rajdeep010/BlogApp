@@ -89,7 +89,7 @@ const Comment = (props) => {
 
                 <div className="person-img">
                     {commentor.avatarURL && <img src={commentor.avatarURL} alt="dp" />}
-                    {!commentor.avatarURL && <img src="../../public/images/user.png" alt="img" />}
+                    {!commentor.avatarURL && <img src="../../images/user.png" alt="img" />}
                 </div>
 
                 <div className="details_edit_cmnt">

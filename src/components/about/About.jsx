@@ -68,7 +68,7 @@ const About = (props) => {
 
                 <div className="myimg">
                     {user.avatarURL && <img src={user.avatarURL} alt="myimg" />}
-                    {!user.avatarURL && <img src="../../../public/images/user.png" alt="myimg" />}
+                    {!user.avatarURL && <img src="../../../images/user.png" alt="myimg" />}
                 </div>
 
                 <div className="name-post">
