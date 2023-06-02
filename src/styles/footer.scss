@@ -9,6 +9,7 @@ footer {
     background: $nav-blue;
     border-top: 1px solid $blue;
     margin-top: 10px;
+    z-index: 9999;
 
     .my_name {
         font-size: 1.2rem;
