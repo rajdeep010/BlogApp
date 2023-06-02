@@ -5,6 +5,10 @@
 .creators {
     margin: 2rem 0;
 
+    .heading p{
+        @include heading;
+    }
+
     .creator_info {
         display: flex;
         padding: 0.8rem 0;

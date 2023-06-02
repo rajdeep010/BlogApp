@@ -17,8 +17,7 @@ const Latest = () => {
 
     useEffect(() => {
         let ans = []
-        onValue(ref(database, 'blogs/'), (snapshot) => 
-        {
+        onValue(ref(database, 'blogs/'), (snapshot) => {
             let now = []
 
             if (snapshot) {
@@ -28,8 +27,8 @@ const Latest = () => {
             }
 
             let n = now.length
-            
-            if(n > 5)
+
+            if (n > 5)
                 now = now.slice(n - 5, n)
 
             now.reverse()
@@ -47,13 +46,13 @@ const Latest = () => {
                     <p>LATEST BLOGS</p>
                 </div>
 
-                <div className="blogs_container">
+                <div className="blogs_container" >
 
-                {arr.length > 0 && arr.map((each) => (
-                    <Latestblog value={each} key={uniqid()} />
-                ))}
+                    {arr.length > 0 && arr.map((each) => (
+                        <Latestblog value={each} key={uniqid()} />
+                    ))}
 
-                {arr.length === 0 && <Dummy message={'No Latest Blogs'} />}
+                    {arr.length === 0 && <Dummy message={'No Latest Blogs'} />}
 
                 </div>
 

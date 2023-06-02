@@ -6,11 +6,17 @@ import CodioShare from "./components/editorSidebar/CodioShare"
 import { useParams } from "react-router-dom"
 import './styles/post.scss'
 import { useEffect, useState } from "react"
+import { useNavigate, redirect } from "react-router-dom"
+import Creators from "./components/sidebar/Creators"
+
 
 
 const Post = () => {
 
     const { bid } = useParams()
+    const navigate = useNavigate()
+
+    console.log(bid)
 
     const [blogId, setBlogId] = useState(bid)
 
@@ -22,6 +28,8 @@ const Post = () => {
 
     useEffect(() => {
         setBlogId(bid)
+        navigate('/blog/' + bid)
+        // redirect('/blog/'+bid)
     }, [blogId, bid])
 
 
@@ -43,8 +51,12 @@ const Post = () => {
                             <About value={bid} />
                         </div>
 
-                        <div className="element">
+                        {/* <div className="element">
                             <Latest />
+                        </div> */}
+
+                        <div className="element">
+                            <Creators />
                         </div>
 
                         <div className="element">
