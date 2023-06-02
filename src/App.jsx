@@ -11,6 +11,7 @@ import Profile from './Profile'
 import Home from './Home'
 import TimeAgo from 'javascript-time-ago'
 import en from 'javascript-time-ago/locale/en.json'
+import Footer from './components/footer/Footer'
 
 TimeAgo.addDefaultLocale(en)
 
@@ -22,7 +23,7 @@ const App = () => {
         <TitleProvider>
           <BlogProvider>
             <BrowserRouter>
-              <Navbar/>
+              <Navbar />
 
               <Routes>
                 <Route path='/' element={<Home />}></Route>
@@ -33,6 +34,8 @@ const App = () => {
                 <Route path='/users/:uid' element={<Profile />}></Route>
                 <Route path='/login' element={<Registration />}></Route>
               </Routes>
+
+              <Footer />
 
             </BrowserRouter>
           </BlogProvider>

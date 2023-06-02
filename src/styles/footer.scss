@@ -1,0 +1,81 @@
+@import '../var';
+@import '../mixins';
+
+
+footer {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.3rem 2rem 0 2rem;
+    background: $nav-blue;
+    border-top: 1px solid $blue;
+    margin-top: 10px;
+
+    .my_name{
+        font-size: 1.2rem;
+        margin-top: 0.65rem;
+
+        .me{
+            text-decoration: none;
+        }
+    }
+
+    .icon_name {
+        display: flex;
+        gap: 0.8rem;
+        margin-top: 0.65rem;
+
+        .icon {
+            font-size: 1.8rem;
+
+            @media screen and (max-width: $mobile){
+                font-size: 1.4rem;
+            }
+        }
+
+        p {
+            font-size: 1.2rem;
+            color: black;
+
+            @media screen and (max-width: $mobile){
+                font-size: 1rem;
+            }
+        }
+    }
+
+    .social_icon {
+        display: flex;
+        gap: 1.3rem;
+        margin-top: 0.65rem;
+        transition: 0.2s ease-in-out;
+
+        .icon {
+            font-size: 1.8rem;
+
+            &:hover{
+                scale: 1.15;
+            }
+
+            @media screen and (max-width: $mobile){
+                font-size: 1.4rem;
+            }
+        }
+
+        .fb {
+            color: #0F87E8;
+        }
+
+        .gb {
+            color: #444;
+        }
+
+        .ln {
+            color: #0963BD;
+        }
+
+        .ig {
+            color: white;
+            border-radius: 8px;
+            background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+        }
+    }
+}
