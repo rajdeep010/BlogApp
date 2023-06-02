@@ -6,7 +6,6 @@ import { FaFacebook, FaWhatsapp, FaLinkedin } from 'react-icons/fa';
 
 const ShareModal = ({ setShareModal, shareModal, temp }) => {
 
-
     return ReactDOM.createPortal(
         <>
             <div className={shareModal ? "modal-wrapper active-wrapper" : "modal-wrapper"} onClick={() => setShareModal(false)}></div>
@@ -24,7 +23,7 @@ const ShareModal = ({ setShareModal, shareModal, temp }) => {
                     </div>
 
                     <div className="share_icons">
-                        <WhatsappShareButton className='icon'  url={temp} title={'Check out this blog on CODIO 🔥❤️ :'} separator={' '}>
+                        <WhatsappShareButton className='icon'  url={temp} title={'❤️ Check out this blog on CODIO ❤️:'} separator={' '}>
                             <FaWhatsapp className="wp"/>
                         </WhatsappShareButton>
                     </div>

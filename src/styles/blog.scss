@@ -43,9 +43,34 @@ $lg-medium: 1050px;
             justify-content: end;
             margin-bottom: 1rem;
 
+            .share_icon{
+                font-size: 2.2rem;
+                border: $border;
+                border-radius: 50%;
+                padding: 0.2rem;
+                cursor: pointer;
+                transition: 0.2s ease-in-out;
+
+                color: $blue;
+                background-color: $white;
+
+                margin-left: 1.5rem;
+
+                &:hover{
+                    color: $white;
+                    background-color: $blue;
+                }
+            }
+
             .icon{
                 cursor: pointer;
                 margin-right: 0.5rem;
+
+                .vertical{
+                    font-size: 1.2rem;
+                    margin-top: 0.5rem;
+                    color: $black;
+                }
             }
 
             .options{

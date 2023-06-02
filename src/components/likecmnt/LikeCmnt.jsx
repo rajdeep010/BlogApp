@@ -124,13 +124,6 @@ const LikeCmnt = ({ bid }) => {
         blogContext.addLike(userId, bid, setIsLiked)
     }
 
-    // const handleWhatsappShare = () => {
-    //     const url = 'https://codioshare.web.app/blog/' + bid
-
-    //     const text = `_🔥🔥Check out this blog, title :"_ ${title}_" written by "_${writer}_ "on CODIO❤️. Link :_ ${url}`
-    //     const share = `whatsapp://send?text=${text}`
-    //     window.open(share)
-    // }
 
     const handleBookMark = () => {
         blogContext.handleBookMark(userId, bid, setIsBookmarked)
@@ -172,25 +165,6 @@ const LikeCmnt = ({ bid }) => {
                     </div>}
                 </button>
 
-                <button className='share_icons'>
-
-                    <RiShareForwardFill className='sh_icon' onClick={() => setShareModal(true)} />
-                    {shareModal && <ShareModal shareModal={shareModal} setShareModal={setShareModal} temp={temp} />}
-                    
-                    {/* <div className="each-icon">
-                        <FacebookShareButton className='icon' url={temp} quote={'Check out the blog'} hashtag={'#codio'} >
-                            <FaFacebook />
-                        </FacebookShareButton>
-
-                        <WhatsappShareButton className="icon" url={temp} title={'Check out this blog on CODIO 🔥❤️ :'} separator={' '}>
-                            <FaWhatsapp />
-                        </WhatsappShareButton>
-
-                        <LinkedinShareButton className='icon' title={'CODIO'} summary={'Check out this blog on CODIO'} source={'CODIO'} url={temp}>
-                            <FaLinkedin />
-                        </LinkedinShareButton>
-                    </div> */}
-                </button>
             </div>
         </>
     )

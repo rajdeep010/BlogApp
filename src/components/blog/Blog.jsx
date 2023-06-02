@@ -13,12 +13,16 @@ import { ref as ref_storage, deleteObject } from 'firebase/storage'
 import { useNavigate } from 'react-router-dom'
 import AllComments from '../comment/AllComments'
 import LikeCmnt from '../likecmnt/LikeCmnt'
+import ShareModal from '../modal/ShareModal'
+import { RiShareForwardFill } from "react-icons/ri";
 
 
 
 const Blog = (props) => {
 
     const bid = props.value
+    const temp = 'https://codioshare.web.app/blog/' + bid
+
 
     const authCtx = useContext(AuthContext)
     const userId = authCtx.userId
@@ -30,11 +34,15 @@ const Blog = (props) => {
     const [isPoster, setIsPoster] = useState(false)
     const [deleteOption, setDeleteOption] = useState(false)
 
+    const [shareModal, setShareModal] = useState(false)
+
 
     const navigate = useNavigate()
     const goToProfile = () => {
         navigate('/users/' + userId)
     }
+
+
 
     useEffect(() => {
 
@@ -55,7 +63,17 @@ const Blog = (props) => {
         })
     }, [])
 
-    
+
+    useEffect(() => {
+        if (shareModal)
+            document.body.style.overflowY = 'hidden'
+
+        else
+            document.body.style.overflowY = 'visible'
+
+    }, [shareModal])
+
+
 
     const handleDeleteBlog = () => {
         // delete the blog
@@ -132,12 +150,15 @@ const Blog = (props) => {
                     <div className="option_icon">
 
                         {userId && authCtx.user && authCtx.user.emailVerified && (userId === authorid) && <div className="icon" onClick={() => setDeleteOption(!deleteOption)}>
-                            <FiMoreVertical />
+                            <FiMoreVertical className='vertical'/>
                         </div>}
 
                         {deleteOption && authCtx.user.emailVerified && <button className="btn" onClick={handleDeleteBlog}>
                             Delete Blog
                         </button>}
+
+                        <RiShareForwardFill className='share_icon' onClick={() => setShareModal(true)} />
+                        {shareModal && <ShareModal setShareModal={setShareModal} shareModal={shareModal} temp={temp} />}
 
                     </div>
 
