@@ -10,11 +10,11 @@ footer {
     border-top: 1px solid $blue;
     margin-top: 10px;
 
-    .my_name{
+    .my_name {
         font-size: 1.2rem;
         margin-top: 0.65rem;
 
-        .me{
+        .me {
             text-decoration: none;
         }
     }
@@ -27,7 +27,7 @@ footer {
         .icon {
             font-size: 1.8rem;
 
-            @media screen and (max-width: $mobile){
+            @media screen and (max-width: $mobile) {
                 font-size: 1.4rem;
             }
         }
@@ -36,7 +36,7 @@ footer {
             font-size: 1.2rem;
             color: black;
 
-            @media screen and (max-width: $mobile){
+            @media screen and (max-width: $mobile) {
                 font-size: 1rem;
             }
         }
@@ -51,11 +51,11 @@ footer {
         .icon {
             font-size: 1.8rem;
 
-            &:hover{
+            &:hover {
                 scale: 1.15;
             }
 
-            @media screen and (max-width: $mobile){
+            @media screen and (max-width: $mobile) {
                 font-size: 1.4rem;
             }
         }

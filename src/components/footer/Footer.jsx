@@ -15,10 +15,6 @@ const Footer = () => {
                     <p> © 2023 CODIO</p>
                 </div>
 
-                <div className="my_name">
-                    <p>Created with ❤️ by <NavLink className='me' target="_blank" to={'https://rajdeep010.netlify.app/'}>Rajdeep Mallick</NavLink></p>
-                </div>
-
                 <div className="social_icon">
                     <NavLink target="_blank" to={'https://www.linkedin.com/in/rajdeep-mallick-6477381b4/'}>
                         <FaLinkedin className="icon ln" />
